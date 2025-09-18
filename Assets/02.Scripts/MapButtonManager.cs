@@ -17,6 +17,15 @@ public class MapButtonManager : MonoBehaviour
     public Button map9Button;
     public Button map10Button;
 
+    /*void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManager.Instance.hp = 10;
+            Debug.Log("스페이스바 입력! HP를 10으로 변경 -> " + GameManager.Instance.hp);
+        }
+    }*/
+
     void Start()
     {
         map1Button.onClick.AddListener(OnMap1ButtonClick);

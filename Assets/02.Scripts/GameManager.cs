@@ -7,6 +7,12 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     public Button startButton;
+    public int hp = 5;
+
+    /*private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }*/
 
     void Start()
     {
@@ -16,7 +22,7 @@ public class GameManager : Singleton<GameManager>
 
     private void OnStartButtonClick()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("MapScene");
     }
 
     //µ•¿Ã∆Æ ø’√¢~

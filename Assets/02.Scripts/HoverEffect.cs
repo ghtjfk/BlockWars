@@ -7,6 +7,15 @@ public class HoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 {
     private Image buttonImage;
     private Color originalColor;
+    
+    /*void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManager.Instance.hp = 10;
+            Debug.Log("스페이스바 입력! HP를 10으로 변경 -> " + GameManager.Instance.hp);
+        }
+    }*/
 
     void Start()
     {
