@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     //public Button startButton;
 
     
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
@@ -32,5 +36,8 @@ public class GameManager : MonoBehaviour
     void LoadHP()
     {
         SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
+        SceneManager.LoadScene("MapScene");
     }
+
+    //µ•¿Ã∆Æ ø’√¢~
 }
