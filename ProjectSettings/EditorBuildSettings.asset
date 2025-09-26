@@ -9,16 +9,6 @@ EditorBuildSettings:
     path: Assets/01.Scenes/MapScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-<<<<<<< HEAD
-    path: Assets/01.Scenes/UIScene.unity
-    guid: f6d1be8680ed45848a22c0ef4571d7b1
-  - enabled: 1
-    path: Assets/01.Scenes/StartScene.unity
-    guid: 3a3fe02964472de43835052adf731089
-  - enabled: 1
-    path: Assets/01.Scenes/BrickScene.unity
-    guid: 95e724b857127094b834683a4272c6d4
-=======
     path: Assets/01.Scenes/Stage/Stage1.unity
     guid: 28ff072720ebf3340ae36b092dd644a9
   - enabled: 1
@@ -30,11 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01.Scenes/Stage/Stage4.unity
     guid: 7c1a16ad1c594e64f918010504031ec8
-  - enabled: 1
+  - enabled: 0
     path: Assets/01.Scenes/UIScene.unity
-    guid: 286c10cf5e62331428ac41406a9eb19e
+    guid: f6d1be8680ed45848a22c0ef4571d7b1
   - enabled: 1
     path: Assets/01.Scenes/StartScene.unity
     guid: 3a3fe02964472de43835052adf731089
->>>>>>> test
+  - enabled: 1
+    path: Assets/01.Scenes/BrickScene.unity
+    guid: 95e724b857127094b834683a4272c6d4
   m_configObjects: {}
