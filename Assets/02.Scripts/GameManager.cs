@@ -7,12 +7,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     public Button startButton;
-    public int hp = 5;
 
-    /*private void Awake()
+    private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-    }*/
+    }
 
     void Start()
     {
