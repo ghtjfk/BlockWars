@@ -17,14 +17,13 @@ public class MapButtonManager : MonoBehaviour
     private void Awake()
     {
         // 초기 해금 상태 구성: 기본은 1만 해금
-        // PlayerPrefs로 저장/복원 (예: "UnlockedStageMax")
         int unlockedMax = PlayerPrefs.GetInt("UnlockedStageMax", 1);
         unlockedMax = Mathf.Clamp(unlockedMax, minStage, maxStage);
 
         // 버튼 바인딩
         for (int i = 0; i < stageButtons.Length; i++)
         {
-            int stageNumber = i + 1; // 버튼 배열이 0~9라면 1~10으로 보정
+            int stageNumber = i + 1;
             if (stageNumber < minStage || stageNumber > maxStage) continue;
 
             var btn = stageButtons[i];
@@ -39,12 +38,10 @@ public class MapButtonManager : MonoBehaviour
                 // 잠금이면 팝업 띄우지 않음
                 if (!IsUnlocked(stageNumber))
                 {
-                    // 필요 시 토스트/진동/사운드 안내
                     Debug.Log($"Stage {stageNumber} is locked.");
                     return;
                 }
 
-                // 팝업 열기
                 popupManager.Open(stageNumber);
 
                 // (다음 단계용) 캐릭터가 버튼 위치로 이동 애니메이션 훅
