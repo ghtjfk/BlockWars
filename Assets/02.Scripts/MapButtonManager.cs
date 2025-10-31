@@ -1,51 +1,72 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class MapButtonManager : MonoBehaviour
 {
-    public Button map1Button;
-    public Button map2Button;
-    public Button map3Button;
-    public Button map4Button;
-    public Button map5Button;
-    public Button map6Button;
-    public Button map7Button;
-    public Button map8Button;
-    public Button map9Button;
-    public Button map10Button;
+    [Header("Stage Buttons (1~10)")]
+    [SerializeField] private Button[] stageButtons;  // 인스펙터에 10개 순서대로 할당
 
-    void Start()
+    [Header("Managers")]
+    [SerializeField] private PopupManager popupManager;
+    [SerializeField] private MapManager mapManager; // 필요시(동일 씬 내 이동용)
+
+    [Header("Unlock Settings")]
+    [SerializeField] private int minStage = 1;
+    [SerializeField] private int maxStage = 10;
+
+    private void Awake()
     {
-        map1Button.onClick.AddListener(OnMap1ButtonClick);
-        map2Button.onClick.AddListener(OnMap2ButtonClick);
-        map3Button.onClick.AddListener(OnMap3ButtonClick);
-        map4Button.onClick.AddListener(OnMap4ButtonClick);
+        // 초기 해금 상태 구성: 기본은 1만 해금
+        // PlayerPrefs로 저장/복원 (예: "UnlockedStageMax")
+        int unlockedMax = PlayerPrefs.GetInt("UnlockedStageMax", 1);
+        unlockedMax = Mathf.Clamp(unlockedMax, minStage, maxStage);
+
+        // 버튼 바인딩
+        for (int i = 0; i < stageButtons.Length; i++)
+        {
+            int stageNumber = i + 1; // 버튼 배열이 0~9라면 1~10으로 보정
+            if (stageNumber < minStage || stageNumber > maxStage) continue;
+
+            var btn = stageButtons[i];
+            if (btn == null) continue;
+
+            bool isUnlocked = (stageNumber <= unlockedMax);
+            btn.interactable = isUnlocked;
+
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(() =>
+            {
+                // 잠금이면 팝업 띄우지 않음
+                if (!IsUnlocked(stageNumber))
+                {
+                    // 필요 시 토스트/진동/사운드 안내
+                    Debug.Log($"Stage {stageNumber} is locked.");
+                    return;
+                }
+
+                // 팝업 열기
+                popupManager.Open(stageNumber);
+
+                // (다음 단계용) 캐릭터가 버튼 위치로 이동 애니메이션 훅
+                // mapManager?.MoveCharacterToStage(stageNumber);
+            });
+        }
     }
 
-    private void OnMap1ButtonClick()
+    public static bool IsUnlocked(int stage)
     {
-        SceneManager.LoadScene("Stage1");
-        SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
+        int unlockedMax = PlayerPrefs.GetInt("UnlockedStageMax", 1);
+        return stage <= unlockedMax;
     }
 
-    private void OnMap2ButtonClick()
+    // 스테이지 클리어 시 다음 스테이지 해금에 사용
+    public static void UnlockUpTo(int stage)
     {
-        SceneManager.LoadScene("Stage2");
-        SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
-    }
-
-    private void OnMap3ButtonClick()
-    {
-        SceneManager.LoadScene("Stage3");
-        SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
-    }
-
-    private void OnMap4ButtonClick()
-    {
-        SceneManager.LoadScene("Stage4");
-        SceneManager.LoadScene("UIScene", LoadSceneMode.Additive);
+        int prev = PlayerPrefs.GetInt("UnlockedStageMax", 1);
+        if (stage > prev)
+        {
+            PlayerPrefs.SetInt("UnlockedStageMax", stage);
+            PlayerPrefs.Save();
+        }
     }
 }
