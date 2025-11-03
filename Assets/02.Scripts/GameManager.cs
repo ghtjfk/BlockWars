@@ -5,8 +5,8 @@ public class GameManager : MonoBehaviour
 {
     private void Start()
     {
-        // ÇöÀç ¾À ÀÌ¸§ÀÌ MapSceneÀÏ ¶§¸¸ BrickSceneÀ» Ãß°¡·Î ·Îµå
-        if (SceneManager.GetActiveScene().name == "MapScene")
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ MapSceneï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ BrickSceneï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½Îµï¿½
+        if (SceneManager.GetActiveScene().name == "GameScene")
         {
             LoadBrickScene();
         }
@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadBrickScene()
     {
-        // BrickSceneÀÌ ÀÌ¹Ì ·ÎµåµÇ¾î ÀÖÁö ¾Ê´Ù¸é Additive ·Îµå
+        // BrickSceneï¿½ï¿½ ï¿½Ì¹ï¿½ ï¿½Îµï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´Ù¸ï¿½ Additive ï¿½Îµï¿½
         if (!IsSceneLoaded("BrickScene"))
         {
             SceneManager.LoadSceneAsync("BrickScene", LoadSceneMode.Additive);

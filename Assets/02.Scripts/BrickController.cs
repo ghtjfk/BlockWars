@@ -10,16 +10,14 @@ public class BrickController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
+            
             BrickPool.Instance.ReturnBrick(gameObject);
 
             Rigidbody2D ballRb = collision.gameObject.GetComponent<Rigidbody2D>();
-
+            
             if (ballRb != null) 
             {
                 Vector2 normal = collision.contacts[0].normal;
-                ballRb.velocity = Vector2.Reflect(ballRb.velocity, normal);
-
-                Debug.Log("Ãæµ¹");
             }
         }
     

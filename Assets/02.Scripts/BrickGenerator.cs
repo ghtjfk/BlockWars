@@ -8,8 +8,8 @@ public class BrickGenerator : MonoBehaviour
     Vector3 initPosition = new Vector3(-0.2f, 1.8f, 0);
     Vector3 pos;
     public BrickPool brickPool;
-    float xGap = 0.3f;
-    float yGap = 0.3f;
+    float xGap = 0.25f;
+    float yGap = 0.149f;
     public GameObject mapPosition;
     int stage;
 
@@ -30,7 +30,7 @@ public class BrickGenerator : MonoBehaviour
 
                     pos = initPosition + new Vector3(x * xGap, -y * yGap, 0);
 
-                    // ¿ÀºêÁ§Æ® Ç®¿¡¼­ º®µ¹ °¡Á®¿À±â
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     GameObject brick = brickPool.GetBrick();
                     brick.transform.position = pos;
                     brick.transform.rotation = Quaternion.identity;

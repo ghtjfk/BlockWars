@@ -14,6 +14,7 @@ public class OnButtonToggle : MonoBehaviour
     public GameObject attackBrickPrefab;
     public GameObject healBrickPrefab;
     private GameObject currentBrick;
+    public GameObject ball;
 
 
     public void OneButtonToggle()
@@ -23,51 +24,55 @@ public class OnButtonToggle : MonoBehaviour
         GameObject[] attackBricks = GameObject.FindGameObjectsWithTag("AttackBrick");
         GameObject[] healBricks = GameObject.FindGameObjectsWithTag("HealBrick");
         List<Vector3> oldPositions = new List<Vector3>();
-
-        if (!isOn)
+        bool isMoving = ball.GetComponent<BallMoveing>().isMoving;
+        if(!isMoving)
         {
-            currentImage.sprite = battleOn;
-            BattleMethod();
-
-            foreach (GameObject brick in healBricks)
+            if (!isOn)
             {
-                oldPositions.Add(brick.transform.position);
-                Destroy(brick);
+                currentImage.sprite = battleOn;
+                BattleMethod();
+
+                foreach (GameObject brick in healBricks)
+                {
+                    oldPositions.Add(brick.transform.position);
+                    Destroy(brick);
+                }
+
+                foreach (Vector3 pos in oldPositions)
+                {
+                    GameObject newBrick = Instantiate(attackBrickPrefab, pos, Quaternion.identity);
+                    newBrick.tag = "AttackBrick";
+                }
             }
-
-            foreach (Vector3 pos in oldPositions)
+            else
             {
-                GameObject newBrick = Instantiate(attackBrickPrefab, pos, Quaternion.identity);
-                newBrick.tag = "AttackBrick";
+                currentImage.sprite = healOn;
+                HealMethod();
+
+                foreach (GameObject brick in attackBricks)
+                {
+                    oldPositions.Add(brick.transform.position);
+                    Destroy(brick);
+                }
+
+                foreach (Vector3 pos in oldPositions)
+                {
+                    GameObject newBrick = Instantiate(healBrickPrefab, pos, Quaternion.identity);
+                    newBrick.tag = "HealBrick";
+                }
             }
         }
-        else
-        {
-            currentImage.sprite = healOn;
-            HealMethod();
-
-            foreach (GameObject brick in attackBricks)
-            {
-                oldPositions.Add(brick.transform.position);
-                Destroy(brick);
-            }
-
-            foreach (Vector3 pos in oldPositions)
-            {
-                GameObject newBrick = Instantiate(healBrickPrefab, pos, Quaternion.identity);
-                newBrick.tag = "HealBrick";
-            }
-        }
+        
     }
 
 
     public void BattleMethod()
     {
-        Debug.Log("BATTLE Event");
+        
     }
 
     public void HealMethod()
     {
-        Debug.Log("HEAL Event");
+        
     }
 }
