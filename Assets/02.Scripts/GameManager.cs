@@ -1,25 +1,46 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;    // ���̽��� �ܺο� �����ϱ� ���� ����
 
-public class GameManager : MonoBehaviour
+// �����ϴ� ���
+// 1. ������ �����Ͱ� ����
+// 2. �����͸� ���̽����� ��ȯ
+// 3. ���̽��� �ܺο� ����
+
+// �ҷ����� ���
+// 1. �ܺο� ����� ���̽��� ������
+// 2. ���̽��� ������ ���·� ��ȯ
+// 3. �ҷ��� �����͸� ���
+
+public class PlayerData   // 1. ������ �����Ͱ� ����
 {
-    public static GameManager Instance;
+    // �̸�, ����, ����, �������� ����
+    public string name;
+    public int level = 1;
+    public int coin = 100;
+    public int item = -1;
+}
+
+public class GameManager : Singleton<GameManager>
+{
+    public PlayerData nowPlayer = new PlayerData();
+
+    public string path;
+    public int nowSlot;
+
+    public bool newStart;
+    
     private int stage = 1 , breakCount;
     public float maxHP = 100f;
     public float currentHP = 80f;
 
-    void Awake()
+    private void Awake()
     {
-        // 싱글톤 패턴 구현
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        DontDestroyOnLoad(this.gameObject);
+
+        // ���ǿ��� ��õ�� ���
+        // ����Ƽ���� �˾Ƽ� �������ִ� ����
+        path = Application.persistentDataPath + "/";
     }
 
     private void Start()
@@ -37,6 +58,31 @@ public class GameManager : MonoBehaviour
         }
 
 
+    }
+
+    public void SaveData()
+    {
+        // 2. �����͸� ���̽����� ��ȯ
+        string data = JsonUtility.ToJson(nowPlayer);
+
+        // 3. ���̽��� �ܺο� ����
+        // "path" ����� �ش� ���Թ�ȣ�� "data"�� ����
+        File.WriteAllText(path + nowSlot.ToString(), data);
+    }
+
+    public void LoadData()
+    {
+        // 1. �ܺο� ����� ���̽��� ������
+        string data = File.ReadAllText(path + nowSlot.ToString());
+
+        // 2. ���̽��� ������ ���·� ��ȯ
+        nowPlayer = JsonUtility.FromJson<PlayerData>(data);
+    }
+
+    public void DataClear() // ���� ������ �ʱ�ȭ
+    {
+        nowSlot = -1;
+        nowPlayer = new PlayerData();
     }
 
     private void LoadBrickScene()
