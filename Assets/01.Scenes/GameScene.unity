@@ -1098,7 +1098,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1179,7 +1179,6 @@ MonoBehaviour:
   currentImage: {fileID: 245338212}
   battleOn: {fileID: 21300000, guid: d25c4ee01fa090d4c9f5ef10b3dfbefa, type: 3}
   healOn: {fileID: 21300000, guid: b2eb373a280b31d48a69c76954d083f1, type: 3}
-  isOn: 0
   attackBrickPrefab: {fileID: 7132572528431996287, guid: 75b03069378b87449b5b95412b2850d6, type: 3}
   healBrickPrefab: {fileID: 8974253593257568649, guid: c7f6898ccc820714886ccc9bd6365281, type: 3}
   ball: {fileID: 1203453042}
@@ -1677,6 +1676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1029908863}
   - component: {fileID: 1029908862}
+  - component: {fileID: 1029908864}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1696,6 +1696,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5bafdde64425a4fafabd079bd25a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHP: 100
+  currentHP: 80
 --- !u!4 &1029908863
 Transform:
   m_ObjectHideFlags: 0
@@ -1711,6 +1713,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1029908864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029908861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ac08fc873607740bb44599ed7f262e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1105218374
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,7 +2175,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: e46ea732cedd56c478af72bf005cb89c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

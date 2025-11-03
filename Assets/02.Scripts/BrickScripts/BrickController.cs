@@ -11,6 +11,7 @@ public class BrickController : MonoBehaviour
     private void Update()
     { //모드 체크
         isHealMode = ModeSwitcher.Instance.GetCurrentMode();
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

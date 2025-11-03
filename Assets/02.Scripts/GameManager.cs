@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     private int stage = 1 , breakCount;
+    public float maxHP = 100f;
+    public float currentHP = 80f;
 
     void Awake()
     {
@@ -27,6 +29,14 @@ public class GameManager : MonoBehaviour
         {
             LoadBrickScene();
         }
+
+        // GameScene이면 UISecene 불러오기
+        if (SceneManager.GetActiveScene().name == "GameScene")
+        {
+            LoadUIScene();
+        }
+
+
     }
 
     private void LoadBrickScene()
@@ -35,6 +45,15 @@ public class GameManager : MonoBehaviour
         if (!IsSceneLoaded("BrickScene"))
         {
             SceneManager.LoadSceneAsync("BrickScene", LoadSceneMode.Additive);
+        }
+    }
+
+    private void LoadUIScene()
+    {
+        // UIScene 로드 함수
+        if (!IsSceneLoaded("UIScene"))
+        {
+            SceneManager.LoadSceneAsync("UIScene", LoadSceneMode.Additive);
         }
     }
 
