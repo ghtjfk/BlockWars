@@ -26,6 +26,8 @@ public class ModeSwitcher : MonoBehaviour
 
     public void OneButtonToggle()
     {
+        BallMoveing ballScript = ball.GetComponent<BallMoveing>();
+        if (ballScript.isMoving) return;
         isHealMode = !isHealMode;
 
         GameObject[] attackBricks = GameObject.FindGameObjectsWithTag("AttackBrick");
