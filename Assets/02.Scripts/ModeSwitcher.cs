@@ -5,17 +5,18 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ModeSwitcher : MonoBehaviour
-{   
+{
     public static ModeSwitcher Instance;
     public Image currentImage;
     public Sprite battleOn;
     public Sprite healOn;
     private bool isHealMode = false;
 
-    
+
     public GameObject attackBrickPrefab;
     public GameObject healBrickPrefab;
     private GameObject currentBrick;
+    public GameObject ball;
 
     void Awake()
     {
@@ -34,7 +35,6 @@ public class ModeSwitcher : MonoBehaviour
         if (!isHealMode)
         {
             currentImage.sprite = battleOn;
-            BattleMethod();
 
             foreach (GameObject brick in healBricks)
             {
@@ -51,7 +51,6 @@ public class ModeSwitcher : MonoBehaviour
         else
         {
             currentImage.sprite = healOn;
-            HealMethod();
 
             foreach (GameObject brick in attackBricks)
             {
@@ -68,15 +67,7 @@ public class ModeSwitcher : MonoBehaviour
     }
 
 
-    public void BattleMethod()
-    {
-        Debug.Log("BATTLE Event");
-    }
 
-    public void HealMethod()
-    {
-        Debug.Log("HEAL Event");
-    }
 
     public bool GetCurrentMode()
     {

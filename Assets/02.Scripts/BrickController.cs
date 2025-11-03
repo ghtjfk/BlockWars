@@ -19,7 +19,7 @@ public class BrickController : MonoBehaviour
         {
 
             Rigidbody2D ballRb = collision.gameObject.GetComponent<Rigidbody2D>();
-
+            
             if (ballRb != null) 
             {
                 Vector2 normal = collision.contacts[0].normal;

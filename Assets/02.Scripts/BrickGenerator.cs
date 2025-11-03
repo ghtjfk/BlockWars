@@ -8,8 +8,8 @@ public class BrickGenerator : MonoBehaviour
     Vector3 initPosition = new Vector3(-0.2f, 1.8f, 0);
     Vector3 pos;
     public BrickPool brickPool;
-    float xGap = 0.3f;
-    float yGap = 0.3f;
+    float xGap = 0.25f;
+    float yGap = 0.149f;
     public GameObject mapPosition;
     int stage;
     bool isHealMode;
