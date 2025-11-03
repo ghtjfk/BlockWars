@@ -6,6 +6,7 @@ TagManager:
   tags:
   - AttackBrick
   - HealBrick
+  - Wall
   layers:
   - Default
   - TransparentFX
