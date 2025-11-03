@@ -9,7 +9,6 @@ public class BallMoveing : MonoBehaviour
 
     Vector3 firstPos, secondPos, gap;
     public Rigidbody2D rb;
-    public GameObject arrow;
     public bool isMoving;
     void Start()
     {
