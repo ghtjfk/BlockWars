@@ -1,20 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.IO;    // Á¦ÀÌ½¼À» ¿ÜºÎ¿¡ ÀúÀåÇÏ±â À§ÇØ Á¸Àç
+using System.IO;    // ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ÜºÎ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-// ÀúÀåÇÏ´Â ¹æ¹ı
-// 1. ÀúÀåÇÒ µ¥ÀÌÅÍ°¡ Á¸Àç
-// 2. µ¥ÀÌÅÍ¸¦ Á¦ÀÌ½¼À¸·Î º¯È¯
-// 3. Á¦ÀÌ½¼À» ¿ÜºÎ¿¡ ÀúÀå
+// ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½
+// 1. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½
+// 2. ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
+// 3. ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ÜºÎ¿ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-// ºÒ·¯¿À´Â ¹æ¹ı
-// 1. ¿ÜºÎ¿¡ ÀúÀåµÈ Á¦ÀÌ½¼À» °¡Á®¿È
-// 2. Á¦ÀÌ½¼À» µ¥ÀÌÅÍ ÇüÅÂ·Î º¯È¯
-// 3. ºÒ·¯¿Â µ¥ÀÌÅÍ¸¦ »ç¿ë
+// ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+// 1. ï¿½ÜºÎ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+// 2. ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
+// 3. ï¿½Ò·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½
 
-public class PlayerData   // 1. ÀúÀåÇÒ µ¥ÀÌÅÍ°¡ Á¸Àç
+public class PlayerData   // 1. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½ï¿½ï¿½ï¿½
 {
-    // ÀÌ¸§, ·¹º§, ÄÚÀÎ, Âø¿ëÁßÀÎ ¹«±â
+    // ï¿½Ì¸ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     public string name;
     public int level = 1;
     public int coin = 100;
@@ -29,45 +29,57 @@ public class GameManager : Singleton<GameManager>
     public int nowSlot;
 
     public bool newStart;
+    
+    private int stage = 1 , breakCount;
+    public float maxHP = 100f;
+    public float currentHP = 80f;
 
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
 
-        // °­ÀÇ¿¡¼­ ÃßÃµÇÑ °æ·Î
-        // À¯´ÏÆ¼¿¡¼­ ¾Ë¾Æ¼­ »ı¼ºÇØÁÖ´Â Æú´õ
+        // ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ ï¿½ï¿½Ãµï¿½ï¿½ ï¿½ï¿½ï¿½
+        // ï¿½ï¿½ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¾Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½
         path = Application.persistentDataPath + "/";
     }
 
     private void Start()
     {
-        // ÇöÀç ¾À ÀÌ¸§ÀÌ MapSceneÀÏ ¶§¸¸ BrickSceneÀ» Ãß°¡·Î ·Îµå
-        if (SceneManager.GetActiveScene().name == "MapScene")
+        // GameSceneì´ë©´ BrickSecene ë¶ˆëŸ¬ì˜¤ê¸°
+        if (SceneManager.GetActiveScene().name == "GameScene")
         {
             LoadBrickScene();
         }
+
+        // GameSceneì´ë©´ UISecene ë¶ˆëŸ¬ì˜¤ê¸°
+        if (SceneManager.GetActiveScene().name == "GameScene")
+        {
+            LoadUIScene();
+        }
+
+
     }
 
     public void SaveData()
     {
-        // 2. µ¥ÀÌÅÍ¸¦ Á¦ÀÌ½¼À¸·Î º¯È¯
+        // 2. ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
         string data = JsonUtility.ToJson(nowPlayer);
 
-        // 3. Á¦ÀÌ½¼À» ¿ÜºÎ¿¡ ÀúÀå
-        // "path" °æ·ÎÀÇ ÇØ´ç ½½·Ô¹øÈ£¿¡ "data"¸¦ ÀúÀå
+        // 3. ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ÜºÎ¿ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // "path" ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½Ô¹ï¿½È£ï¿½ï¿½ "data"ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         File.WriteAllText(path + nowSlot.ToString(), data);
     }
 
     public void LoadData()
     {
-        // 1. ¿ÜºÎ¿¡ ÀúÀåµÈ Á¦ÀÌ½¼À» °¡Á®¿È
+        // 1. ï¿½ÜºÎ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         string data = File.ReadAllText(path + nowSlot.ToString());
 
-        // 2. Á¦ÀÌ½¼À» µ¥ÀÌÅÍ ÇüÅÂ·Î º¯È¯
+        // 2. ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
         nowPlayer = JsonUtility.FromJson<PlayerData>(data);
     }
 
-    public void DataClear() // ½½·Ô µ¥ÀÌÅÍ ÃÊ±âÈ­
+    public void DataClear() // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
     {
         nowSlot = -1;
         nowPlayer = new PlayerData();
@@ -75,14 +87,25 @@ public class GameManager : Singleton<GameManager>
 
     private void LoadBrickScene()
     {
-        // BrickSceneÀÌ ÀÌ¹Ì ·ÎµåµÇ¾î ÀÖÁö ¾Ê´Ù¸é Additive ·Îµå
+        // BrickScene ë¡œë“œ í•¨ìˆ˜
         if (!IsSceneLoaded("BrickScene"))
         {
             SceneManager.LoadSceneAsync("BrickScene", LoadSceneMode.Additive);
         }
     }
 
+    private void LoadUIScene()
+    {
+        // UIScene ë¡œë“œ í•¨ìˆ˜
+        if (!IsSceneLoaded("UIScene"))
+        {
+            SceneManager.LoadSceneAsync("UIScene", LoadSceneMode.Additive);
+        }
+    }
+
+
     private bool IsSceneLoaded(string sceneName)
+    // ì”¬ì´ ë¡œë“œë˜ì–´ ìˆëŠ”ì§€ í™•ì¸í•˜ëŠ” í•¨ìˆ˜
     {
         for (int i = 0; i < SceneManager.sceneCount; i++)
         {
@@ -93,5 +116,37 @@ public class GameManager : Singleton<GameManager>
             }
         }
         return false;
+    }
+    //
+    // stage ê´€ë ¨ í•¨ìˆ˜
+    //
+    public void setStage(int stage)
+    {
+        this.stage = stage;
+    }
+    public int getStage()
+    {
+        return stage;
+    }
+    public void initStage()
+    {
+        stage = 0;
+    }
+
+
+
+
+    //
+    // break block count ê´€ë ¨ í•¨ìˆ˜
+    //
+    public void increaseBreakBlockCount()
+    {
+        breakCount++;
+    }
+    
+
+    public void initBreakBlockCount()
+    {
+        breakCount = 0;
     }
 }
