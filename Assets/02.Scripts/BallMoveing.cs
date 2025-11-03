@@ -74,7 +74,9 @@ public class BallMoveing : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             transform.position = firstball;
+            RespawnBrick.Instance.NextTrun();
             isMoving = false;
+            GameManager.Instance.initBreakBlockCount();
         }
     }
 }

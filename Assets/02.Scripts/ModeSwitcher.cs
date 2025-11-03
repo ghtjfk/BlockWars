@@ -15,7 +15,6 @@ public class ModeSwitcher : MonoBehaviour
 
     public GameObject attackBrickPrefab;
     public GameObject healBrickPrefab;
-    private GameObject currentBrick;
     public GameObject ball;
 
     void Awake()
