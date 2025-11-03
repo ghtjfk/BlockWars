@@ -11,11 +11,11 @@ public class BrickPosition : MonoBehaviour
     private void Start()
     {
 
-        //벽돌 설치할 포지션, 벽돌 종류에따라 1, 2, 3으로 배치
-        //최대 (8,y)로 배치
+        //벽돌 설치할 포지션, 벽돌 종류에따라 1, 2, 3 ....으로 배치
+        //최대 (9,y)로 배치
 
         int[,] zeroMap = new int[,]
-        {
+        { //stage가 1부터 시작이니 0번째는 빈맵
             {0 }
         };
 

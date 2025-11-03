@@ -4,30 +4,38 @@ using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OnButtonToggle : MonoBehaviour
+public class ModeSwitcher : MonoBehaviour
 {
+    public static ModeSwitcher Instance;
     public Image currentImage;
     public Sprite battleOn;
     public Sprite healOn;
-    public bool isOn = true;
+    private bool isHealMode = false;
+
 
     public GameObject attackBrickPrefab;
     public GameObject healBrickPrefab;
-    private GameObject currentBrick;
+    public GameObject ball;
 
+    void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
 
     public void OneButtonToggle()
     {
-        isOn = !isOn;
+        BallMoveing ballScript = ball.GetComponent<BallMoveing>();
+        if (ballScript.isMoving) return;
+        isHealMode = !isHealMode;
 
         GameObject[] attackBricks = GameObject.FindGameObjectsWithTag("AttackBrick");
         GameObject[] healBricks = GameObject.FindGameObjectsWithTag("HealBrick");
         List<Vector3> oldPositions = new List<Vector3>();
 
-        if (!isOn)
+        if (!isHealMode)
         {
             currentImage.sprite = battleOn;
-            BattleMethod();
 
             foreach (GameObject brick in healBricks)
             {
@@ -44,7 +52,6 @@ public class OnButtonToggle : MonoBehaviour
         else
         {
             currentImage.sprite = healOn;
-            HealMethod();
 
             foreach (GameObject brick in attackBricks)
             {
@@ -61,13 +68,10 @@ public class OnButtonToggle : MonoBehaviour
     }
 
 
-    public void BattleMethod()
-    {
-        Debug.Log("BATTLE Event");
-    }
 
-    public void HealMethod()
+
+    public bool GetCurrentMode()
     {
-        Debug.Log("HEAL Event");
+        return isHealMode;
     }
 }

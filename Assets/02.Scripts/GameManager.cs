@@ -3,25 +3,63 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+    private int stage = 1 , breakCount;
+    public float maxHP = 100f;
+    public float currentHP = 80f;
+
+    void Awake()
+    {
+        // ì‹±ê¸€í†¤ íŒ¨í„´ êµ¬í˜„
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Start()
     {
-        // ÇöÀç ¾À ÀÌ¸§ÀÌ MapSceneÀÏ ¶§¸¸ BrickSceneÀ» Ãß°¡·Î ·Îµå
-        if (SceneManager.GetActiveScene().name == "MapScene")
+        // GameSceneì´ë©´ BrickSecene ë¶ˆëŸ¬ì˜¤ê¸°
+        if (SceneManager.GetActiveScene().name == "GameScene")
         {
             LoadBrickScene();
         }
+
+        // GameSceneì´ë©´ UISecene ë¶ˆëŸ¬ì˜¤ê¸°
+        if (SceneManager.GetActiveScene().name == "GameScene")
+        {
+            LoadUIScene();
+        }
+
+
     }
 
     private void LoadBrickScene()
     {
-        // BrickSceneÀÌ ÀÌ¹Ì ·ÎµåµÇ¾î ÀÖÁö ¾Ê´Ù¸é Additive ·Îµå
+        // BrickScene ë¡œë“œ í•¨ìˆ˜
         if (!IsSceneLoaded("BrickScene"))
         {
             SceneManager.LoadSceneAsync("BrickScene", LoadSceneMode.Additive);
         }
     }
 
+    private void LoadUIScene()
+    {
+        // UIScene ë¡œë“œ í•¨ìˆ˜
+        if (!IsSceneLoaded("UIScene"))
+        {
+            SceneManager.LoadSceneAsync("UIScene", LoadSceneMode.Additive);
+        }
+    }
+
+
     private bool IsSceneLoaded(string sceneName)
+    // ì”¬ì´ ë¡œë“œë˜ì–´ ìˆëŠ”ì§€ í™•ì¸í•˜ëŠ” í•¨ìˆ˜
     {
         for (int i = 0; i < SceneManager.sceneCount; i++)
         {
@@ -32,5 +70,37 @@ public class GameManager : MonoBehaviour
             }
         }
         return false;
+    }
+    //
+    // stage ê´€ë ¨ í•¨ìˆ˜
+    //
+    public void setStage(int stage)
+    {
+        this.stage = stage;
+    }
+    public int getStage()
+    {
+        return stage;
+    }
+    public void initStage()
+    {
+        stage = 0;
+    }
+
+
+
+
+    //
+    // break block count ê´€ë ¨ í•¨ìˆ˜
+    //
+    public void increaseBreakBlockCount()
+    {
+        breakCount++;
+    }
+    
+
+    public void initBreakBlockCount()
+    {
+        breakCount = 0;
     }
 }
