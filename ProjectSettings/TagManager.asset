@@ -8,6 +8,7 @@ TagManager:
   - HealBrick
   - Wall
   - Bottom
+  - Ball
   layers:
   - Default
   - TransparentFX

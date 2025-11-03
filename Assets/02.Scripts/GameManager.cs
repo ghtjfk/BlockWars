@@ -1,21 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameManager : Singleton<GameManager>
+public class GameManager : MonoBehaviour
 {
-
-    private void Awake()
+    private void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        // 현재 씬 이름이 MapScene일 때만 BrickScene을 추가로 로드
+        if (SceneManager.GetActiveScene().name == "MapScene")
+        {
+            LoadBrickScene();
+        }
     }
 
-    void Start()
+    private void LoadBrickScene()
     {
-        
+        // BrickScene이 이미 로드되어 있지 않다면 Additive 로드
+        if (!IsSceneLoaded("BrickScene"))
+        {
+            SceneManager.LoadSceneAsync("BrickScene", LoadSceneMode.Additive);
+        }
     }
 
-    //데이트 왕창~
+    private bool IsSceneLoaded(string sceneName)
+    {
+        for (int i = 0; i < SceneManager.sceneCount; i++)
+        {
+            Scene scene = SceneManager.GetSceneAt(i);
+            if (scene.name == sceneName)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
