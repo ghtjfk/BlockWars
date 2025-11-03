@@ -2,14 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions.Comparers;
 public class BallMoveing : MonoBehaviour
 {
-
     Vector3 firstPos, secondPos, gap;
+    public GameObject ballPreview;
     public Rigidbody2D rb;
-    public bool isMoving;
+    public bool isMoving=false;
     void Start()
     {
         
@@ -17,7 +18,8 @@ public class BallMoveing : MonoBehaviour
 
     void Update()
     {
-        Update_GM();
+        if (isMoving){}
+        else {Update_GM();}
     }
     void Update_GM()
     {
@@ -31,19 +33,28 @@ public class BallMoveing : MonoBehaviour
             if ((secondPos - firstPos).magnitude < 1) return;
             gap = (secondPos - firstPos).normalized;
             gap = new Vector3(gap.y >= 0 ? gap.x : gap.x >= 0 ? 1 : -1, Mathf.Clamp(gap.y, 0.2f, 1), 0);
-
+            ballPreview.transform.position = Physics2D.CircleCast(new Vector2(Mathf.Clamp(transform.position.x, -0.425f, 2.425f), -4.5f), 0.1f, gap, 10000, 1 << LayerMask.NameToLayer("Wall")| 1 << LayerMask.NameToLayer("Block")).centroid;
+            
         }
         if (Input.GetMouseButtonUp(0))
         {
             Launch(gap);
             firstPos = Vector3.zero;
         }
-
+        ballPreview.SetActive(isMouse);
+        
 
     }
     public void Launch(Vector3 pos)
     {
         isMoving = true;
-        rb.AddForce(pos * 500);
+        rb.AddForce(pos.normalized * 250);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bottom"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

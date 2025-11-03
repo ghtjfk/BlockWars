@@ -7,15 +7,16 @@ TagManager:
   - AttackBrick
   - HealBrick
   - Wall
+  - Bottom
   - Ball
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Wall
   - Water
   - UI
-  - 
+  - Block
   - 
   - 
   - 
@@ -44,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Wall
+    uniqueID: 526565533
     locked: 0

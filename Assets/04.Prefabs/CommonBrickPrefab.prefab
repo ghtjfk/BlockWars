@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8595040405983678919}
   - component: {fileID: 638921123592143492}
   - component: {fileID: 4144694054807781590}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CommonBrickPrefab
   m_TagString: AttackBrick
   m_Icon: {fileID: 0}
