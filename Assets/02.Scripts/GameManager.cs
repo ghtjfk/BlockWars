@@ -1,20 +1,20 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.IO;    // ���̽��� �ܺο� �����ϱ� ���� ����
+using System.IO;    // 제이슨을 외부에 저장하기 위해 존재
 
-// �����ϴ� ���
-// 1. ������ �����Ͱ� ����
-// 2. �����͸� ���̽����� ��ȯ
-// 3. ���̽��� �ܺο� ����
+// 저장하는 방법
+// 1. 저장할 데이터가 존재
+// 2. 데이터를 제이슨으로 변환
+// 3. 제이슨을 외부에 저장
 
-// �ҷ����� ���
-// 1. �ܺο� ����� ���̽��� ������
-// 2. ���̽��� ������ ���·� ��ȯ
-// 3. �ҷ��� �����͸� ���
+// 불러오는 방법
+// 1. 외부에 저장된 제이슨을 가져옴
+// 2. 제이슨을 데이터 형태로 변환
+// 3. 불러온 데이터를 사용
 
-public class PlayerData   // 1. ������ �����Ͱ� ����
+public class PlayerData   // 1. 저장할 데이터가 존재
 {
-    // �̸�, ����, ����, �������� ����
+    // 이름, 레벨, 코인, 착용중인 무기
     public string name;
     public int level = 1;
     public int coin = 100;
@@ -38,8 +38,8 @@ public class GameManager : Singleton<GameManager>
     {
         DontDestroyOnLoad(this.gameObject);
 
-        // ���ǿ��� ��õ�� ���
-        // ����Ƽ���� �˾Ƽ� �������ִ� ����
+        // 강의에서 추천한 경로
+        // 유니티에서 알아서 생성해주는 폴더
         path = Application.persistentDataPath + "/";
     }
 
@@ -62,24 +62,24 @@ public class GameManager : Singleton<GameManager>
 
     public void SaveData()
     {
-        // 2. �����͸� ���̽����� ��ȯ
+        // 2. 데이터를 제이슨으로 변환
         string data = JsonUtility.ToJson(nowPlayer);
 
-        // 3. ���̽��� �ܺο� ����
-        // "path" ����� �ش� ���Թ�ȣ�� "data"�� ����
+        // 3. 제이슨을 외부에 저장
+        // "path" 경로의 해당 슬롯번호에 "data"를 저장
         File.WriteAllText(path + nowSlot.ToString(), data);
     }
 
     public void LoadData()
     {
-        // 1. �ܺο� ����� ���̽��� ������
+        // 1. 외부에 저장된 제이슨을 가져옴
         string data = File.ReadAllText(path + nowSlot.ToString());
 
-        // 2. ���̽��� ������ ���·� ��ȯ
+        // 2. 제이슨을 데이터 형태로 변환
         nowPlayer = JsonUtility.FromJson<PlayerData>(data);
     }
 
-    public void DataClear() // ���� ������ �ʱ�ȭ
+    public void DataClear() // 슬롯 데이터 초기화
     {
         nowSlot = -1;
         nowPlayer = new PlayerData();
