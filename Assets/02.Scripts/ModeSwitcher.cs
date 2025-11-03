@@ -4,27 +4,34 @@ using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OnButtonToggle : MonoBehaviour
-{
+public class ModeSwitcher : MonoBehaviour
+{   
+    public static ModeSwitcher Instance;
     public Image currentImage;
     public Sprite battleOn;
     public Sprite healOn;
-    public bool isOn = true;
+    private bool isHealMode = false;
 
+    
     public GameObject attackBrickPrefab;
     public GameObject healBrickPrefab;
     private GameObject currentBrick;
 
+    void Awake()
+    {
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
+    }
 
     public void OneButtonToggle()
     {
-        isOn = !isOn;
+        isHealMode = !isHealMode;
 
         GameObject[] attackBricks = GameObject.FindGameObjectsWithTag("AttackBrick");
         GameObject[] healBricks = GameObject.FindGameObjectsWithTag("HealBrick");
         List<Vector3> oldPositions = new List<Vector3>();
 
-        if (!isOn)
+        if (!isHealMode)
         {
             currentImage.sprite = battleOn;
             BattleMethod();
@@ -69,5 +76,10 @@ public class OnButtonToggle : MonoBehaviour
     public void HealMethod()
     {
         Debug.Log("HEAL Event");
+    }
+
+    public bool GetCurrentMode()
+    {
+        return isHealMode;
     }
 }

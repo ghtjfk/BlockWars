@@ -12,10 +12,13 @@ public class BrickGenerator : MonoBehaviour
     float yGap = 0.3f;
     public GameObject mapPosition;
     int stage;
+    bool isHealMode;
 
     void Start()
     {
 
+
+        isHealMode = ModeSwitcher.Instance.GetCurrentMode();
         int[][,] mapData = mapPosition.GetComponent<BrickPosition>().GetAllBrickPosition();
 
         stage = 1;
@@ -30,8 +33,8 @@ public class BrickGenerator : MonoBehaviour
 
                     pos = initPosition + new Vector3(x * xGap, -y * yGap, 0);
 
-                    // ¿ÀºêÁ§Æ® Ç®¿¡¼­ º®µ¹ °¡Á®¿À±â
-                    GameObject brick = brickPool.GetBrick();
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    GameObject brick = brickPool.GetBrick(isHealMode);
                     brick.transform.position = pos;
                     brick.transform.rotation = Quaternion.identity;
                     brick.SetActive(true);

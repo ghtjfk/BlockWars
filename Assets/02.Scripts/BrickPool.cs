@@ -5,9 +5,10 @@ using UnityEngine;
 public class BrickPool : MonoBehaviour
 {
     public static BrickPool Instance;
-    public GameObject CommonBrickPrefab;
+    public GameObject CommonBrickPrefab, HealBrickPrefab;
     public int poolSize = 100;
-    private Queue<GameObject> pool = new Queue<GameObject>();
+    private Queue<GameObject> commonPool = new Queue<GameObject>();
+    private Queue<GameObject> healPool = new Queue<GameObject>();
 
     private void Awake()
     {
@@ -16,31 +17,58 @@ public class BrickPool : MonoBehaviour
 
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject brick = Instantiate(CommonBrickPrefab);
-            brick.SetActive(false);
-            pool.Enqueue(brick);
+            GameObject commonBrick = Instantiate(CommonBrickPrefab);
+            commonBrick.SetActive(false);
+            commonPool.Enqueue(commonBrick);
+
+            GameObject healBrick = Instantiate(HealBrickPrefab);
+            healBrick.SetActive(false);
+            healPool.Enqueue(healBrick);
         }
     }
-    public GameObject GetBrick()
+    public GameObject GetBrick(bool isHeal)
     {
-        //º®µ¹ ²¨³»±â
-        if (pool.Count > 0)
+        if (isHeal)
         {
-            GameObject brick = pool.Dequeue();
-            brick.SetActive(true);
-            return brick;
+            if (healPool.Count > 0)
+            {
+                GameObject brick = healPool.Dequeue();
+                brick.SetActive(true);
+                return brick;
+            }
+            else
+            { //Ç®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                GameObject brick = Instantiate(HealBrickPrefab);
+                return brick;
+            }
         }
         else
-        { //Ç®¿¡ º®µ¹ÀÌ ¾øÀ¸¸é »õ·Î »ý¼º
-            GameObject brick = Instantiate(CommonBrickPrefab);
-            return brick;
+        {
+            if (commonPool.Count > 0)
+            {
+                GameObject brick = commonPool.Dequeue();
+                brick.SetActive(true);
+                return brick;
+            }
+            else
+            { //Ç®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                GameObject brick = Instantiate(CommonBrickPrefab);
+                return brick;
+            }
         }
     }
 
-    public void ReturnBrick(GameObject brick)
+    public void ReturnBrick(GameObject brick, bool isHeal)
     {
+
         brick.SetActive(false);
-        pool.Enqueue(brick);
+
+        if ( isHeal )
+        {
+            healPool.Enqueue(brick);
+        }
+        else
+            commonPool.Enqueue(brick);
     }
 
 }
