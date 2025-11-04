@@ -128,6 +128,8 @@ public class PopupManager : MonoBehaviour
     private void OnClickYes()       // "예" : 팝업 해제 + 해당 스테이지로 씬 전환
     {
         int target = pendingStage;
+        GameManager.Instance.setStage(target);
+        Debug.Log($"Stage{GameManager.Instance.getStage()} 등록 완료");
         Close();
         StartCoroutine(CoLoadStageAfterFade(target));
     }

@@ -80,6 +80,6 @@ public class Select : MonoBehaviour
             GameManager.Instance.SaveData();
         }
         
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("MapScene");
     }
 }

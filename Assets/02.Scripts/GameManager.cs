@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
 
     public bool newStart;
     
-    private int stage = 1 , breakCount;
+    private int stage , breakCount;
     public float maxHP = 100f;
     public float currentHP = 80f;
 
@@ -41,23 +41,25 @@ public class GameManager : Singleton<GameManager>
         // 강의에서 추천한 경로
         // 유니티에서 알아서 생성해주는 폴더
         path = Application.persistentDataPath + "/";
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void Start()
+    private void OnDestroy()
     {
-        // GameScene이면 BrickSecene 불러오기
-        if (SceneManager.GetActiveScene().name == "GameScene")
-        {
-            LoadBrickScene();
-        }
+        // 메모리 누수 방지용: 이벤트 해제
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
-        // GameScene이면 UISecene 불러오기
-        if (SceneManager.GetActiveScene().name == "GameScene")
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name.StartsWith("Stage"))
         {
+
+            Debug.Log("Stage씬 감지됨 → BrickScene / UIScene 로드 시도");
+            LoadBrickScene();
             LoadUIScene();
         }
-
-
     }
 
     public void SaveData()
