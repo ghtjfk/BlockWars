@@ -9,6 +9,7 @@ public class MapButtonManager : MonoBehaviour
     [Header("Managers")]
     [SerializeField] private PopupManager popupManager;
     [SerializeField] private MapManager mapManager; // 필요시(동일 씬 내 이동용)
+    [SerializeField] private Button resetButton;
 
     [Header("Unlock Settings")]
     [SerializeField] private int minStage = 1;
@@ -46,6 +47,43 @@ public class MapButtonManager : MonoBehaviour
                 // (다음 단계용) 캐릭터가 버튼 위치로 이동 애니메이션 훅
                 // mapManager?.MoveCharacterToStage(stageNumber);
             });
+        }
+    }
+
+    private void Start()
+    {
+        if (resetButton != null)
+            resetButton.onClick.AddListener(ResetProgress);
+    }
+
+    // 진행도 초기화: 스테이지 1만 해금
+    private void ResetProgress()
+    {
+        PlayerPrefs.SetInt("UnlockedStageMax", 1);
+        PlayerPrefs.Save();
+
+        // 버튼 상태만 다시 반영
+        ApplyUnlockStateToButtons();
+
+        Debug.Log("[MapButtonManager] Progress reset → UnlockedStageMax = 1");
+    }
+
+    // 현재 PlayerPrefs의 해금 상태를 버튼들에 반영
+    private void ApplyUnlockStateToButtons()
+    {
+        int unlockedMax = PlayerPrefs.GetInt("UnlockedStageMax", 1);
+        unlockedMax = Mathf.Clamp(unlockedMax, minStage, maxStage);
+
+        for (int i = 0; i < stageButtons.Length; i++)
+        {
+            int stageNumber = i + 1;
+            if (stageNumber < minStage || stageNumber > maxStage) continue;
+
+            var btn = stageButtons[i];
+            if (btn == null) continue;
+
+            bool isUnlocked = (stageNumber <= unlockedMax);
+            btn.interactable = isUnlocked;
         }
     }
 
