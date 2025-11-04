@@ -4,11 +4,14 @@ using UnityEngine.UI;
 public class MapButtonManager : MonoBehaviour
 {
     [Header("Stage Buttons (1~10)")]
-    [SerializeField] private Button[] stageButtons;  // 인스펙터에 10개 순서대로 할당
+    [SerializeField] private Button[] stageButtons;  // 인스펙터에 10개 순서대로 할당 (버튼)
+
+    [Header("Lock Images (1~10)")]
+    [SerializeField] private Image[] stageLocks;    // 인스펙터에 10개 순서대로 할당 (자물쇠 이미지)
 
     [Header("Managers")]
     [SerializeField] private PopupManager popupManager;
-    [SerializeField] private MapManager mapManager; // 필요시(동일 씬 내 이동용)
+    [SerializeField] private MapManager mapManager;  // 필요시(동일 씬 내 이동용)
     [SerializeField] private Button resetButton;
 
     [Header("Unlock Settings")]
@@ -27,10 +30,12 @@ public class MapButtonManager : MonoBehaviour
             if (stageNumber < minStage || stageNumber > maxStage) continue;
 
             var btn = stageButtons[i];
+            var img = stageLocks[i];
             if (btn == null) continue;
 
             bool isUnlocked = (stageNumber <= unlockedMax);
-            btn.interactable = isUnlocked;
+            btn.interactable = isUnlocked;  // 스테이지 버튼 해금 (스테이지 번호가 Max보다 작거나 같을 때)
+            img.gameObject.SetActive(!isUnlocked); // 자물쇠 이미지 해금
 
             btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(() =>
