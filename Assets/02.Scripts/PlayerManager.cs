@@ -1,42 +1,37 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-//public class PlayerManager : MonoBehaviour
-//{
+public class PlayerManager : Singleton<PlayerManager>
+{
 
-//    public static PlayerManager instance;
+    float maxHP = 100;
+    float curruntHP;
 
-//    float maxHP = 100;
-//    float curruntHP;
 
-//    private void Awake()
-//    {
-//        if (instance == null)
-//        {
-//            instance = this;
-//            DontDestroyOnLoad(gameObject);
-//        }
-//        else
-//        {
-//            Destroy(gameObject);
-//        }
-//    }
-//    void Start()
-//    {
-//        curruntHP = maxHP;
-//        HPUIManager.instance.UpdateHPbar(curruntHP, maxHP);
-//    }
+    private IEnumerator Start()
+    {
+        curruntHP = 50f;
+        // HPUIManager.Instance가 생성될 때까지 대기
+        while (HPUIManager.Instance == null)
+            yield return null;
 
-//    void TakeDamage(float curruntHP, float damage)
-//    {
-//        curruntHP = Mathf.Min(curruntHP - damage, 0);
-//        HPUIManager.instance.UpdateHPbar(curruntHP, maxHP);
-//    }
+        HPUIManager.Instance.UpdateHPbar(curruntHP, maxHP);
+    }
 
-//    void Heal(float curruntHP, float healAmount)
-//    {
-//        curruntHP = Mathf.Max(curruntHP + healAmount, maxHP);
-//        HPUIManager.instance.UpdateHPbar(curruntHP, maxHP);
-//    }
-//}
+    public void TakeDamage(float damage)
+    {
+        curruntHP = Mathf.Max(curruntHP - damage, 0);
+        HPUIManager.Instance.UpdateHPbar(curruntHP, maxHP);
+    }
+
+    public void Heal(float healAmount)
+    {
+        curruntHP = Mathf.Min(curruntHP + healAmount, maxHP);
+        HPUIManager.Instance.UpdateHPbar(curruntHP, maxHP);
+    }
+    public float GetCurrentHP()
+    {
+        return curruntHP;
+    }
+}

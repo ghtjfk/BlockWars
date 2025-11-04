@@ -76,6 +76,12 @@ public class BallMoveing : MonoBehaviour
             transform.position = firstball;
             RespawnBrick.Instance.NextTrun();
             isMoving = false;
+            if (ModeSwitcher.Instance.GetCurrentMode())
+            {
+
+                int count = GameManager.Instance.getBreakBlockCount();
+                PlayerManager.Instance.Heal(5 * count);
+            }
             GameManager.Instance.initBreakBlockCount();
         }
     }

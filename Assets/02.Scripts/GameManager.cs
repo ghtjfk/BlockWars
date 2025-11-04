@@ -149,4 +149,9 @@ public class GameManager : Singleton<GameManager>
     {
         breakCount = 0;
     }
+
+    public int getBreakBlockCount()
+    {
+        return breakCount;
+    }
 }

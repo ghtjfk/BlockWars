@@ -4,9 +4,8 @@ using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ModeSwitcher : MonoBehaviour
+public class ModeSwitcher : Singleton<ModeSwitcher>
 {
-    public static ModeSwitcher Instance;
     public Image currentImage;
     public Sprite battleOn;
     public Sprite healOn;
@@ -16,12 +15,6 @@ public class ModeSwitcher : MonoBehaviour
     public GameObject attackBrickPrefab;
     public GameObject healBrickPrefab;
     public GameObject ball;
-
-    void Awake()
-    {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
-    }
 
     public void OneButtonToggle()
     {

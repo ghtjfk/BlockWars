@@ -7,7 +7,8 @@ using UnityEngine.UIElements;
 public class BrickPosition : MonoBehaviour
 {
 
-    int[][,] allMaps;
+    //stage, random, 블럭위치
+    int[][][,] allMaps;
     private void Start()
     {
 
@@ -19,26 +20,44 @@ public class BrickPosition : MonoBehaviour
             {0 }
         };
 
-        int[,] brickPosition = new int[,]
+        int[,] map1_1 = new int[,]
         {
 
-            {1,1,1,1,1,1,1,1,1 },
             {1,1,1,1,1,1,1,1,1 }
         };
 
-        allMaps = new int[][,]
+        int[,] map1_2 = new int[,]
+ {
+
+            {1,1,1,1,1,1,1,1,1 },
+            {1,1,1,1,1,1,1,1,1 }
+ };
+
+        int[,] map1_3 = new int[,]
+ {
+
+            {1,1,1,1,1,1,1,1,1 },
+            {1,1,1,1,1,1,1,1,1 },
+            {1,1,1,1,1,1,1,1,1 }
+ };
+
+        allMaps = new int[][][,]
         {
-            zeroMap,
-            brickPosition
+            new int [][,] {zeroMap},
+            new int [][,] {map1_1, map1_2, map1_3}
+
+
 
         };
 
     }
 
-    public int[][,] GetAllBrickPosition()
+
+    public int[][][,] GetAllBrickPosition()
     {
         return allMaps;
     }
-
-
 }
+
+
+
