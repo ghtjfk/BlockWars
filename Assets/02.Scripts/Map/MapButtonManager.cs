@@ -14,9 +14,8 @@ public class MapButtonManager : MonoBehaviour
     [SerializeField] private int minStage = 1;
     [SerializeField] private int maxStage = 10;
 
-    private void Awake()
+    private void Awake()        // 초기 해금 상태 구성: 기본은 1만 해금
     {
-        // 초기 해금 상태 구성: 기본은 1만 해금
         int unlockedMax = PlayerPrefs.GetInt("UnlockedStageMax", 1);
         unlockedMax = Mathf.Clamp(unlockedMax, minStage, maxStage);
 

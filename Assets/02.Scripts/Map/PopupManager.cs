@@ -2,15 +2,17 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PopupManager : MonoBehaviour
 {
+    
     [Header("Refs")]
     [SerializeField] private GameObject popupRoot;      // PopupRoot (활/비활)
     [SerializeField] private CanvasGroup popupCanvas;   // PopupRoot에 달린 CanvasGroup
     [SerializeField] private Image dimmer;              // Dimmer (전체화면 검정 Image)
-    [SerializeField] private Text messageText;          // "스테이지 n에 입장하시겠습니까?"
-
+    [SerializeField] private TMP_Text messageText;      // "Do you want to enter the Stage n?"
+    
     [Header("Buttons")]
     [SerializeField] private Button buttonYes;
     [SerializeField] private Button buttonNo;
@@ -48,7 +50,7 @@ public class PopupManager : MonoBehaviour
         pendingStage = stageNumber;
 
         if (messageText != null)
-            messageText.text = $"스테이지 {stageNumber}에 입장하시겠습니까?";
+            messageText.text = $"Do you want to enter the Stage {stageNumber}?";
 
         if (popupRoot != null && !popupRoot.activeSelf)
             popupRoot.SetActive(true);
@@ -118,15 +120,13 @@ public class PopupManager : MonoBehaviour
         isAnimating = false;
     }
 
-    private void OnClickNo()
+    private void OnClickNo()        // "아니오" : 팝업 해제(원래 화면으로)
     {
-        // "아니오" : 팝업 해제(원래 화면으로)
         Close();
     }
 
-    private void OnClickYes()
+    private void OnClickYes()       // "예" : 팝업 해제 + 해당 스테이지로 씬 전환
     {
-        // "예" : 팝업 해제 + 해당 스테이지로 씬 전환
         int target = pendingStage;
         Close();
         StartCoroutine(CoLoadStageAfterFade(target));
