@@ -556,6 +556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageButtons: []
+  stageLocks: []
   popupManager: {fileID: 0}
   mapManager: {fileID: 0}
   resetButton: {fileID: 0}
@@ -919,6 +920,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageButtons: []
+  stageLocks: []
   popupManager: {fileID: 0}
   mapManager: {fileID: 0}
   resetButton: {fileID: 0}
@@ -976,6 +978,17 @@ MonoBehaviour:
   - {fileID: 722602426}
   - {fileID: 45726489}
   - {fileID: 1948426461}
+  stageLocks:
+  - {fileID: 1551232969}
+  - {fileID: 551714362}
+  - {fileID: 6268394}
+  - {fileID: 230911810}
+  - {fileID: 6264479}
+  - {fileID: 1844031135}
+  - {fileID: 365103692}
+  - {fileID: 156272688}
+  - {fileID: 49149653}
+  - {fileID: 1255813736}
   popupManager: {fileID: 1926873097}
   mapManager: {fileID: 592382614}
   resetButton: {fileID: 63051562}
@@ -1221,6 +1234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageButtons: []
+  stageLocks: []
   popupManager: {fileID: 0}
   mapManager: {fileID: 0}
   resetButton: {fileID: 0}
@@ -1693,6 +1707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageButtons: []
+  stageLocks: []
   popupManager: {fileID: 0}
   mapManager: {fileID: 0}
   resetButton: {fileID: 0}
@@ -2149,6 +2164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageButtons: []
+  stageLocks: []
   popupManager: {fileID: 0}
   mapManager: {fileID: 0}
   resetButton: {fileID: 0}
@@ -2934,6 +2950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageButtons: []
+  stageLocks: []
   popupManager: {fileID: 0}
   mapManager: {fileID: 0}
   resetButton: {fileID: 0}
@@ -4578,6 +4595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageButtons: []
+  stageLocks: []
   popupManager: {fileID: 0}
   mapManager: {fileID: 0}
   resetButton: {fileID: 0}
@@ -4954,6 +4972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageButtons: []
+  stageLocks: []
   popupManager: {fileID: 0}
   mapManager: {fileID: 0}
   resetButton: {fileID: 0}
@@ -5454,6 +5473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageButtons: []
+  stageLocks: []
   popupManager: {fileID: 0}
   mapManager: {fileID: 0}
   resetButton: {fileID: 0}
