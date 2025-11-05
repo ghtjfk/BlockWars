@@ -139,6 +139,6 @@ public class PopupManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(fadeDuration * 0.9f);
 
         string sceneName = $"Stage{stage}";
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("GameScene");
     }
 }

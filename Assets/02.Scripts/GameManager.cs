@@ -30,7 +30,7 @@ public class GameManager : Singleton<GameManager>
 
     public bool newStart;
     
-    private int stage , breakCount;
+    private int stage =1 , breakCount;
     public float maxHP = 100f;
     public float currentHP = 80f;
 
@@ -63,7 +63,7 @@ public class GameManager : Singleton<GameManager>
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name.StartsWith("Stage"))
+        if (scene.name.StartsWith("GameScene"))
         {
 
             Debug.Log("Stage씬 감지됨 → BrickScene / UIScene 로드 시도");
