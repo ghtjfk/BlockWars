@@ -81,5 +81,6 @@ public class Select : MonoBehaviour
         }
         
         SceneManager.LoadScene("MapScene");
+       
     }
 }

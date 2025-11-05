@@ -51,6 +51,16 @@ public class GameManager : Singleton<GameManager>
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("StartScene");
+            Debug.Log(Application.persistentDataPath);
+        }
+    }
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name.StartsWith("Stage"))
@@ -156,4 +166,7 @@ public class GameManager : Singleton<GameManager>
     {
         return breakCount;
     }
+
+
+
 }
