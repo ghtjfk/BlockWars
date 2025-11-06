@@ -31,8 +31,12 @@ public class GameManager : Singleton<GameManager>
     public bool newStart;
     
     private int stage =1 , breakCount;
-    public float maxHP = 100f;
-    public float currentHP = 80f;
+
+    public float redMoon;
+    public float isredMoonGenerator = 0.1f;
+
+
+
 
     private void Awake()
     {

@@ -129,6 +129,7 @@ public class PopupManager : MonoBehaviour
     {
         int target = pendingStage;
         GameManager.Instance.setStage(target);
+        GameManager.Instance.redMoon = Random.value;
         Debug.Log($"Stage{GameManager.Instance.getStage()} 등록 완료");
         Close();
         StartCoroutine(CoLoadStageAfterFade(target));

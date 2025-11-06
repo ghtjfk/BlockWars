@@ -19,29 +19,25 @@ public class BackgroundManager : MonoBehaviour
         int idx = Mathf.Clamp(stage - 1, 0, backgrounds.Length - 1);
         backgrounds[idx].gameObject.SetActive(true);
 
-        float redMoon = Random.value;        
-
         if (stage >= 1 && stage <= backgrounds.Length)
         {
-            if(redMoon < 0.1f) // 10% 확률로 붉은 달 이벤트
+            if(GameManager.Instance.redMoon < 0.1f) // 10% 확률로 붉은 달 이벤트
             {
-                SetBackgroundColor(idx, new Color32(255, 0, 0, 100));
+                setBackgroundColor(idx, new Color32(255, 0, 0, 100));
             }
             else
             {
-                SetBackgroundColor(idx, defaltColor);
+                setBackgroundColor(idx, defaltColor);
             }
         }
     }
 
     // 색상 전체 조절 (알파 포함)
-    public void SetBackgroundColor(int idx, Color32 color)
+    public void setBackgroundColor(int idx, Color32 color)
     {
         if (idx < 0 || idx >= backgrounds.Length) return;
         backgrounds[idx].color = color;
     }
-
-
 
 
 }

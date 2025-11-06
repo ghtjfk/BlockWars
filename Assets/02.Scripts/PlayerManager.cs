@@ -5,13 +5,14 @@ using UnityEngine;
 public class PlayerManager : Singleton<PlayerManager>
 {
 
-    float maxHP = 100;
+    float maxHP = 100f;
     float curruntHP;
-
+    float attackDamage = 5f;
+    public bool isPlayerTurn = true;
 
     private IEnumerator Start()
     {
-        curruntHP = 50f;
+        curruntHP = maxHP;
         // HPUIManager.Instance가 생성될 때까지 대기
         while (HPUIManager.Instance == null)
             yield return null;
@@ -34,4 +35,11 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         return curruntHP;
     }
+
+    public void init()
+    {
+        maxHP = 100f;
+        attackDamage = 5f;
+    }
+
 }
