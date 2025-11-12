@@ -25,6 +25,7 @@ public class MonsterBehaviour : MonoBehaviour
     public void takeDamage(float damage)
     {
         curruntHP -= damage;
+        Debug.Log($"Monster took {damage} damage, current HP: {curruntHP}");
         if (curruntHP <= 0)
         {
             monsterDie();
@@ -44,7 +45,12 @@ public class MonsterBehaviour : MonoBehaviour
     public void monsterDie()
     {
         //GameManager.Instance.addCoin(stat.coin);
+        if (MonsterManager.Instance != null)
+        {
+            MonsterManager.Instance.RemoveMonster(this);
+        }
         Destroy(this.gameObject);
+
     }
 
 

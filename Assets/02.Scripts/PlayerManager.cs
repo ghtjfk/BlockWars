@@ -7,7 +7,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
     float maxHP = 100f;
     float curruntHP;
-    float attackDamage = 5f;
+    float damage;
+    //float attackDamage = 5f;
     public bool isPlayerTurn = true;
 
     private IEnumerator Start()
@@ -20,26 +21,36 @@ public class PlayerManager : Singleton<PlayerManager>
         HPUIManager.Instance.UpdateHPbar(curruntHP, maxHP);
     }
 
+    public void Attack(float damage)
+    {
+        this.damage = damage;
+    }
     public void TakeDamage(float damage)
     {
         curruntHP = Mathf.Max(curruntHP - damage, 0);
         HPUIManager.Instance.UpdateHPbar(curruntHP, maxHP);
     }
 
-    public void Heal(float healAmount)
+    public IEnumerator Heal(float healAmount)
     {
         curruntHP = Mathf.Min(curruntHP + healAmount, maxHP);
         HPUIManager.Instance.UpdateHPbar(curruntHP, maxHP);
+
+        yield return new WaitForSeconds(2f);
     }
     public float GetCurrentHP()
     {
         return curruntHP;
     }
 
+    public float GetDamage()
+    {
+        return damage;
+    }
     public void init()
     {
         maxHP = 100f;
-        attackDamage = 5f;
+        //attackDamage = 5f;
     }
 
 }

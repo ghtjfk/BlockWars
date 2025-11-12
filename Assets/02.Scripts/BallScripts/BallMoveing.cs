@@ -24,8 +24,11 @@ public class BallMoveing : MonoBehaviour
     }
     void Update_GM()
 {
-    // 마우스 첫번째 좌표
-    if (Input.GetMouseButtonDown(0))
+
+        if (GameManager.Instance.turnState != TurnState.PlayerTurn)
+            return;
+        // 마우스 첫번째 좌표
+        if (Input.GetMouseButtonDown(0))
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
@@ -80,9 +83,20 @@ public class BallMoveing : MonoBehaviour
             {
 
                 int count = GameManager.Instance.getBreakBlockCount();
-                PlayerManager.Instance.Heal(5 * count);
+                StartCoroutine(PlayerManager.Instance.Heal(5 * count));
+            }
+            else
+            {
+                int count = GameManager.Instance.getBreakBlockCount();
+                PlayerManager.Instance.Attack(5 * count);
             }
             GameManager.Instance.initBreakBlockCount();
+            GameManager.Instance.NextTurn();
+            if(ModeSwitcher.Instance.GetCurrentMode())
+            {
+                ModeSwitcher.Instance.ForceChangeToBattleMode();
+                ModeSwitcher.Instance.SetHealCooldown();
+            }
         }
     }
 }

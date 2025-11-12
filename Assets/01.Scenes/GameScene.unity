@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d52d142fb41d8f442be182e471c89246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerTurn: 1
 --- !u!4 &72011657
 Transform:
   m_ObjectHideFlags: 0
@@ -1365,6 +1366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterDataBase: {fileID: 11400000, guid: b40d8c25fa7c2bd45b4d2289a647c4b8, type: 2}
+  isBigGenerator: 0.05
 --- !u!1 &339061108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1701,11 +1703,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5bafdde64425a4fafabd079bd25a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  turnState: 0
   path: 
   nowSlot: 0
   newStart: 0
-  maxHP: 100
-  currentHP: 80
+  redMoon: 0
+  isredMoonGenerator: 0.1
 --- !u!4 &1029908863
 Transform:
   m_ObjectHideFlags: 0
