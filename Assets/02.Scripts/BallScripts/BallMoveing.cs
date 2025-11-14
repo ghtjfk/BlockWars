@@ -11,7 +11,8 @@ public class BallMoveing : MonoBehaviour
     public GameObject ballPreview;
     public Rigidbody2D rb;
     public bool isMoving = false;
-    int moveSpeed=250;
+    int moveSpeed = 250;
+    public float sensitivity = 2.0f;
     void Start()
     {
         firstball = this.transform.position;
@@ -44,15 +45,18 @@ public class BallMoveing : MonoBehaviour
     bool isMouse = Input.GetMouseButton(0);
     if (isMouse && firstPos != Vector3.zero) // 시작이 Background에서만 진행
     {
-        secondPos = Camera.main.ScreenToViewportPoint(Input.mousePosition) + new Vector3(0, 0, 10);
-        if ((secondPos - firstPos).magnitude < 1) return;
-        gap = (secondPos - firstPos).normalized;
+        secondPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        secondPos.z = 0;
+        Vector3 dir = (secondPos - firstPos);
+        if (dir.magnitude < 0.1f) return;
+        gap = dir * sensitivity;
+        gap = gap.normalized;
         gap = new Vector3(gap.y >= 0 ? gap.x : gap.x >= 0 ? 1 : -1, Mathf.Clamp(gap.y, 0.2f, 1), 0);
         ballPreview.transform.position = Physics2D.CircleCast(
-            new Vector2(Mathf.Clamp(transform.position.x, -0.425f, 2.425f), -4.5f), 
-            0.1f, 
-            gap, 
-            10000, 
+        new Vector2(Mathf.Clamp(transform.position.x, -0.425f, 2.425f), -4.5f),
+            0.1f,
+            gap,
+            10000,
             1 << LayerMask.NameToLayer("Wall") | 1 << LayerMask.NameToLayer("Block")
         ).centroid;
     }
