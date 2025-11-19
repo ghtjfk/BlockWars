@@ -43,7 +43,7 @@ public class MonsterHover : MonoBehaviour
 
     private IEnumerator OnMonsterClicked()
     {
-        monsterBehaviour.takeDamage(5);
+        monsterBehaviour.TakeDamage(5);
         Debug.Log("Monster took 5 damage!");
 
         //  2√  ¥Î±‚

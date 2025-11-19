@@ -42,7 +42,7 @@ public class GameManager : Singleton<GameManager>
     private int stage =1 , breakCount;
 
     public float redMoon;
-    public float isredMoonGenerator = 0.1f;
+    public float isredMoonGenerator = -1f;
 
 
 
