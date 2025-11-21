@@ -38,17 +38,20 @@ public class MonsterHover : MonoBehaviour
 
 
         StartCoroutine(OnMonsterClicked());
+        selectMark.SetActive(false);
        
     }
 
     private IEnumerator OnMonsterClicked()
     {
+        // deltatime으로 2초로 바꾸고 코루틴 삭제시도
+        GameManager.Instance.NextTurn();
         monsterBehaviour.TakeDamage(5);
         Debug.Log("Monster took 5 damage!");
 
         //  2초 대기
         yield return new WaitForSeconds(2f);
-        GameManager.Instance.NextTurn();
+        
 
 
         Debug.Log("2초 후에 다음 턴으로 전환됨");
