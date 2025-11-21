@@ -6,6 +6,7 @@ public class MonsterManager : Singleton<MonsterManager>
 {
     [SerializeField]
     private MonsterDataBase monsterDataBase = null;
+    public int maxCount = 4;
 
     List<MonsterBehaviour> monsters = new List<MonsterBehaviour>();
     public List<Vector3> posArray = 
@@ -22,7 +23,8 @@ public class MonsterManager : Singleton<MonsterManager>
 
     void Start()
     {
-        int monsterCount = Random.Range(1, 5);
+        int monsterCount = Random.Range(1,4);
+        int waitMonsterCount = Random.Range(1, 4);
 
        posInfo = GetRandomNumber(monsterCount);
         for (int idx = 0; idx < monsterCount; idx++)
@@ -30,6 +32,40 @@ public class MonsterManager : Singleton<MonsterManager>
             monsterSpawn(idx);
             Debug.Log("Monster Spawned");
         }
+    }
+
+    void aditionSpawn()
+    {
+        Vector3 pos = posArray[posArray.Count - 1];
+        MonsterStat stat = new MonsterStat();
+
+        foreach (MonsterStat m in monsterDataBase.monsterStats)
+        {
+            if (m.stage == GameManager.Instance.getStage())
+                stat = m;
+        }
+
+        MonsterStat cloneStat = CloneStat(stat);
+
+        if (GameManager.Instance.redMoon < GameManager.Instance.isredMoonGenerator)
+        {
+            stat.hp *= 1.3f;
+            stat.attack += 3f;
+            stat.coin += 10;
+        }
+        // prefab이 object로 되어있어서 GameObject로 다운캐스팅
+        GameObject monster = (GameObject)Instantiate(cloneStat.monsterPrefab, pos, Quaternion.identity);
+
+        // MonsterBehaviour 초기화 추가
+        MonsterBehaviour behaviour = monster.GetComponent<MonsterBehaviour>();
+        if (behaviour != null)
+        {
+            behaviour.Init(stat);
+            behaviour.posIndex = posArray.Count -1;
+            monsters.Add(behaviour);
+
+        }
+
     }
 
     void monsterSpawn(int idx)
@@ -49,10 +85,6 @@ public class MonsterManager : Singleton<MonsterManager>
         MonsterStat orgstat = stageStats[randomIndex];
 
         MonsterStat stat = CloneStat(orgstat);
-
-
-        float isBigChace = Random.value;
-
 
 
         //  붉은 달 이벤트일 경우 강화
@@ -132,8 +164,13 @@ public class MonsterManager : Singleton<MonsterManager>
                 monster.posIndex = next;
                 monster.transform.position = posArray[next];
 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(2f);
             }
+        }
+
+        if(monsters.Count < 4)
+        {
+            aditionSpawn();
         }
 
         GameManager.Instance.NextTurn();
