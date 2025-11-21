@@ -21,7 +21,7 @@ public class BackgroundManager : MonoBehaviour
 
         if (stage >= 1 && stage <= backgrounds.Length)
         {
-            if(GameManager.Instance.redMoon < 0.1f) // 10% È®·ü·Î ºÓÀº ´Ş ÀÌº¥Æ®
+            if(GameManager.Instance.redMoon < 0f) // 10% È®·ü·Î ºÓÀº ´Ş ÀÌº¥Æ®
             {
                 setBackgroundColor(idx, new Color32(255, 0, 0, 100));
             }

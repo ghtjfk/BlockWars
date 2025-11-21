@@ -6,16 +6,26 @@ public class MonsterManager : Singleton<MonsterManager>
 {
     [SerializeField]
     private MonsterDataBase monsterDataBase = null;
-    public float isBigGenerator = 0.05f;
 
     List<MonsterBehaviour> monsters = new List<MonsterBehaviour>();
+    public List<Vector3> posArray = 
+        new List<Vector3>() {
+            new Vector3(-1.6f, 3.2f, 0),
+            new Vector3(-0.8f, 3.2f, 0),
+            new Vector3(0f, 3.2f, 0),
+            new Vector3(0.8f, 3.2f, 0),
+            new Vector3(1.6f, 3.2f, 0),};
+    List<int> posInfo = new List<int>();
 
 
 
 
     void Start()
     {
-        for (int idx = 0; idx < Random.Range(1, 5); idx++)
+        int monsterCount = Random.Range(1, 5);
+
+       posInfo = GetRandomNumber(monsterCount);
+        for (int idx = 0; idx < monsterCount; idx++)
         {
             monsterSpawn(idx);
             Debug.Log("Monster Spawned");
@@ -24,6 +34,7 @@ public class MonsterManager : Singleton<MonsterManager>
 
     void monsterSpawn(int idx)
     {
+        Vector3 pos = posArray[posInfo[idx]];
         List<MonsterStat> stageStats = new List<MonsterStat>();
 
         foreach (MonsterStat m in monsterDataBase.monsterStats)
@@ -40,10 +51,8 @@ public class MonsterManager : Singleton<MonsterManager>
         MonsterStat stat = CloneStat(orgstat);
 
 
-
-        Vector3 pos = getPosition(stat, idx);
-
         float isBigChace = Random.value;
+
 
 
         //  붉은 달 이벤트일 경우 강화
@@ -53,14 +62,6 @@ public class MonsterManager : Singleton<MonsterManager>
             stat.attack += 3f;
             stat.coin += 10;
         }
-
-        if (isBigChace < isBigGenerator)
-        {
-            stat.hp *= 1.5f;
-            stat.attack += 3f;
-            stat.coin += 20;
-            pos += new Vector3(0, 0.1f, 0);
-        }
         // prefab이 object로 되어있어서 GameObject로 다운캐스팅
         GameObject monster = (GameObject)Instantiate(stat.monsterPrefab, pos, Quaternion.identity);
 
@@ -68,15 +69,10 @@ public class MonsterManager : Singleton<MonsterManager>
         MonsterBehaviour behaviour = monster.GetComponent<MonsterBehaviour>();
         if (behaviour != null)
         {
-            behaviour.init(stat);
+            behaviour.Init(stat);
+            behaviour.posIndex = posInfo[idx];
             monsters.Add(behaviour);
-        }
-
-
-        if (isBigChace < isBigGenerator)
-        {
-            monster.transform.localScale *= 1.5f; // 거대 몬스터
-
+            
         }
 
     }
@@ -88,34 +84,59 @@ public class MonsterManager : Singleton<MonsterManager>
             id = original.id,
             hp = original.hp,
             attack = original.attack,
-            pos = original.pos,
             coin = original.coin,
             monsterPrefab = original.monsterPrefab
         };
     }
 
-    Vector3 getPosition(MonsterStat stat, int idx)
-    {
-        return stat.pos + new Vector3(0.8f * idx, 0, 0);
-    }
 
     public IEnumerator OnMonsterTurnStart()
     {
-
-        Debug.Log("호출");
+        // 먼저 포지션 기준으로 몬스터를 정렬 (앞쪽 순서대로)
+        monsters.Sort((a, b) => a.posIndex.CompareTo(b.posIndex));
 
         foreach (MonsterBehaviour monster in monsters)
         {
-            float damage = monster.monsterAttack();
-            PlayerManager.Instance.TakeDamage(damage);
-            Debug.Log($"Monster attacked for {damage} damage!");
-            // 2초 대기
-            yield return new WaitForSeconds(2f);
+            // 이미 죽은 경우 건너뛰기
+            if (monster == null) continue;
+
+            int current = monster.posIndex;
+
+            // 0번 포지션이면 공격
+            if (current == 0)
+            {
+                Debug.Log($"[{monster.name}] pos {current} → 공격!");
+                PlayerManager.Instance.TakeDamage(monster.MonsterAttack());
+                yield return new WaitForSeconds(2f);
+                continue;
+            }
+
+            // 앞 칸
+            int next = current - 1;
+
+            // 앞 칸에 몬스터 있는지 확인
+            bool isBlocked = monsters.Exists(m => m.posIndex == next);
+
+            if (isBlocked)
+            {
+                // 막혀있으면 → 공격
+                Debug.Log($"[{monster.name}] pos {current} → 앞에 몬스터 있음 → 공격!");
+                PlayerManager.Instance.TakeDamage(monster.MonsterAttack());
+                yield return new WaitForSeconds(2f);
+            }
+            else
+            {
+                // 이동
+                Debug.Log($"[{monster.name}] pos {current} → {next} 로 이동!");
+
+                monster.posIndex = next;
+                monster.transform.position = posArray[next];
+
+                yield return new WaitForSeconds(0.5f);
+            }
         }
 
         GameManager.Instance.NextTurn();
-
-        Debug.Log("2초가 지났습니다. 다음 턴으로 진행합니다!");
     }
 
     public void RemoveMonster(MonsterBehaviour monster)
@@ -131,8 +152,62 @@ public class MonsterManager : Singleton<MonsterManager>
         {
             Debug.Log("All monsters defeated!");
             //GameManager.Instance.StageClear();
+        }    }
+
+    // 공격 가능한 슬롯들 (0번부터 우선순위)
+    public int GetAttackableSlot()
+    {
+        // 공격가능한 슬롯 확인
+
+
+        for (int i = 0; i < 5; i++)
+        {
+            // 해당 슬롯에 몬스터가 있는지 확인
+            if (IsSlotOccupied(i))
+                return i; // 이 슬롯에서 공격해도 됨
         }
+
+        // 0~2 슬롯에 아무도 없으면 0으로 지정해 몬스터 이동시키게 함
+        return 0;
     }
 
+    // 슬롯 점유 여부
+    public bool IsSlotOccupied(int slotIndex)
+    {
+        foreach (var m in monsters)
+        {
+            if (Vector3.Distance(m.transform.position, posArray[slotIndex]) < 0.1f)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
+    List<int> GetRandomNumber(int idx)
+    {
+        List<int> numbers = new List<int>();
+
+        for(int i = 0; i< posArray.Count; i++)
+        {
+            numbers.Add(i);
+            
+        }
+
+        // 셔플 (Fisher-Yates)
+        for (int i = numbers.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1); // UnityEngine.Random
+            int temp = numbers[i];
+            numbers[i] = numbers[j];
+            numbers[j] = temp;
+        }
+
+        // 필요한 개수만 반환
+        return numbers.GetRange(0, idx);
+    }
 }
 
