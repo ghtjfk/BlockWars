@@ -1451,7 +1451,6 @@ GameObject:
   - component: {fileID: 245338212}
   - component: {fileID: 245338211}
   - component: {fileID: 245338210}
-  - component: {fileID: 245338214}
   m_Layer: 5
   m_Name: SwitchButton
   m_TagString: Untagged
@@ -1590,18 +1589,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245338208}
   m_CullTransparentMesh: 1
---- !u!114 &245338214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 245338208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0f2010c3915a7a45b8707a866d7985b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &269459982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1685,13 +1672,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2112180146}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 2112180151}
+        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
+        m_MethodName: ClickResumeButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1747,7 +1734,6 @@ GameObject:
   - component: {fileID: 276165475}
   - component: {fileID: 276165474}
   - component: {fileID: 276165473}
-  - component: {fileID: 276165472}
   m_Layer: 5
   m_Name: MapIcon
   m_TagString: Untagged
@@ -1775,18 +1761,6 @@ RectTransform:
   m_AnchoredPosition: {x: -500, y: 920}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &276165472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 276165470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0f2010c3915a7a45b8707a866d7985b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &276165473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2203,8 +2177,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2656,7 +2630,6 @@ GameObject:
   - component: {fileID: 1413654175}
   - component: {fileID: 1413654174}
   - component: {fileID: 1413654173}
-  - component: {fileID: 1413654172}
   m_Layer: 5
   m_Name: OptionIcon
   m_TagString: Untagged
@@ -2684,18 +2657,6 @@ RectTransform:
   m_AnchoredPosition: {x: 500, y: 920}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1413654172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413654170}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0f2010c3915a7a45b8707a866d7985b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1413654173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2739,7 +2700,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1413654174}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2112180151}
+        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
+        m_MethodName: ClickPauseButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1413654174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2994,7 +2967,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1540995398}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2112180151}
+        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
+        m_MethodName: ClickMainMenuButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1540995398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3318,7 +3303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1800253928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3332,7 +3317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.58431375}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.85882354}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3378,7 +3363,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 600, y: 800}
+  m_SizeDelta: {x: 1080, y: 1920}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1824966615
 GameObject:
@@ -3463,9 +3448,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 98889775131256348, guid: e2f4700872240b44cb78443fada502dc, type: 3}
-        m_TargetAssemblyTypeName: SettingsPanelController, Assembly-CSharp
-        m_MethodName: OpenSettings
+      - m_Target: {fileID: 2112180151}
+        m_TargetAssemblyTypeName: Pause, Assembly-CSharp
+        m_MethodName: ClickSettingButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

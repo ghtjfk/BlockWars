@@ -20,15 +20,16 @@ public class Pause : MonoBehaviour
 
     public void ClickPauseButton()
     {
+        GameManager.Instance.isPause = true;
         pause.SetActive(true);
         Time.timeScale = 0f;
-        
     }
 
     public void ClickResumeButton()
     {
         pause.SetActive(false);
         Time.timeScale = 1f;
+        GameManager.Instance.isPause = false;
     }
 
     public void ClickSettingButton()
@@ -41,5 +42,6 @@ public class Pause : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("StartScene");
+        GameManager.Instance.isPause = false;
     }
 }

@@ -14,8 +14,6 @@ public class MonsterStat
 
     public Object monsterPrefab;
 
-    [HideInInspector]
-    public Vector3 pos = new Vector3(0, 3.2f, 0);
 
 
 

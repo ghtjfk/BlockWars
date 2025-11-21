@@ -29,7 +29,7 @@ public class BallMoveing : MonoBehaviour
         if (GameManager.Instance.turnState != TurnState.PlayerTurn)
             return;
         // 마우스 첫번째 좌표
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && GameManager.Instance.isPause.Equals(false))
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
