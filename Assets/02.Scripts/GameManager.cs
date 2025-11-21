@@ -44,7 +44,7 @@ public class GameManager : Singleton<GameManager>
     public float redMoon;
     public float isredMoonGenerator = 0.1f;
 
-
+    public bool isPause = false;
 
 
     private void Awake()
