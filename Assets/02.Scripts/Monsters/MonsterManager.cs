@@ -7,6 +7,7 @@ public class MonsterManager : Singleton<MonsterManager>
     [SerializeField]
     private MonsterDataBase monsterDataBase = null;
     public int maxCount = 4;
+    public bool isMonsterClicked = false;
 
     List<MonsterBehaviour> monsters = new List<MonsterBehaviour>();
     public List<Vector3> posArray = 
@@ -17,6 +18,7 @@ public class MonsterManager : Singleton<MonsterManager>
             new Vector3(0.8f, 3.2f, 0),
             new Vector3(1.6f, 3.2f, 0),};
     List<int> posInfo = new List<int>();
+    int waitMonsterCount;
 
 
 
@@ -24,7 +26,7 @@ public class MonsterManager : Singleton<MonsterManager>
     void Start()
     {
         int monsterCount = Random.Range(1,4);
-        int waitMonsterCount = Random.Range(1, 4);
+        waitMonsterCount = Random.Range(1,4);
 
        posInfo = GetRandomNumber(monsterCount);
         for (int idx = 0; idx < monsterCount; idx++)
@@ -47,12 +49,12 @@ public class MonsterManager : Singleton<MonsterManager>
 
         MonsterStat cloneStat = CloneStat(stat);
 
-        if (GameManager.Instance.redMoon < GameManager.Instance.isredMoonGenerator)
-        {
-            stat.hp *= 1.3f;
-            stat.attack += 3f;
-            stat.coin += 10;
-        }
+        //if (GameManager.Instance.redMoon < GameManager.Instance.isredMoonGenerator)
+        //{
+        //    stat.hp *= 1.3f;
+        //    stat.attack += 3f;
+        //    stat.coin += 10;
+        //}
         // prefab이 object로 되어있어서 GameObject로 다운캐스팅
         GameObject monster = (GameObject)Instantiate(cloneStat.monsterPrefab, pos, Quaternion.identity);
 
@@ -88,12 +90,12 @@ public class MonsterManager : Singleton<MonsterManager>
 
 
         //  붉은 달 이벤트일 경우 강화
-        if (GameManager.Instance.redMoon < GameManager.Instance.isredMoonGenerator)
-        {
-            stat.hp *= 1.3f;
-            stat.attack += 3f;
-            stat.coin += 10;
-        }
+        //if (GameManager.Instance.redMoon < GameManager.Instance.isredMoonGenerator)
+        //{
+        //    stat.hp *= 1.3f;
+        //    stat.attack += 3f;
+        //    stat.coin += 10;
+        //}
         // prefab이 object로 되어있어서 GameObject로 다운캐스팅
         GameObject monster = (GameObject)Instantiate(stat.monsterPrefab, pos, Quaternion.identity);
 
@@ -124,68 +126,80 @@ public class MonsterManager : Singleton<MonsterManager>
 
     public IEnumerator OnMonsterTurnStart()
     {
-        // 먼저 포지션 기준으로 몬스터를 정렬 (앞쪽 순서대로)
-        monsters.Sort((a, b) => a.posIndex.CompareTo(b.posIndex));
+        // null 제거
+        monsters.RemoveAll(m => m == null);
 
-        foreach (MonsterBehaviour monster in monsters)
+        //  1. 현재 몬스터 목록을 posIndex 순으로 정렬한 새 리스트 생성
+        List<MonsterBehaviour> ordered = new List<MonsterBehaviour>(monsters);
+        ordered.Sort((a, b) => a.posIndex.CompareTo(b.posIndex));
+
+        //  2. 정렬된 리스트를 순서대로 순회 (앞에 있는 애부터)
+        foreach (MonsterBehaviour monster in ordered)
         {
-            // 이미 죽은 경우 건너뛰기
             if (monster == null) continue;
+            if (!monsters.Contains(monster)) continue; // 이미 죽은 몬스터 SKIP
 
             int current = monster.posIndex;
 
-            // 0번 포지션이면 공격
+            // 공격
             if (current == 0)
             {
-                Debug.Log($"[{monster.name}] pos {current} → 공격!");
                 PlayerManager.Instance.TakeDamage(monster.MonsterAttack());
                 yield return new WaitForSeconds(2f);
                 continue;
             }
 
-            // 앞 칸
             int next = current - 1;
 
-            // 앞 칸에 몬스터 있는지 확인
-            bool isBlocked = monsters.Exists(m => m.posIndex == next);
+            bool isBlocked = monsters.Exists(m => m != null && m.posIndex == next);
 
             if (isBlocked)
             {
-                // 막혀있으면 → 공격
-                Debug.Log($"[{monster.name}] pos {current} → 앞에 몬스터 있음 → 공격!");
                 PlayerManager.Instance.TakeDamage(monster.MonsterAttack());
                 yield return new WaitForSeconds(2f);
             }
             else
             {
-                // 이동
-                Debug.Log($"[{monster.name}] pos {current} → {next} 로 이동!");
+                Vector3 startPos = monster.transform.position;
+                float t = 0f;
+                while (t < 1f)
+                {
+                    if (monster == null || !monsters.Contains(monster)) yield break;
+                    monster.transform.position = Vector3.Lerp(startPos, posArray[next], t);
+                    t += Time.deltaTime;
+                    yield return null;
+                }
 
-                monster.posIndex = next;
+                if (monster == null || !monsters.Contains(monster)) yield break;
+
                 monster.transform.position = posArray[next];
-
-                yield return new WaitForSeconds(2f);
+                monster.posIndex = next;
             }
         }
 
-        if(monsters.Count < 4)
+        // 추가 스폰
+        if (monsters.Count < 4 && waitMonsterCount > 0)
         {
             aditionSpawn();
+            waitMonsterCount--;
         }
 
         GameManager.Instance.NextTurn();
     }
 
+
     public void RemoveMonster(MonsterBehaviour monster)
     {
-        if (monsters.Contains(monster))
-        {
-            monsters.Remove(monster);
-            Debug.Log($"Removed {monster.name} from monster list. Remaining: {monsters.Count}");
-        }
+        if (monster == null) return;
 
+        monsters.Remove(monster);
+
+        Debug.Log($"Removed {monster.name} from monster list. Remaining: {monsters.Count}");
+
+        // 실제로 씬에서 제거
+        Destroy(monster.gameObject);
         // 모든 몬스터가 죽었을 때 스테이지 클리어 처리도 가능
-        if (monsters.Count == 0)
+        if (monsters.Count == 0 && waitMonsterCount<=0)
         {
             Debug.Log("All monsters defeated!");
             //GameManager.Instance.StageClear();
@@ -213,13 +227,14 @@ public class MonsterManager : Singleton<MonsterManager>
     {
         foreach (var m in monsters)
         {
+            if (m == null) continue;
+
             if (Vector3.Distance(m.transform.position, posArray[slotIndex]) < 0.1f)
-            {
                 return true;
-            }
         }
         return false;
     }
+
 
 
 

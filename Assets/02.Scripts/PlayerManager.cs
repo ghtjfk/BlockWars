@@ -43,6 +43,11 @@ public class PlayerManager : Singleton<PlayerManager>
         return curruntHP;
     }
 
+    public float GetMaxHP()
+    {
+        return maxHP;
+    }
+
     public float GetDamage()
     {
         return damage;

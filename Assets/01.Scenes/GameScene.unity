@@ -1492,8 +1492,8 @@ MonoBehaviour:
   currentImage: {fileID: 245338212}
   battleOn: {fileID: 21300000, guid: d25c4ee01fa090d4c9f5ef10b3dfbefa, type: 3}
   healOn: {fileID: 21300000, guid: b2eb373a280b31d48a69c76954d083f1, type: 3}
-  attackBrickPrefab: {fileID: 7132572528431996287, guid: 75b03069378b87449b5b95412b2850d6, type: 3}
-  healBrickPrefab: {fileID: 8974253593257568649, guid: c7f6898ccc820714886ccc9bd6365281, type: 3}
+  attackBrickPrefab: {fileID: 7132572528431996287, guid: 61bd1790b4106a645ad48e79763ffafc, type: 3}
+  healBrickPrefab: {fileID: 7132572528431996287, guid: 75b03069378b87449b5b95412b2850d6, type: 3}
   ball: {fileID: 1203453042}
 --- !u!114 &245338211
 MonoBehaviour:
@@ -1888,7 +1888,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterDataBase: {fileID: 11400000, guid: b40d8c25fa7c2bd45b4d2289a647c4b8, type: 2}
-  isBigGenerator: 0.05
+  maxCount: 4
+  isMonsterClicked: 0
+  posArray:
+  - {x: -1.6, y: 3.2, z: 0}
+  - {x: -0.8, y: 3.2, z: 0}
+  - {x: 0, y: 3.2, z: 0}
+  - {x: 0.8, y: 3.2, z: 0}
+  - {x: 1.6, y: 3.2, z: 0}
 --- !u!1 &339061108
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,6 +2288,7 @@ MonoBehaviour:
   newStart: 0
   redMoon: 0
   isredMoonGenerator: 0.1
+  isPause: 0
 --- !u!4 &1029908863
 Transform:
   m_ObjectHideFlags: 0
