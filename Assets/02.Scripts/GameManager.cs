@@ -119,7 +119,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private void LoadUIScene()
+    public void LoadUIScene()
     {
         // UIScene 로드 함수
         if (!IsSceneLoaded("UIScene"))
@@ -127,7 +127,6 @@ public class GameManager : Singleton<GameManager>
             SceneManager.LoadSceneAsync("UIScene", LoadSceneMode.Additive);
         }
     }
-
 
     private bool IsSceneLoaded(string sceneName)
     // 씬이 로드되어 있는지 확인하는 함수
