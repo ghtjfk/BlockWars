@@ -26,7 +26,7 @@ public class BallMoveing : MonoBehaviour
     void Update_GM()
 {
 
-        if (GameManager.Instance.turnState != TurnState.PlayerTurn)
+        if (TurnManager.Instance.turnState != TurnState.PlayerTurn)
             return;
         // 마우스 첫번째 좌표
         if (Input.GetMouseButtonDown(0) && GameManager.Instance.isPause.Equals(false))
@@ -92,10 +92,9 @@ public class BallMoveing : MonoBehaviour
             else
             {
                 int count = GameManager.Instance.getBreakBlockCount();
-                PlayerManager.Instance.Attack(5 * count);
             }
             GameManager.Instance.initBreakBlockCount();
-            GameManager.Instance.NextTurn();
+            TurnManager.Instance.NextTurn();
             if(ModeSwitcher.Instance.GetCurrentMode())
             {
                 ModeSwitcher.Instance.ForceChangeToBattleMode();

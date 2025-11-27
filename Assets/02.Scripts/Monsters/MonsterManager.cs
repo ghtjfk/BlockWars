@@ -23,12 +23,15 @@ public class MonsterManager : Singleton<MonsterManager>
 
 
 
+
     void Start()
     {
         int monsterCount = Random.Range(1,4);
         waitMonsterCount = Random.Range(1,4);
 
-       posInfo = GetRandomNumber(monsterCount);
+
+
+        posInfo = GetRandomNumber(monsterCount);
         for (int idx = 0; idx < monsterCount; idx++)
         {
             monsterSpawn(idx);
@@ -126,6 +129,7 @@ public class MonsterManager : Singleton<MonsterManager>
 
     public IEnumerator OnMonsterTurnStart()
     {
+        yield return new WaitForSeconds(2f);
         // null Á¦°Å
         monsters.RemoveAll(m => m == null);
 
@@ -184,7 +188,7 @@ public class MonsterManager : Singleton<MonsterManager>
             waitMonsterCount--;
         }
 
-        GameManager.Instance.NextTurn();
+        TurnManager.Instance.NextTurn();
     }
 
 

@@ -142,6 +142,6 @@ public class PopupManager : MonoBehaviour
         string sceneName = $"Stage{stage}";
         SceneManager.LoadScene("GameScene");
         GameManager.Instance.redMoon = Random.value;
-        GameManager.Instance.initTurn();
+        TurnManager.Instance.initTurn();
     }
 }

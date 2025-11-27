@@ -25,7 +25,7 @@ public class MonsterHover : MonoBehaviour
         // 예외처리
         if(selectMark == null) return;
 
-        if (GameManager.Instance.turnState == TurnState.MonsterSelect &&
+        if (TurnManager.Instance.turnState == TurnState.MonsterSelect &&
              !MonsterManager.Instance.isMonsterClicked)
             selectMark.SetActive(true);
 
@@ -38,7 +38,7 @@ public class MonsterHover : MonoBehaviour
         // 예외처리
         if (selectMark == null) return;
 
-        if (GameManager.Instance.turnState == TurnState.MonsterSelect &&
+        if (TurnManager.Instance.turnState == TurnState.MonsterSelect &&
             !MonsterManager.Instance.isMonsterClicked)
             selectMark.SetActive(false);
 
@@ -47,38 +47,37 @@ public class MonsterHover : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (GameManager.Instance.turnState != TurnState.MonsterSelect)
+        if (TurnManager.Instance.turnState != TurnState.MonsterSelect)
             return;
 
 
-        StartCoroutine(OnMonsterClicked());
+        OnMonsterClicked();
 
 
     }
 
-    private IEnumerator OnMonsterClicked()
+    private void OnMonsterClicked()
     {
+        PlayerManager.Instance.animator.SetTrigger("doAttack");
         selectMark.SetActive(false);
         MonsterManager.Instance.isMonsterClicked = true;
 
 
-        monsterBehaviour.TakeDamage(20);
+        monsterBehaviour.TakeDamage(5);
         Debug.Log("Monster took 5 damage!");
 
         if (monsterBehaviour.GetCurrentHP() <= 0)
         {
             MonsterManager.Instance.isMonsterClicked = false;
-            monsterBehaviour.MonsterDie();
-        }
-        //  2초 대기
-        yield return new WaitForSeconds(2f);
 
-        GameManager.Instance.NextTurn();
+            monsterBehaviour.MonsterDie();
+            return;
+        }
+
+        TurnManager.Instance.startWaitAndNextTurn(2f);
         MonsterManager.Instance.isMonsterClicked = false;
 
- 
 
-        Debug.Log("2초 후에 다음 턴으로 전환됨");
     }
 
     string GetHPText()
