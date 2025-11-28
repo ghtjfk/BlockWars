@@ -67,6 +67,12 @@ public class MapButtonManager : MonoBehaviour
         PlayerPrefs.SetInt("UnlockedStageMax", 1);
         PlayerPrefs.Save();
 
+        // 자물쇠 그림 초기화
+        for (int j = 9; j > 0; j--)
+        {
+            stageLocks[j].gameObject.SetActive(true);
+        }
+
         // 버튼 상태만 다시 반영
         ApplyUnlockStateToButtons();
 
