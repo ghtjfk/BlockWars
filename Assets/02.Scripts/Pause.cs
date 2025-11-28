@@ -47,4 +47,9 @@ public class Pause : MonoBehaviour
         SceneManager.LoadScene("StartScene");
         Time.timeScale = 1f;
     }
+
+    public void ClickMapIconButton()
+    {
+        SceneManager.LoadScene("MapScene");
+    }
 }

@@ -587,7 +587,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d5bafdde64425a4fafabd079bd25a29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnState: 0
   path: 
   nowSlot: 0
   newStart: 0
