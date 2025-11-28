@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.IO;    // 제이슨을 외부에 저장하기 위해 존재
+using System.IO;
+using System.Collections;    // 제이슨을 외부에 저장하기 위해 존재
 
 // 저장하는 방법
 // 1. 저장할 데이터가 존재
@@ -21,16 +22,10 @@ public class PlayerData   // 1. 저장할 데이터가 존재
     public int item = -1;
 }
 
-public enum TurnState
-{
-    PlayerTurn,
-    MonsterSelect,
-    MonsterTurn
-}
 
 public class GameManager : Singleton<GameManager>
 {
-    public TurnState turnState = TurnState.PlayerTurn;
+
 
     public PlayerData nowPlayer = new PlayerData();
 
@@ -119,7 +114,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private void LoadUIScene()
+    public void LoadUIScene()
     {
         // UIScene 로드 함수
         if (!IsSceneLoaded("UIScene"))
@@ -127,7 +122,6 @@ public class GameManager : Singleton<GameManager>
             SceneManager.LoadSceneAsync("UIScene", LoadSceneMode.Additive);
         }
     }
-
 
     private bool IsSceneLoaded(string sceneName)
     // 씬이 로드되어 있는지 확인하는 함수
@@ -180,35 +174,6 @@ public class GameManager : Singleton<GameManager>
         return breakCount;
     }
 
-    public void NextTurn()
-    {
-        switch (turnState)
-        {
-            case TurnState.PlayerTurn:
-                if (ModeSwitcher.Instance.GetCurrentMode())
-                {
-                    turnState = TurnState.MonsterTurn;
-                    StartCoroutine(MonsterManager.Instance.OnMonsterTurnStart());
-                    break;
-                }
-                turnState = TurnState.MonsterSelect;
-                ModeSwitcher.Instance.DecreaseCooldown();
-                break;
-            case TurnState.MonsterSelect:
-                turnState = TurnState.MonsterTurn;
-                //코루틴은 아래 방식으로 호출해야함
-                StartCoroutine(MonsterManager.Instance.OnMonsterTurnStart());
-                break;
-            case TurnState.MonsterTurn:
-                turnState = TurnState.PlayerTurn;
-                break;
-        }
-    }
-
-    public void initTurn()
-    {
-        turnState = TurnState.PlayerTurn;
-    }
 
 
 }

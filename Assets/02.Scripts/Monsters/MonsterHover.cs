@@ -2,25 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MonsterHover : MonoBehaviour
 {
     public GameObject selectMark;
+    public Text monsterHPText;
     MonsterBehaviour monsterBehaviour;
+    float MaxHP;
 
     void Start()
     {
         selectMark.SetActive(false);
         monsterBehaviour = GetComponent<MonsterBehaviour>();
+        MaxHP = monsterBehaviour.stat.hp;
     }
+
+   
 
     void OnMouseEnter()
     {
         // 예외처리
         if(selectMark == null) return;
 
-        if (GameManager.Instance.turnState == TurnState.MonsterSelect)
+        if (TurnManager.Instance.turnState == TurnState.MonsterSelect &&
+             !MonsterManager.Instance.isMonsterClicked)
             selectMark.SetActive(true);
+
+        monsterHPText.text = GetHPText();
+
     }
 
     void OnMouseExit()
@@ -28,33 +38,52 @@ public class MonsterHover : MonoBehaviour
         // 예외처리
         if (selectMark == null) return;
 
-        if (GameManager.Instance.turnState == TurnState.MonsterSelect)
+        if (TurnManager.Instance.turnState == TurnState.MonsterSelect &&
+            !MonsterManager.Instance.isMonsterClicked)
             selectMark.SetActive(false);
+
+        monsterHPText.text = "";
     }
 
     void OnMouseDown()
     {
-        if (GameManager.Instance.turnState != TurnState.MonsterSelect)
+        if (TurnManager.Instance.turnState != TurnState.MonsterSelect)
             return;
 
 
-        StartCoroutine(OnMonsterClicked());
+        OnMonsterClicked();
 
 
     }
 
-    private IEnumerator OnMonsterClicked()
+    private void OnMonsterClicked()
     {
-        // deltatime으로 2초로 바꾸고 코루틴 삭제시도
-        
+        PlayerManager.Instance.animator.SetTrigger("doAttack");
+        selectMark.SetActive(false);
+        MonsterManager.Instance.isMonsterClicked = true;
+
+
         monsterBehaviour.TakeDamage(5);
         Debug.Log("Monster took 5 damage!");
 
-        GameManager.Instance.NextTurn();
-        selectMark.SetActive(false);
-        //  2초 대기
-        yield return new WaitForSeconds(2f);
+        if (monsterBehaviour.GetCurrentHP() <= 0)
+        {
+            MonsterManager.Instance.isMonsterClicked = false;
 
-        Debug.Log("2초 후에 다음 턴으로 전환됨");
+            monsterBehaviour.MonsterDie();
+            return;
+        }
+
+        TurnManager.Instance.startWaitAndNextTurn(2f);
+        MonsterManager.Instance.isMonsterClicked = false;
+
+
+    }
+
+    string GetHPText()
+    {
+        string currentHP = monsterBehaviour.GetCurrentHP().ToString();
+
+        return currentHP + " / " + MaxHP.ToString();
     }
 }

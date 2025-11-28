@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrickPool : MonoBehaviour
+public class BrickPool : Singleton<BrickPool>
 {
-    public static BrickPool Instance;
     public GameObject CommonBrickPrefab, HealBrickPrefab;
     public int poolSize = 100;
 
@@ -14,8 +13,7 @@ public class BrickPool : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+ 
 
         for (int i = 0; i < poolSize; i++)
         {

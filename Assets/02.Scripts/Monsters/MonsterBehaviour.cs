@@ -5,40 +5,53 @@ using UnityEngine;
 public class MonsterBehaviour : MonoBehaviour
 {
 
-    MonsterStat stat;
-    float curruntHP;
-    Vector3 pos;
+    public MonsterStat stat;
+    public float curruntHP;
     public int posIndex;
+    SpriteRenderer spriteRenderer; // 몬스터의 SpriteRenderer 컴포넌트
+    Color originalColor;           // 몬스터의 원래 색깔 저장
+    bool isHitEffectActive = false; // 피격 효과 중인지 확인하는 플래그
 
     public void Init(MonsterStat stat)
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if(spriteRenderer != null)
+        {
+            originalColor = spriteRenderer.color;
+        }
+       
         this.stat = stat;
         curruntHP = stat.hp;
     }
 
     public float MonsterAttack()
     {
-        int stage = GameManager.Instance.getStage();
-        float damage = (1.0f + 0.1f * stage) * stat.attack + Random.Range(0, stage);
+        PlayerManager.Instance.animator.SetTrigger("doHit");
+        float damage = stat.attack;
 
         return damage;
     }
 
     public void TakeDamage(float damage)
     {
+        if(isHitEffectActive)
+        {
+            return;
+        }
+
+
         curruntHP -= damage;
         Debug.Log($"Monster took {damage} damage, current HP: {curruntHP}");
-        if (curruntHP <= 0)
-        {
-            MonsterDie();
-        }
- 
+
+        StartCoroutine(HitEffectCoroutine(1f));
+
+
+
     }
 
     public void MonsterHeal()
     {
-        int stage = GameManager.Instance.getStage();
-        float damage = (1.0f + 0.1f * stage) * stat.attack + Random.Range(0, stage);
+        float damage = stat.attack;
 
         curruntHP += damage;
 
@@ -51,53 +64,32 @@ public class MonsterBehaviour : MonoBehaviour
         {
             MonsterManager.Instance.RemoveMonster(this);
         }
-        Destroy(this.gameObject);
+
+        TurnManager.Instance.startDeadMonsterSequence(2f, this.gameObject);
+
 
     }
 
-
-    public IEnumerator MonsterAction()
+    public float GetCurrentHP()
     {
-        int attackSlot = MonsterManager.Instance.GetAttackableSlot();
-        Vector3 targetPos = MonsterManager.Instance.posArray[attackSlot];
-
-        // 이미 공격 슬롯에 있으면 바로 공격
-        if (Vector3.Distance(transform.position, targetPos) < 0.1f)
-        {
-            yield return AttackRoutine();
-            yield break;
-        }
-
-        // 아니면 해당 슬롯으로 이동
-        yield return MoveTo(targetPos);
-
-        // 도착 후 공격
-        yield return AttackRoutine();
+        return curruntHP;
     }
 
-    IEnumerator MoveTo(Vector3 target)
+    IEnumerator HitEffectCoroutine(float duration)
     {
-        // 부드럽게 이동 (0.5초 정도)
-        float t = 0f;
+        isHitEffectActive = true; // 피격 효과 시작 플래그 설정
 
-        Vector3 start = transform.position;
+        // 몬스터 스프라이트의 색깔을 빨간색으로 변경
+        spriteRenderer.color = Color.red;
 
-        while (t < 1f)
-        {
-            t += Time.deltaTime * 2f; // 속도
-            transform.position = Vector3.Lerp(start, target, t);
-            yield return null;
-        }
+        // 지정된 시간(duration) 동안 기다림
+        yield return new WaitForSeconds(duration);
+
+        // 기다린 후 몬스터 스프라이트의 색깔을 원래 색깔로 되돌림
+        spriteRenderer.color = originalColor;
+
+        isHitEffectActive = false; // 피격 효과 종료 플래그 해제
     }
-
-    IEnumerator AttackRoutine()
-    {
-        float damage = MonsterAttack();
-        PlayerManager.Instance.TakeDamage(damage);
-
-        Debug.Log($"Monster attacked! damage: {damage}");
-
-        yield return new WaitForSeconds(1f);
-    }
-
 }
+
+

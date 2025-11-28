@@ -50,3 +50,6 @@ TagManager:
   - name: Wall
     uniqueID: 526565533
     locked: 0
+  - name: UI
+    uniqueID: 50700003
+    locked: 0

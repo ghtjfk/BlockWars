@@ -20,7 +20,7 @@ public class ModeSwitcher : Singleton<ModeSwitcher>
     public void OneButtonToggle()
     {
         BallMoveing ballScript = ball.GetComponent<BallMoveing>();
-        if (ballScript.isMoving || GameManager.Instance.turnState != TurnState.PlayerTurn) return;
+        if (ballScript.isMoving || TurnManager.Instance.turnState != TurnState.PlayerTurn) return;
         if (HealCooldown > 0) return;
         isHealMode = !isHealMode;
 

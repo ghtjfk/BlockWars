@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Pause : MonoBehaviour
 {
-    public GameObject pause;
+    public GameObject pausePanel;
+    public GameObject settingPanel;
 
     void Start()
     {
@@ -21,27 +22,34 @@ public class Pause : MonoBehaviour
     public void ClickPauseButton()
     {
         GameManager.Instance.isPause = true;
-        pause.SetActive(true);
+        pausePanel.SetActive(true);
+        SceneManager.UnloadSceneAsync("UIScene");
         Time.timeScale = 0f;
     }
 
     public void ClickResumeButton()
     {
-        pause.SetActive(false);
-        Time.timeScale = 1f;
         GameManager.Instance.isPause = false;
+        pausePanel.SetActive(false);
+        SceneManager.LoadSceneAsync("UIScene", LoadSceneMode.Additive);
+        Time.timeScale = 1f;
     }
 
     public void ClickSettingButton()
     {
-        pause.SetActive(false);
-        Time.timeScale = 1f;    // 세팅창이 없어서 아직 연결 X
+        settingPanel.SetActive(true);
+        SceneManager.UnloadSceneAsync("UIScene");
     }
 
     public void ClickMainMenuButton()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("StartScene");
         GameManager.Instance.isPause = false;
+        SceneManager.LoadScene("StartScene");
+        Time.timeScale = 1f;
+    }
+
+    public void ClickMapIconButton()
+    {
+        SceneManager.LoadScene("MapScene");
     }
 }
