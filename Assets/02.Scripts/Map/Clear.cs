@@ -4,11 +4,17 @@ using UnityEngine.UI;
 
 public class Clear : MonoBehaviour
 {
-    [Header("이 스테이지 번호 (예: 1, 2, 3, 4)")]
-    [SerializeField] private int stageNumber = 1;
-
     [Header("클리어 버튼 (인스펙터에서 드래그)")]
     [SerializeField] private Button clearButton;
+
+    private int stageNumber = 0;
+
+    // 
+    private void Start()
+    {
+        stageNumber = GameManager.Instance.getStage();
+        Debug.Log($"[Clear] GameManager에서 스테이지 번호 {stageNumber}를 받아왔습니다.");
+    }
 
     private void Awake()
     {
