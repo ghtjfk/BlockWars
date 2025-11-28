@@ -128,9 +128,8 @@ public class PopupManager : MonoBehaviour
     private void OnClickYes()       // "예" : 팝업 해제 + 해당 스테이지로 씬 전환
     {
         int target = pendingStage;
-        GameManager.Instance.setStage(target);
-        GameManager.Instance.redMoon = Random.value;
-        Debug.Log($"Stage{GameManager.Instance.getStage()} 등록 완료");
+        GameManager.Instance.nowPlayer.stage = target;
+        Debug.Log($"Stage{GameManager.Instance.nowPlayer.stage} 등록 완료");
         Close();
         StartCoroutine(CoLoadStageAfterFade(target));
     }
@@ -141,6 +140,6 @@ public class PopupManager : MonoBehaviour
 
         string sceneName = $"Stage{stage}";
         SceneManager.LoadScene("GameScene");
-        GameManager.Instance.redMoon = Random.value;
+        TurnManager.Instance.initTurn();
     }
 }

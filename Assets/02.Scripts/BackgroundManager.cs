@@ -9,7 +9,7 @@ public class BackgroundManager : MonoBehaviour
 
     private void Start()
     {
-        int stage = GameManager.Instance.getStage();
+        int stage = GameManager.Instance.nowPlayer.stage;
 
         foreach (var bg in backgrounds)
         {

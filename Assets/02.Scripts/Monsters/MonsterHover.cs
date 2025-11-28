@@ -50,7 +50,6 @@ public class MonsterHover : MonoBehaviour
         if (TurnManager.Instance.turnState != TurnState.MonsterSelect)
             return;
 
-
         OnMonsterClicked();
 
 
@@ -63,8 +62,8 @@ public class MonsterHover : MonoBehaviour
         MonsterManager.Instance.isMonsterClicked = true;
 
 
-        monsterBehaviour.TakeDamage(5);
-        Debug.Log("Monster took 5 damage!");
+        monsterBehaviour.TakeDamage(GameManager.Instance.nowPlayer.attackDamage *PlayerManager.Instance.getBreakBrickCount());
+        Debug.Log($"Monster took {GameManager.Instance.nowPlayer.attackDamage * PlayerManager.Instance.getBreakBrickCount()} damage!");
 
         if (monsterBehaviour.GetCurrentHP() <= 0)
         {
@@ -74,6 +73,7 @@ public class MonsterHover : MonoBehaviour
             return;
         }
 
+        PlayerManager.Instance.initBreakBrickCount();
         TurnManager.Instance.startWaitAndNextTurn(2f);
         MonsterManager.Instance.isMonsterClicked = false;
 

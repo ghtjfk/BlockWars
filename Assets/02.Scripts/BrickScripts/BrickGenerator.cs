@@ -26,7 +26,7 @@ public class BrickGenerator : MonoBehaviour
         // stage 정보
         // mapScene에서 stage button 클릭 시 stage 정보를 저장하는 식으로 구현 할 것
         // 준혁이가 보고 구현예정
-        stage = GameManager.Instance.getStage();
+        stage = GameManager.Instance.nowPlayer.stage;
 
         int randomIndex = Random.Range(0, mapData[stage].GetLength(0));
 

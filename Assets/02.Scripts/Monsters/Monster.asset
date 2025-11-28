@@ -15,13 +15,19 @@ MonoBehaviour:
   monsterStats:
   - id: Slime
     hp: 20
-    attack: 100
+    attack: 3
     coin: 10
     stage: 1
     monsterPrefab: {fileID: 4278299998093194868, guid: 365acf819c6661e49aa280994a39f245, type: 3}
   - id: ooze
     hp: 20
-    attack: 100
+    attack: 3
     coin: 10
     stage: 1
     monsterPrefab: {fileID: 635827357152315796, guid: 3e996276257a33e4788691f2630f45f7, type: 3}
+  - id: spider
+    hp: 30
+    attack: 5
+    coin: 20
+    stage: 2
+    monsterPrefab: {fileID: 4278299998093194868, guid: 365acf819c6661e49aa280994a39f245, type: 3}
