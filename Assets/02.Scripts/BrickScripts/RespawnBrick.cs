@@ -20,7 +20,7 @@ public class RespawnBrick : Singleton<RespawnBrick>
 
     private List<Respawninfo> respawnList = new List<Respawninfo>();
 
-    public void NextTrun()
+    public void Respawn()
     { //다음 턴마다 벽돌 리스폰 처리
         for (int i = respawnList.Count - 1; i >= 0; i--)
         {

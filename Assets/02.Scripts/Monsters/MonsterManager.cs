@@ -19,6 +19,7 @@ public class MonsterManager : Singleton<MonsterManager>
             new Vector3(1.6f, 3.2f, 0),};
     List<int> posInfo = new List<int>();
     int waitMonsterCount;
+    public Clear clear;
 
 
 
@@ -26,7 +27,7 @@ public class MonsterManager : Singleton<MonsterManager>
 
     void Start()
     {
-        int monsterCount = Random.Range(1,4);
+        int monsterCount = Random.Range(1,3);
         waitMonsterCount = Random.Range(1,4);
 
 
@@ -46,7 +47,7 @@ public class MonsterManager : Singleton<MonsterManager>
 
         foreach (MonsterStat m in monsterDataBase.monsterStats)
         {
-            if (m.stage == GameManager.Instance.getStage())
+            if (m.stage == GameManager.Instance.nowPlayer.stage)
                 stat = m;
         }
 
@@ -80,7 +81,7 @@ public class MonsterManager : Singleton<MonsterManager>
 
         foreach (MonsterStat m in monsterDataBase.monsterStats)
         {
-            if (m.stage == GameManager.Instance.getStage())
+            if (m.stage == GameManager.Instance.nowPlayer.stage)
             {
                 stageStats.Add(m);
             }
@@ -205,9 +206,10 @@ public class MonsterManager : Singleton<MonsterManager>
         // 모든 몬스터가 죽었을 때 스테이지 클리어 처리도 가능
         if (monsters.Count == 0 && waitMonsterCount<=0)
         {
+            clear.SetGameClear();
             Debug.Log("All monsters defeated!");
-            //GameManager.Instance.StageClear();
-        }    }
+        }   
+    }
 
     // 공격 가능한 슬롯들 (0번부터 우선순위)
     public int GetAttackableSlot()
@@ -247,7 +249,7 @@ public class MonsterManager : Singleton<MonsterManager>
     {
         List<int> numbers = new List<int>();
 
-        for(int i = 0; i< posArray.Count; i++)
+        for(int i = 2; i< posArray.Count; i++)
         {
             numbers.Add(i);
             

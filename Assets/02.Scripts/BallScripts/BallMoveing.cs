@@ -81,17 +81,17 @@ public class BallMoveing : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             transform.position = firstball;
-            RespawnBrick.Instance.NextTrun();
             isMoving = false;
             if (ModeSwitcher.Instance.GetCurrentMode())
             {
 
                 int count = GameManager.Instance.getBreakBlockCount();
-                StartCoroutine(PlayerManager.Instance.Heal(5 * count));
+                StartCoroutine(PlayerManager.Instance.Heal(GameManager.Instance.nowPlayer.attackDamage * count));
             }
             else
             {
                 int count = GameManager.Instance.getBreakBlockCount();
+                PlayerManager.Instance.setBreakBrickCount(count);
             }
             GameManager.Instance.initBreakBlockCount();
             TurnManager.Instance.NextTurn();
@@ -100,6 +100,7 @@ public class BallMoveing : MonoBehaviour
                 ModeSwitcher.Instance.ForceChangeToBattleMode();
                 ModeSwitcher.Instance.SetHealCooldown();
             }
+            RespawnBrick.Instance.Respawn();
         }
     }
 }

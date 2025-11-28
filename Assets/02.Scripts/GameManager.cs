@@ -20,6 +20,10 @@ public class PlayerData   // 1. 저장할 데이터가 존재
     public int level = 1;
     public int coin = 100;
     public int item = -1;
+    public float maxHP = 100f;
+    public float curruntHP;
+    public float attackDamage = 5f;
+    public int stage = 1;
 }
 
 
@@ -34,12 +38,12 @@ public class GameManager : Singleton<GameManager>
 
     public bool newStart;
     
-    private int stage =1 , breakCount;
+    private int breakCount;
 
     public float redMoon;
-    public float isredMoonGenerator = -1f;
 
     public bool isPause = false;
+    public bool isGameOver = false;
 
 
     private void Awake()
@@ -136,22 +140,6 @@ public class GameManager : Singleton<GameManager>
         }
         return false;
     }
-    //
-    // stage 관련 함수
-    //
-    public void setStage(int stage)
-    {
-        this.stage = stage;
-    }
-    public int getStage()
-    {
-        return stage;
-    }
-    public void initStage()
-    {
-        stage = 0;
-    }
-
 
 
 

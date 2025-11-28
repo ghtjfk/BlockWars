@@ -67,7 +67,8 @@ public class BrickPosition : MonoBehaviour
         allMaps = new int[][][,]
         {
             new int [][,] {zeroMap},
-            new int [][,] {map1_1, map1_2, map1_3}
+            new int [][,] {map1_1, map1_2, map1_3},
+            new int [][,] {map2_1, map2_2, map2_3}
 
 
 

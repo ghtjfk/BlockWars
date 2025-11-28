@@ -65,7 +65,7 @@ public class MonsterBehaviour : MonoBehaviour
             MonsterManager.Instance.RemoveMonster(this);
         }
 
-        TurnManager.Instance.startDeadMonsterSequence(2f, this.gameObject);
+        TurnManager.Instance.startDeadMonsterSequence(0f, this.gameObject);
 
 
     }
