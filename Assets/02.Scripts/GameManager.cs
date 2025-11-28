@@ -25,8 +25,6 @@ public class PlayerData   // 1. 저장할 데이터가 존재
 
 public class GameManager : Singleton<GameManager>
 {
-
-
     public PlayerData nowPlayer = new PlayerData();
 
     public string path;
@@ -34,7 +32,7 @@ public class GameManager : Singleton<GameManager>
 
     public bool newStart;
     
-    private int stage =1 , breakCount;
+    private int stage = 1 , breakCount;
 
     public float redMoon;
     public float isredMoonGenerator = -1f;

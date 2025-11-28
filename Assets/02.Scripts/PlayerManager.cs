@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
-
     float maxHP = 100f;
     float curruntHP;
     float attackDamage = 5f;
 
     public Animator animator;
+
 
     private IEnumerator Start()
     {
