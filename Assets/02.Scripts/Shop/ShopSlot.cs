@@ -111,6 +111,7 @@ public class ShopSlot : MonoBehaviour , IPointerClickHandler
         {
             coinUI.UpdateCoinDisplay();
         }
+        GameManager.Instance.ApplyShopEffect(currentItem.itemName);
     }
     
 }
