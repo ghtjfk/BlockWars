@@ -25,6 +25,8 @@ public class Pause : MonoBehaviour
         pausePanel.SetActive(true);
         SceneManager.UnloadSceneAsync("UIScene");
         Time.timeScale = 0f;
+
+        ///
     }
 
     public void ClickResumeButton()
