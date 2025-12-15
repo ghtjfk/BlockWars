@@ -29,7 +29,6 @@ public class ShopSlot : MonoBehaviour , IPointerClickHandler
     if (itemNameText != null) 
     {
         itemNameText.text = data.itemName;
-        Debug.Log($"[ShopSlot] 아이템 이름 할당: {data.itemName}");
     }
 
     // 아이템 이름 할당 확인 (itemNameText가 Text 타입이라고 가정)
@@ -37,7 +36,6 @@ public class ShopSlot : MonoBehaviour , IPointerClickHandler
     {
         // ⭐ data.itemName이 정확하게 할당되었는지 확인
         itemNameText.text = data.itemName;
-        Debug.Log($"[ShopSlot] 아이템 이름 할당: {data.itemName}"); // 할당 여부 확인용 로그 추가
     }
     
     // 아이템 가격 할당 확인
@@ -58,60 +56,53 @@ public class ShopSlot : MonoBehaviour , IPointerClickHandler
     // ⭐ 구매 버튼 대신, 오브젝트를 클릭했을 때 호출되는 함수
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log($"[ShopSlot] {currentItem?.itemName ?? "빈 슬롯"} 오브젝트 클릭 감지!");
         
         // 실제 구매 로직 실행
         BuyItem();
     }
     public void BuyItem()
     {
-        
         if (currentItem == null) 
         {
-            Debug.LogError("구매하려는 아이템 데이터(currentItem)가 NULL입니다!");
             return;
         }
 
-        // GameManager 인스턴스 확인
         if (GameManager.Instance == null)
         {
-            Debug.LogError("GameManager 인스턴스를 찾을 수 없습니다! 코인 연동 불가.");
             return;
         }
 
-        // ⭐ 코인 체크: 현재 잔액이 아이템 가격보다 적은지 확인
         int currentCoin = GameManager.Instance.nowPlayer.coin;
         int itemPrice = currentItem.itemCost;
 
+        // 1. 코인 체크
         if (currentCoin < itemPrice)
         {
             Debug.LogWarning($"코인 부족! 현재 코인: {currentCoin}, 필요 코인: {itemPrice}");
-            // [TODO] 화면에 "코인 부족" UI 메시지 표시 로직 추가
-            return; // 코인이 부족하면 구매를 중단
+            return; 
         }
 
-        // ⭐ 구매 성공: 코인 차감 및 데이터 갱신
+        // 2. ⭐ 구매 성공: 코인 차감
         GameManager.Instance.nowPlayer.coin -= itemPrice;
         
-        // [TODO] 인벤토리 또는 플레이어 데이터에 아이템 추가 로직
+        // 3. ⭐ 아이템 효과 즉시 적용 (가장 중요한 부분)
+        // GameManager에서 HP/DMG 스탯을 증가시키고 SaveData()도 호출됨.
+        GameManager.Instance.ApplyShopEffect(currentItem.itemName); 
         
-        // 코인 차감 후 변경된 데이터 저장 (선택 사항)
-        GameManager.Instance.SaveData(); 
-        
-        // 상점 재고 갱신
-        ShopManager.Instance.GenerateNewStock(); 
-
-        // 갱신된 재고를 즉시 화면에 다시 표시하도록 ShopUI에 요청
-        parentUI?.DisplayCurrentStock();
-        
-        Debug.Log($"구매 성공! 아이템: {currentItem.itemName}, 남은 코인: {GameManager.Instance.nowPlayer.coin}");
-        // 씬에서 CoinUI 컴포넌트를 찾아서 갱신 함수를 호출합니다.
+        // 4. 코인 UI 갱신
         CoinUI coinUI = FindObjectOfType<CoinUI>(); 
         if (coinUI != null)
         {
             coinUI.UpdateCoinDisplay();
         }
-        GameManager.Instance.ApplyShopEffect(currentItem.itemName);
+        
+        // 5. 상점 재고 갱신 (고정 목록이므로 ShopManager의 GenerateNewStock/GenerateFixedStock 호출)
+        // Note: 이름은 ShopManager의 실제 함수명에 맞춰주세요. (GenerateNewStock으로 가정)
+        ShopManager.Instance.GenerateNewStock(); 
+
+        // 6. 갱신된 재고를 즉시 화면에 다시 표시
+        parentUI?.DisplayCurrentStock();
+        
+        Debug.Log($"구매 성공! 아이템: {currentItem.itemName}, 남은 코인: {GameManager.Instance.nowPlayer.coin}");
     }
-    
 }

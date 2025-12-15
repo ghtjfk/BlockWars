@@ -163,34 +163,38 @@ public class GameManager : Singleton<GameManager>
 
     public void ApplyShopEffect(string itemName)
     {
+        // 입력된 itemName을 대문자로 변환하고 띄어쓰기를 제거합니다.
+        string normalizedItemName = itemName.ToUpper().Replace(" ", "");
+
         // 아이템 효과 적용 후, 최대 HP와 공격력을 갱신합니다.
-    
-        if (itemName.Contains("HP UP")) // "HP UP" 아이템 구매 시
+        
+        // ⭐ HP UP 효과 확인
+        if (normalizedItemName.Contains("HPUP")) 
         {
-            float bonusAmount = 20f; // 한 번 구매 시 HP 20 증가 가정
+            float bonusAmount = 20f; 
             nowPlayer.hpBonus += bonusAmount;
-        
-            // ⭐ 현재 HP도 같이 증가시켜서 구매 즉시 체력 회복 효과를 줍니다.
-            // 현재 체력(curruntHP)에 보너스만큼 더하고, 최대 HP를 초과하지 않도록 제한합니다.
+            
             nowPlayer.curruntHP = Mathf.Min(nowPlayer.curruntHP + bonusAmount, 
-                                        nowPlayer.maxHP + nowPlayer.hpBonus);
-        
-            Debug.Log($"HP UP 효과 적용! HP 보너스: {nowPlayer.hpBonus}");
-        
-            // [TODO] Health UI (HP Bar)를 갱신하는 함수를 여기에 호출해야 합니다.
+                                            nowPlayer.maxHP + nowPlayer.hpBonus);
+            
+            Debug.Log($"HP UP 효과 적용! 현재 HP 보너스: {nowPlayer.hpBonus}");
         }
-        else if (itemName.Contains("DMG UP")) // "DMG UP" 아이템 구매 시
+        // ⭐ DMG UP 효과 확인
+        else if (normalizedItemName.Contains("DMGUP")) 
         {
-            float bonusAmount = 2f; // 한 번 구매 시 공격력 2 증가 가정
+            float bonusAmount = 2f; 
             nowPlayer.damageBonus += bonusAmount;
-        
-            Debug.Log($"DMG UP 효과 적용! 공격력 보너스: {nowPlayer.damageBonus}");
-        
-            // [TODO] 공격력 관련 UI를 갱신하는 함수를 여기에 호출해야 합니다.
+            
+            Debug.Log($"DMG UP 효과 적용! 현재 공격력 보너스: {nowPlayer.damageBonus}");
         }
-    
+        else
+        {
+            // ⭐ 디버그 로그 추가: 어떤 아이템 이름이 들어왔는지 확인 가능
+            Debug.LogWarning($"[GameManager] 알 수 없는 상점 아이템 이름: {itemName} (정규화 후: {normalizedItemName})");
+        }
+
         SaveData(); // 변경된 플레이어 데이터를 저장
-    }
+}
     public float GetPlayerMaxHP()
     {
         // 기본 HP + 아이템 보너스
