@@ -18,7 +18,7 @@ MonoBehaviour:
     attack: 3
     coin: 10
     stage: 1
-    monsterPrefab: {fileID: 4278299998093194868, guid: 365acf819c6661e49aa280994a39f245, type: 3}
+    monsterPrefab: {fileID: 4278299998093194868, guid: 66c1ef0e826bd9b47982888febf44ff3, type: 3}
   - id: ooze
     hp: 20
     attack: 3

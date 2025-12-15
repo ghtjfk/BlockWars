@@ -20,7 +20,7 @@ public class TurnManager : Singleton<TurnManager>
         switch (turnState)
         {
             case TurnState.PlayerTurn:
-                if (ModeSwitcher.Instance.GetCurrentMode())
+                if (ModeSwitcher.Instance.GetCurrentMode() || PlayerManager.Instance.getBreakBrickCount() == 0)
                 {
                     turnState = TurnState.MonsterTurn;
                     StartCoroutine(MonsterManager.Instance.OnMonsterTurnStart());
