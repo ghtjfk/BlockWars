@@ -20,6 +20,7 @@ public class MapButtonManager : MonoBehaviour
 
     private void Awake()        // 초기 해금 상태 구성: 기본은 1만 해금
     {
+<<<<<<< HEAD
         if(GameManager.Instance.isGameOver == true)
         {
             ResetProgress();
@@ -27,6 +28,10 @@ public class MapButtonManager : MonoBehaviour
         }
         int unlockedMax = PlayerPrefs.GetInt("UnlockedStageMax", 1);
         unlockedMax = Mathf.Clamp(unlockedMax, minStage, maxStage);
+=======
+        int unlocked = PlayerPrefs.GetInt("UnlockedStageMax", 1);
+        unlocked = Mathf.Clamp(unlocked, minStage, maxStage);
+>>>>>>> Map
 
         // 버튼 바인딩
         for (int i = 0; i < stageButtons.Length; i++)
@@ -38,7 +43,7 @@ public class MapButtonManager : MonoBehaviour
             var img = stageLocks[i];
             if (btn == null) continue;
 
-            bool isUnlocked = (stageNumber <= unlockedMax);
+            bool isUnlocked = (stageNumber == unlocked);
             btn.interactable = isUnlocked;  // 스테이지 버튼 해금 (스테이지 번호가 Max보다 작거나 같을 때)
             img.gameObject.SetActive(!isUnlocked); // 자물쇠 이미지 해금
 
@@ -95,8 +100,8 @@ public class MapButtonManager : MonoBehaviour
     // 현재 PlayerPrefs의 해금 상태를 버튼들에 반영
     private void ApplyUnlockStateToButtons()
     {
-        int unlockedMax = PlayerPrefs.GetInt("UnlockedStageMax", 1);
-        unlockedMax = Mathf.Clamp(unlockedMax, minStage, maxStage);
+        int unlocked = PlayerPrefs.GetInt("UnlockedStageMax", 1);
+        unlocked = Mathf.Clamp(unlocked, minStage, maxStage);
 
         for (int i = 0; i < stageButtons.Length; i++)
         {
@@ -106,25 +111,22 @@ public class MapButtonManager : MonoBehaviour
             var btn = stageButtons[i];
             if (btn == null) continue;
 
-            bool isUnlocked = (stageNumber <= unlockedMax);
+            bool isUnlocked = (stageNumber == unlocked);
             btn.interactable = isUnlocked;
         }
     }
 
     public static bool IsUnlocked(int stage)
     {
-        int unlockedMax = PlayerPrefs.GetInt("UnlockedStageMax", 1);
-        return stage <= unlockedMax;
+        int unlocked = PlayerPrefs.GetInt("UnlockedStageMax", 1);
+        return stage == unlocked;
     }
 
     // 스테이지 클리어 시 다음 스테이지 해금에 사용
     public static void UnlockUpTo(int stage)
     {
-        int prev = PlayerPrefs.GetInt("UnlockedStageMax", 1);
-        if (stage > prev)
-        {
-            PlayerPrefs.SetInt("UnlockedStageMax", stage);
-            PlayerPrefs.Save();
-        }
+        stage = Mathf.Max(stage, 1);
+        PlayerPrefs.SetInt("UnlockedStageMax", stage);
+        PlayerPrefs.Save();
     }
 }
