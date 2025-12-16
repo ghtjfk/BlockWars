@@ -8,7 +8,7 @@ public class MonsterManager : Singleton<MonsterManager>
     private MonsterDataBase monsterDataBase = null;
     public int maxCount = 4;
     public bool isMonsterClicked = false;
-
+    public TurnUI turnUI;
     List<MonsterBehaviour> monsters = new List<MonsterBehaviour>();
     public List<Vector3> posArray = 
         new List<Vector3>() {
@@ -130,7 +130,7 @@ public class MonsterManager : Singleton<MonsterManager>
 
     public IEnumerator OnMonsterTurnStart()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         // null Á¦°Å
         monsters.RemoveAll(m => m == null);
 
@@ -190,6 +190,8 @@ public class MonsterManager : Singleton<MonsterManager>
         }
 
         TurnManager.Instance.NextTurn();
+        StartCoroutine(turnUI.showTurnUI());
+
     }
 
 

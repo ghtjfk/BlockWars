@@ -14,6 +14,7 @@ public class TurnManager : Singleton<TurnManager>
 
 
     public TurnState turnState = TurnState.PlayerTurn;
+    public TurnUI turnUI;
 
     public void NextTurn()
     {
@@ -27,6 +28,7 @@ public class TurnManager : Singleton<TurnManager>
                     break;
                 }
                 turnState = TurnState.MonsterSelect;
+                StartCoroutine(turnUI.showTurnUI());
                 ModeSwitcher.Instance.DecreaseCooldown();
                 break;
             case TurnState.MonsterSelect:
@@ -36,6 +38,7 @@ public class TurnManager : Singleton<TurnManager>
                 break;
             case TurnState.MonsterTurn:
                 turnState = TurnState.PlayerTurn;
+                StartCoroutine(turnUI.showTurnUI());
                 break;
         }
     }
@@ -56,6 +59,8 @@ public class TurnManager : Singleton<TurnManager>
     {
         NextTurn();
         yield return new WaitForSeconds(time);
+        StartCoroutine(turnUI.showTurnUI());
+
     }
 
     public IEnumerator deadMonsterSequence(float time, GameObject deadmonster)
@@ -64,6 +69,8 @@ public class TurnManager : Singleton<TurnManager>
         yield return new WaitForSeconds(time);
         Destroy(deadmonster);
         NextTurn();
+        StartCoroutine(turnUI.showTurnUI());
+
 
 
     }
