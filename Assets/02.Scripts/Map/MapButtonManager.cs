@@ -20,7 +20,7 @@ public class MapButtonManager : MonoBehaviour
 
     private void Awake()        // 초기 해금 상태 구성: 기본은 1만 해금
     {
-<<<<<<< HEAD
+
         if(GameManager.Instance.isGameOver == true)
         {
             ResetProgress();
@@ -28,10 +28,10 @@ public class MapButtonManager : MonoBehaviour
         }
         int unlockedMax = PlayerPrefs.GetInt("UnlockedStageMax", 1);
         unlockedMax = Mathf.Clamp(unlockedMax, minStage, maxStage);
-=======
+
         int unlocked = PlayerPrefs.GetInt("UnlockedStageMax", 1);
         unlocked = Mathf.Clamp(unlocked, minStage, maxStage);
->>>>>>> Map
+
 
         // 버튼 바인딩
         for (int i = 0; i < stageButtons.Length; i++)
