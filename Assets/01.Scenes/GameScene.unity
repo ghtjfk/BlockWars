@@ -4595,7 +4595,7 @@ GameObject:
   - component: {fileID: 1029908863}
   - component: {fileID: 1029908862}
   - component: {fileID: 1029908864}
-  - component: {fileID: 1029908866}
+  - component: {fileID: 1029908865}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4621,6 +4621,7 @@ MonoBehaviour:
   redMoon: 0
   isPause: 0
   isGameOver: 0
+  isClear: 0
 --- !u!4 &1029908863
 Transform:
   m_ObjectHideFlags: 0
@@ -4663,24 +4664,6 @@ MonoBehaviour:
   turnState: 0
   turnUI: {fileID: 2112180154}
   isTurnChanging: 0
---- !u!114 &1029908866
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029908861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5bafdde64425a4fafabd079bd25a29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: 
-  nowSlot: 0
-  newStart: 0
-  redMoon: 0
-  isPause: 0
-  isGameOver: 0
 --- !u!1 &1036938162
 GameObject:
   m_ObjectHideFlags: 0
