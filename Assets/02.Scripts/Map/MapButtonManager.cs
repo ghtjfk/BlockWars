@@ -92,7 +92,7 @@ public class MapButtonManager : MonoBehaviour
         // 버튼 상태만 다시 반영 (이것이 Unlock된 상태를 UI에 최종 반영함)
         ApplyUnlockStateToButtons();
 
-        Debug.Log("[MapButtonManager] Progress reset → UnlockedStageMax = 1");
+        Debug.Log("[MapButtonManager] 초기화 완료 (Stage 1 Save)");
     }
 
     // 현재 PlayerPrefs의 해금 상태를 버튼들에 반영
