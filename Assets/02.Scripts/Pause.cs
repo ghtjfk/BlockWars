@@ -35,6 +35,8 @@ public class Pause : MonoBehaviour
         pausePanel.SetActive(false);
         SceneManager.LoadSceneAsync("UIScene", LoadSceneMode.Additive);
         Time.timeScale = 1f;
+
+
     }
 
     public void ClickSettingButton()
