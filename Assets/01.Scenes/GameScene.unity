@@ -3038,7 +3038,7 @@ MonoBehaviour:
   monsterDataBase: {fileID: 11400000, guid: b40d8c25fa7c2bd45b4d2289a647c4b8, type: 2}
   maxCount: 4
   isMonsterClicked: 0
-  turnUI: {fileID: 0}
+  turnUI: {fileID: 2112180154}
   posArray:
   - {x: -1.6, y: 3.2, z: 0}
   - {x: -0.8, y: 3.2, z: 0}

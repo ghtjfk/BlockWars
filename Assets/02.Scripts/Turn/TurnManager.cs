@@ -24,6 +24,7 @@ public class TurnManager : Singleton<TurnManager>
                 if (ModeSwitcher.Instance.GetCurrentMode() || PlayerManager.Instance.getBreakBrickCount() == 0)
                 {
                     turnState = TurnState.MonsterTurn;
+                    StartCoroutine(turnUI.showTurnUI());
                     StartCoroutine(MonsterManager.Instance.OnMonsterTurnStart());
                     break;
                 }
