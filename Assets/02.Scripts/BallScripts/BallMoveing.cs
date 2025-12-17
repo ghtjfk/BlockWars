@@ -51,7 +51,7 @@ public class BallMoveing : MonoBehaviour
         secondPos.z = 0;
         Vector3 dir = (secondPos - firstPos);
         if (dir.magnitude < 0.1f) return;
-            gap = dir * SettingsData.sensitivity / 5000;
+            gap = dir * SettingsData.sensitivity / 2000;
 
 
         gap = new Vector3(gap.y >= 0 ? gap.x : gap.x >= 0 ? 1 : -1, Mathf.Clamp(gap.y, 0.2f, 1), 0);
