@@ -83,7 +83,6 @@ public class ShopSlot : MonoBehaviour , IPointerClickHandler
         // GameManager에서 HP/DMG 스탯을 증가시키고 SaveData()도 호출됨.
         GameManager.Instance.ApplyShopEffect(currentItem.itemName); 
         
-        // 4. 코인 UI 갱신
         StatusUI statusUI = FindObjectOfType<StatusUI>(); 
         if (statusUI != null)
         {

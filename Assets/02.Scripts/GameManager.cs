@@ -23,6 +23,7 @@ public class PlayerData   // 1. 저장할 데이터가 존재
     public float maxHP = 100f;
     public float curruntHP = 100f;
     public float attackDamage = 5f;
+    public float healing = 1f;
     public int stage = 1;
     public float hpBonus = 0f; // 최대 HP 증가 보너스
     public float damageBonus = 0f; // 공격력 증가 보너스
@@ -206,6 +207,12 @@ public class GameManager : Singleton<GameManager>
             float bonusAmount = 1f; 
             nowPlayer.attackDamage += bonusAmount;
         }
+        else if (normalizedItemName.Contains("HEALING0.5UP")) 
+        {
+            float bonusAmount = 0.5f; 
+            nowPlayer.healing += bonusAmount;
+            Debug.Log("회복 0.5증가");
+        }
 
         SaveData(); // 변경된 플레이어 데이터를 저장
     }
@@ -218,6 +225,11 @@ public class GameManager : Singleton<GameManager>
     {
         // 기본 공격력 + 아이템 보너스
         return nowPlayer.attackDamage;
+    }
+
+    public float GetPlayerHealing()
+    {
+        return nowPlayer.healing;
     }
 
 }

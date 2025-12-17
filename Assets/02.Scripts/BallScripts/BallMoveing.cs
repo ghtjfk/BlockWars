@@ -152,7 +152,7 @@ public class BallMoveing : MonoBehaviour
         if (ModeSwitcher.Instance.GetCurrentMode())
         {
             int count = GameManager.Instance.getBreakBlockCount();
-            StartCoroutine(PlayerManager.Instance.Heal(GameManager.Instance.nowPlayer.attackDamage * count));
+            StartCoroutine(PlayerManager.Instance.Heal(GameManager.Instance.nowPlayer.healing * count));
         }
         else
         {

@@ -9,6 +9,7 @@ public class StatusUI : MonoBehaviour
     public Text coinText; 
     public Text hpText; 
     public Text damageText; 
+    public Text healingText;
     
 
     private void Start()
@@ -32,12 +33,13 @@ public class StatusUI : MonoBehaviour
         // 보너스가 적용된 최종 스탯을 가져옵니다.
         float finalMaxHP = GameManager.Instance.GetPlayerMaxHP();
         float finalAttackDamage = GameManager.Instance.GetPlayerAttackDamage();
+        float finalHealing= GameManager.Instance.GetPlayerHealing();
 
         // 1. 코인 갱신
         if (coinText != null)
         {
             // ⭐ nowPlayer.coin 사용
-            coinText.text = player.coin.ToString();
+            coinText.text = player.coin.ToString()+"$";
         }
         
         // 2. HP 갱신
@@ -52,6 +54,10 @@ public class StatusUI : MonoBehaviour
         {
             // ⭐ GetPlayerAttackDamage() 사용
             damageText.text = finalAttackDamage.ToString("F1"); // 소수점 1자리까지 표시
+        }
+        if(healingText != null)
+        {
+            healingText.text = finalHealing.ToString("F1");
         }
     }
 }

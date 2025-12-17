@@ -64,7 +64,7 @@ public class ModeSwitcher : Singleton<ModeSwitcher>
 
     public void ForceChangeToBattleMode()
     {
-        // °­Á¦ ÀüÅõ ¸ðµå·Î º¹±Í (Á¶°Ç ¹«½Ã)
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         if (isHealMode)
         {
             isHealMode = false;
@@ -85,7 +85,7 @@ public class ModeSwitcher : Singleton<ModeSwitcher>
                 newBrick.tag = "AttackBrick";
             }
 
-            Debug.Log("°­Á¦ ÀüÅõ ¸ðµå º¹±Í ¿Ï·á!");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½!");
         }
     }
 
