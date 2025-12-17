@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MonsterManager : Singleton<MonsterManager>
 {
@@ -21,12 +22,14 @@ public class MonsterManager : Singleton<MonsterManager>
     int waitMonsterCount;
     public Clear clear;
 
+    public Text waitMonsterText;
+
     void Start()
     {
-        int monsterCount = Random.Range(1,3);
-        waitMonsterCount = Random.Range(1,4);
+        int monsterCount = Random.Range(1,4);
+        waitMonsterCount = Random.Range(1 + GameManager.Instance.nowPlayer.stage,4 + GameManager.Instance.nowPlayer.stage);
 
-
+        UpdateWaitMonsterUI();
 
         posInfo = GetRandomNumber(monsterCount);
         for (int idx = 0; idx < monsterCount; idx++)
@@ -187,6 +190,7 @@ public class MonsterManager : Singleton<MonsterManager>
         {
             aditionSpawn();
             waitMonsterCount--;
+            UpdateWaitMonsterUI();
         }
 
         TurnManager.Instance.NextTurn();
@@ -268,6 +272,13 @@ public class MonsterManager : Singleton<MonsterManager>
 
         // 필요한 개수만 반환
         return numbers.GetRange(0, idx);
+    }
+
+    void UpdateWaitMonsterUI()
+    {
+        if (waitMonsterText == null) return;
+
+        waitMonsterText.text = $"대기 몬스터 : {waitMonsterCount}";
     }
 }
 
