@@ -184,7 +184,6 @@ public class GameManager : Singleton<GameManager>
         else if (normalizedItemName.Contains("DMGUP")) 
         {
             float bonusAmount = 1f; 
-            nowPlayer.damageBonus += bonusAmount;
             nowPlayer.attackDamage += bonusAmount;
         }
 
@@ -193,12 +192,12 @@ public class GameManager : Singleton<GameManager>
     public float GetPlayerMaxHP()
     {
         // 기본 HP + 아이템 보너스
-        return nowPlayer.maxHP + nowPlayer.hpBonus;
+        return nowPlayer.maxHP;
     }
     public float GetPlayerAttackDamage()
     {
         // 기본 공격력 + 아이템 보너스
-        return nowPlayer.attackDamage + nowPlayer.damageBonus;
+        return nowPlayer.attackDamage;
     }
 
 }
