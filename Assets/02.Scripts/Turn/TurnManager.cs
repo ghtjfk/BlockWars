@@ -16,8 +16,6 @@ public class TurnManager : Singleton<TurnManager>
 
     public TurnState turnState = TurnState.PlayerTurn;
     public TurnUI turnUI;
-<<<<<<< Updated upstream
-=======
     public bool isTurnChanging = false;
     void OnEnable()
     {
@@ -33,7 +31,6 @@ public class TurnManager : Singleton<TurnManager>
     {
         turnUI = FindAnyObjectByType<TurnUI>();
     }
->>>>>>> Stashed changes
 
     public void NextTurn()
     {

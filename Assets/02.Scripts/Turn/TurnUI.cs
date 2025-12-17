@@ -11,8 +11,6 @@ public class TurnUI : MonoBehaviour
 
     public IEnumerator showTurnUI()
     {
-<<<<<<< Updated upstream
-=======
         if(GameManager.Instance.isClear)
         {
             yield break;
@@ -20,7 +18,6 @@ public class TurnUI : MonoBehaviour
 
         TurnManager.Instance.isTurnChanging = true;
 
->>>>>>> Stashed changes
         switch (TurnManager.Instance.turnState)
         {
             case TurnState.PlayerTurn:
