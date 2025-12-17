@@ -38,7 +38,6 @@ public class Clear : MonoBehaviour
         GameManager.Instance.isClear = false;
         if (nextStage < 11)
         {
-            
             SceneManager.LoadScene("MapScene");
         }
         else
