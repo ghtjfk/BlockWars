@@ -53,7 +53,5 @@ public class StatusUI : MonoBehaviour
             // ⭐ GetPlayerAttackDamage() 사용
             damageText.text = finalAttackDamage.ToString("F1"); // 소수점 1자리까지 표시
         }
-        
-        Debug.Log($"[StatusUI] 갱신 완료 - HP: {player.curruntHP}/{finalMaxHP}, DMG: {finalAttackDamage}");
     }
 }

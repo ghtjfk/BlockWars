@@ -21,7 +21,7 @@ public class PlayerData   // 1. 저장할 데이터가 존재
     public int coin = 100;
     public int item = -1;
     public float maxHP = 100f;
-    public float curruntHP;
+    public float curruntHP = 100f;
     public float attackDamage = 5f;
     public int stage = 1;
     public float hpBonus = 0f; // 최대 HP 증가 보너스
@@ -171,30 +171,23 @@ public class GameManager : Singleton<GameManager>
         // ⭐ HP UP 효과 확인
         if (normalizedItemName.Contains("HPUP")) 
         {
-            float bonusAmount = 20f; 
+            float bonusAmount = 10f; 
             nowPlayer.hpBonus += bonusAmount;
             
             nowPlayer.curruntHP = Mathf.Min(nowPlayer.curruntHP + bonusAmount, 
                                             nowPlayer.maxHP + nowPlayer.hpBonus);
             
-            Debug.Log($"HP UP 효과 적용! 현재 HP 보너스: {nowPlayer.hpBonus}");
         }
         // ⭐ DMG UP 효과 확인
         else if (normalizedItemName.Contains("DMGUP")) 
         {
-            float bonusAmount = 2f; 
+            float bonusAmount = 1f; 
             nowPlayer.damageBonus += bonusAmount;
             
-            Debug.Log($"DMG UP 효과 적용! 현재 공격력 보너스: {nowPlayer.damageBonus}");
-        }
-        else
-        {
-            // ⭐ 디버그 로그 추가: 어떤 아이템 이름이 들어왔는지 확인 가능
-            Debug.LogWarning($"[GameManager] 알 수 없는 상점 아이템 이름: {itemName} (정규화 후: {normalizedItemName})");
         }
 
         SaveData(); // 변경된 플레이어 데이터를 저장
-}
+    }
     public float GetPlayerMaxHP()
     {
         // 기본 HP + 아이템 보너스

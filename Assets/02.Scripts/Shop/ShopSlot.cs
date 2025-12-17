@@ -14,11 +14,6 @@ public class ShopSlot : MonoBehaviour , IPointerClickHandler
 
     private ItemData currentItem;
     private ShopUI parentUI; 
-    void Start()
-    {
-        // ⭐ 이 로그가 안 뜨면 스크립트가 비활성화 상태입니다.
-        Debug.Log($"[ShopSlot] {gameObject.name} 스크립트 로드 완료."); 
-    }
 
     public void SetItem(ItemData data, ShopUI shopUI)
 {
@@ -78,7 +73,6 @@ public class ShopSlot : MonoBehaviour , IPointerClickHandler
         // 1. 코인 체크
         if (currentCoin < itemPrice)
         {
-            Debug.LogWarning($"코인 부족! 현재 코인: {currentCoin}, 필요 코인: {itemPrice}");
             return; 
         }
 
@@ -90,10 +84,10 @@ public class ShopSlot : MonoBehaviour , IPointerClickHandler
         GameManager.Instance.ApplyShopEffect(currentItem.itemName); 
         
         // 4. 코인 UI 갱신
-        CoinUI coinUI = FindObjectOfType<CoinUI>(); 
-        if (coinUI != null)
+        StatusUI statusUI = FindObjectOfType<StatusUI>(); 
+        if (statusUI != null)
         {
-            coinUI.UpdateCoinDisplay();
+            statusUI.UpdateAllDisplays(); // 코인, HP, 공격력 모두 갱신
         }
         
         // 5. 상점 재고 갱신 (고정 목록이므로 ShopManager의 GenerateNewStock/GenerateFixedStock 호출)
