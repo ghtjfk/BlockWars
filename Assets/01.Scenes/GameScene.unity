@@ -1602,7 +1602,7 @@ MonoBehaviour:
   battleOn: {fileID: 21300000, guid: d25c4ee01fa090d4c9f5ef10b3dfbefa, type: 3}
   healOn: {fileID: 21300000, guid: b2eb373a280b31d48a69c76954d083f1, type: 3}
   attackBrickPrefab: {fileID: 7132572528431996287, guid: 61bd1790b4106a645ad48e79763ffafc, type: 3}
-  healBrickPrefab: {fileID: 7132572528431996287, guid: 75b03069378b87449b5b95412b2850d6, type: 3}
+  healBrickPrefab: {fileID: 7132572528431996287, guid: c7f6898ccc820714886ccc9bd6365281, type: 3}
   ball: {fileID: 1203453042}
   cooldownText: {fileID: 813039588}
 --- !u!114 &245338211
