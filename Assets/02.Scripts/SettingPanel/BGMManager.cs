@@ -5,7 +5,7 @@ public class BGMManager : MonoBehaviour
 {
     public static BGMManager Instance;
 
-    public static float bgmVolume = 1.0f;
+    public static float bgmVolume = 0.5f;
 
     public AudioSource audioSource;
 
@@ -31,7 +31,7 @@ public class BGMManager : MonoBehaviour
         PlayBGM(SceneManager.GetActiveScene().name);
 
         audioSource.clip = startBGM;
-        audioSource.volume = 1f;
+        audioSource.volume = 0.5f;
         audioSource.Play();
     }
 
