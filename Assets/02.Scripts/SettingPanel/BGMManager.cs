@@ -39,8 +39,6 @@ public class BGMManager : MonoBehaviour
     {
         audioSource.volume = bgmVolume;
 
-        if (GameManager.Instance == null) return;
-
         if (GameManager.Instance.isPause)
         {
             if (audioSource.isPlaying)
