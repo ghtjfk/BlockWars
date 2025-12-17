@@ -41,9 +41,15 @@ public class MapButtonManager : MonoBehaviour
             var img = stageLocks[i];
             if (btn == null) continue;
 
-            bool isUnlocked = (stageNumber == unlocked);
-            btn.interactable = isUnlocked;  // 스테이지 버튼 해금 (스테이지 번호가 Max보다 작거나 같을 때)
-            img.gameObject.SetActive(!isUnlocked); // 자물쇠 이미지 해금
+            bool isCleared = stageNumber < unlocked;
+            bool isCurrent = stageNumber == unlocked;
+            bool isLocked = stageNumber > unlocked;
+
+            // 버튼
+            btn.interactable = isCurrent;
+
+            // 자물쇠
+            img.gameObject.SetActive(isLocked);
 
             btn.onClick.RemoveAllListeners();
             btn.onClick.AddListener(() =>
@@ -109,8 +115,8 @@ public class MapButtonManager : MonoBehaviour
             var btn = stageButtons[i];
             if (btn == null) continue;
 
-            bool isUnlocked = (stageNumber == unlocked);
-            btn.interactable = isUnlocked;
+            bool isCurrent = stageNumber == unlocked;
+            btn.interactable = isCurrent;
         }
     }
 
