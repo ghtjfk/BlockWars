@@ -6,13 +6,16 @@ public class Clear : MonoBehaviour
 {
     private int stageNumber;
     public GameObject gameClearPanel;
+
+    [Header("클리어 버튼 (인스펙터에서 드래그)")]
+    [SerializeField] private Button clearButton;
+
     private void Awake()
     {
         stageNumber = GameManager.Instance.nowPlayer.stage;
-    }
 
-    //[Header("클리어 버튼 (인스펙터에서 드래그)")]
-    //[SerializeField] private Button clearButton;
+        if (clearButton != null) clearButton.onClick.AddListener(OnClickClear);
+    }
 
 
     public void SetGameClear()
