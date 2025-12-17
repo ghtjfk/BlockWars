@@ -18,7 +18,7 @@ public class PlayerData   // 1. 저장할 데이터가 존재
     // 이름, 레벨, 코인, 착용중인 무기
     public string name;
     public int level = 1;
-    public int coin = 100;
+    public int coin = 0;
     public int item = -1;
     public float maxHP = 100f;
     public float curruntHP = 100f;
