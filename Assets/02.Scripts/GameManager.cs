@@ -174,9 +174,10 @@ public class GameManager : Singleton<GameManager>
         {
             float bonusAmount = 10f; 
             nowPlayer.hpBonus += bonusAmount;
+            nowPlayer.maxHP += bonusAmount;
             
             nowPlayer.curruntHP = Mathf.Min(nowPlayer.curruntHP + bonusAmount, 
-                                            nowPlayer.maxHP + nowPlayer.hpBonus);
+                                            nowPlayer.maxHP);
             
         }
         // ⭐ DMG UP 효과 확인
@@ -184,7 +185,7 @@ public class GameManager : Singleton<GameManager>
         {
             float bonusAmount = 1f; 
             nowPlayer.damageBonus += bonusAmount;
-            
+            nowPlayer.attackDamage += bonusAmount;
         }
 
         SaveData(); // 변경된 플레이어 데이터를 저장
