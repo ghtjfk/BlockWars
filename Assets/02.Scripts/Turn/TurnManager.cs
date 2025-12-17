@@ -15,6 +15,7 @@ public class TurnManager : Singleton<TurnManager>
 
     public TurnState turnState = TurnState.PlayerTurn;
     public TurnUI turnUI;
+    public bool isTurnChanging = false;
 
     public void NextTurn()
     {

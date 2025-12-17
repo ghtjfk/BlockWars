@@ -11,6 +11,7 @@ public class TurnUI : MonoBehaviour
 
     public IEnumerator showTurnUI()
     {
+        TurnManager.Instance.isTurnChanging = true;
         switch (TurnManager.Instance.turnState)
         {
             case TurnState.PlayerTurn:
@@ -19,6 +20,7 @@ public class TurnUI : MonoBehaviour
                 yield return new WaitForSecondsRealtime(1.0f);
                 playerTurnPanel.SetActive(false);
                 Time.timeScale = 1f;
+                TurnManager.Instance.isTurnChanging = false;
                 break;
             case TurnState.MonsterSelect:
                 Time.timeScale = 0f;
@@ -26,6 +28,7 @@ public class TurnUI : MonoBehaviour
                 yield return new WaitForSecondsRealtime(1.0f);
                 monsterSeletTurnPanel.SetActive(false);
                 Time.timeScale = 1f;
+                TurnManager.Instance.isTurnChanging = false;
                 break;
             case TurnState.MonsterTurn:
                 Time.timeScale = 0f;
@@ -33,6 +36,7 @@ public class TurnUI : MonoBehaviour
                 yield return new WaitForSecondsRealtime(1.0f);
                 monsterTurnPanel.SetActive(false);
                 Time.timeScale = 1f;
+                TurnManager.Instance.isTurnChanging = false;
                 break;
         }
     }
