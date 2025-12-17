@@ -2029,8 +2029,9 @@ GameObject:
   - component: {fileID: 284663732}
   - component: {fileID: 284663733}
   - component: {fileID: 284663734}
+  - component: {fileID: 284663735}
   m_Layer: 0
-  m_Name: MonsterManager
+  m_Name: Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2089,6 +2090,18 @@ MonoBehaviour:
   turnState: 0
   turnUI: {fileID: 2112180154}
   isTurnChanging: 0
+--- !u!114 &284663735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284663731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4ac08fc873607740bb44599ed7f262e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &339061108
 GameObject:
   m_ObjectHideFlags: 0

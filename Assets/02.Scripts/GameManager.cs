@@ -49,14 +49,16 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        if (Instance != null)
+
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
+        Instance=this;
+        DontDestroyOnLoad(this.gameObject);
+        
 
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         // 강의에서 추천한 경로
         // 유니티에서 알아서 생성해주는 폴더
