@@ -21,10 +21,6 @@ public class MonsterManager : Singleton<MonsterManager>
     int waitMonsterCount;
     public Clear clear;
 
-
-
-
-
     void Start()
     {
         int monsterCount = Random.Range(1,3);

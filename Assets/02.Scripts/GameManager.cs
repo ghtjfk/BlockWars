@@ -43,6 +43,7 @@ public class GameManager : Singleton<GameManager>
 
     public bool isPause = false;
     public bool isGameOver = false;
+    public bool isClear = false;
 
 
     private void Awake()

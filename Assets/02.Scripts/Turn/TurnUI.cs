@@ -11,7 +11,13 @@ public class TurnUI : MonoBehaviour
 
     public IEnumerator showTurnUI()
     {
+        if(GameManager.Instance.isClear)
+        {
+            yield break;
+        }
+
         TurnManager.Instance.isTurnChanging = true;
+
         switch (TurnManager.Instance.turnState)
         {
             case TurnState.PlayerTurn:

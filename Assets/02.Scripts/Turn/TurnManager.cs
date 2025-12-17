@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum TurnState
 {
@@ -16,6 +17,20 @@ public class TurnManager : Singleton<TurnManager>
     public TurnState turnState = TurnState.PlayerTurn;
     public TurnUI turnUI;
     public bool isTurnChanging = false;
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        turnUI = FindAnyObjectByType<TurnUI>();
+    }
 
     public void NextTurn()
     {
@@ -35,7 +50,7 @@ public class TurnManager : Singleton<TurnManager>
                 break;
             case TurnState.MonsterSelect:
                 turnState = TurnState.MonsterTurn;
-                //ÄÚ·çÆ¾Àº ¾Æ·¡ ¹æ½ÄÀ¸·Î È£ÃâÇØ¾ßÇÔ
+                //ï¿½Ú·ï¿½Æ¾ï¿½ï¿½ ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½
                 StartCoroutine(MonsterManager.Instance.OnMonsterTurnStart());
                 break;
             case TurnState.MonsterTurn:
@@ -79,7 +94,7 @@ public class TurnManager : Singleton<TurnManager>
 
     public void startWait(float time)
     {
-        // this.StartCoroutine()À» »ç¿ëÇÏ¿© GameManager ¿ÀºêÁ§Æ® À§¿¡¼­ ÄÚ·çÆ¾À» ½ÃÀÛÇÕ´Ï´Ù.
+        // this.StartCoroutine()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ GameManager ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
         StartCoroutine(wait(time));
     }
 
@@ -87,14 +102,14 @@ public class TurnManager : Singleton<TurnManager>
 
     public void startWaitAndNextTurn(float time)
     {
-        // this.StartCoroutine()À» »ç¿ëÇÏ¿© GameManager ¿ÀºêÁ§Æ® À§¿¡¼­ ÄÚ·çÆ¾À» ½ÃÀÛÇÕ´Ï´Ù.
+        // this.StartCoroutine()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ GameManager ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
         StartCoroutine(waitAndNextTurn(time));
     }
 
 
     public void startDeadMonsterSequence(float time, GameObject deadmonster)
     {
-        // this.StartCoroutine()À» »ç¿ëÇÏ¿© GameManager ¿ÀºêÁ§Æ® À§¿¡¼­ ÄÚ·çÆ¾À» ½ÃÀÛÇÕ´Ï´Ù.
+        // this.StartCoroutine()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ GameManager ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½.
         StartCoroutine(deadMonsterSequence(time, deadmonster));
     }
 
