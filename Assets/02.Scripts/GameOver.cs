@@ -16,17 +16,11 @@ public class GameOver : MonoBehaviour
         Time.timeScale = 0f;
 
     }
-    public void ClickRestartButton()
-    {
-        gameOverPanel.SetActive(false);
-        SceneManager.LoadScene("MapScene");
-        Time.timeScale = 1f;
-        
-        // restartÇÔ¼ö
-    }
 
     public void ClickMainMenuButton()
     {
+        int currentSlot = GameManager.Instance.nowSlot;
+        GameManager.Instance.DeleteSaveFile(currentSlot);
         SceneManager.LoadScene("StartScene");
         Time.timeScale = 1f;
     }
