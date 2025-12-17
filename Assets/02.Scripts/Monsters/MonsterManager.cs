@@ -278,7 +278,7 @@ public class MonsterManager : Singleton<MonsterManager>
     {
         if (waitMonsterText == null) return;
 
-        waitMonsterText.text = $"대기 몬스터 : {waitMonsterCount}";
+        waitMonsterText.text = $"대기\n몬스터 : {waitMonsterCount}";
     }
 }
 
