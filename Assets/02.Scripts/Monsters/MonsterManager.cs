@@ -39,36 +39,40 @@ public class MonsterManager : Singleton<MonsterManager>
     void aditionSpawn()
     {
         Vector3 pos = posArray[posArray.Count - 1];
-        MonsterStat stat = new MonsterStat();
+
+        List<MonsterStat> stageStats = new List<MonsterStat>();
 
         foreach (MonsterStat m in monsterDataBase.monsterStats)
         {
             if (m.stage == GameManager.Instance.nowPlayer.stage)
-                stat = m;
+            {
+                stageStats.Add(m);
+            }
         }
 
-        MonsterStat cloneStat = CloneStat(stat);
+        if (stageStats.Count == 0)
+        {
+            Debug.LogError("No monster data for this stage!");
+            return;
+        }
 
-        //if (GameManager.Instance.redMoon < GameManager.Instance.isredMoonGenerator)
-        //{
-        //    stat.hp *= 1.3f;
-        //    stat.attack += 3f;
-        //    stat.coin += 10;
-        //}
-        // prefab이 object로 되어있어서 GameObject로 다운캐스팅
-        GameObject monster = (GameObject)Instantiate(cloneStat.monsterPrefab, pos, Quaternion.identity);
+        int randomIndex = Random.Range(0, stageStats.Count);
+        MonsterStat orgStat = stageStats[randomIndex];
 
-        // MonsterBehaviour 초기화 추가
+        MonsterStat stat = CloneStat(orgStat);
+
+        GameObject monster =
+            (GameObject)Instantiate(stat.monsterPrefab, pos, Quaternion.identity);
+
         MonsterBehaviour behaviour = monster.GetComponent<MonsterBehaviour>();
         if (behaviour != null)
         {
             behaviour.Init(stat);
-            behaviour.posIndex = posArray.Count -1;
+            behaviour.posIndex = posArray.Count - 1;
             monsters.Add(behaviour);
-
         }
-
     }
+
 
     void monsterSpawn(int idx)
     {
