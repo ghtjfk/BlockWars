@@ -59,13 +59,15 @@ public class MonsterBehaviour : MonoBehaviour
 
     public void MonsterDie()
     {
-        //GameManager.Instance.addCoin(stat.coin);
+        getCoin();
         if (MonsterManager.Instance != null)
         {
             MonsterManager.Instance.RemoveMonster(this);
         }
 
+        
         TurnManager.Instance.startDeadMonsterSequence(0f, this.gameObject);
+
 
 
     }
@@ -73,6 +75,11 @@ public class MonsterBehaviour : MonoBehaviour
     public float GetCurrentHP()
     {
         return curruntHP;
+    }
+
+    public void getCoin()
+    {
+        GameManager.Instance.nowPlayer.coin += stat.coin;
     }
 
     IEnumerator HitEffectCoroutine(float duration)
