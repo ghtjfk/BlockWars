@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TurnUI : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class TurnUI : MonoBehaviour
         }
 
         TurnManager.Instance.isTurnChanging = true;
+        //SceneManager.UnloadSceneAsync("UIScene");
 
         switch (TurnManager.Instance.turnState)
         {
@@ -26,7 +28,6 @@ public class TurnUI : MonoBehaviour
                 yield return new WaitForSecondsRealtime(1.0f);
                 playerTurnPanel.SetActive(false);
                 Time.timeScale = 1f;
-                TurnManager.Instance.isTurnChanging = false;
                 break;
             case TurnState.MonsterSelect:
                 Time.timeScale = 0f;
@@ -34,7 +35,6 @@ public class TurnUI : MonoBehaviour
                 yield return new WaitForSecondsRealtime(1.0f);
                 monsterSeletTurnPanel.SetActive(false);
                 Time.timeScale = 1f;
-                TurnManager.Instance.isTurnChanging = false;
                 break;
             case TurnState.MonsterTurn:
                 Time.timeScale = 0f;
@@ -42,8 +42,10 @@ public class TurnUI : MonoBehaviour
                 yield return new WaitForSecondsRealtime(1.0f);
                 monsterTurnPanel.SetActive(false);
                 Time.timeScale = 1f;
-                TurnManager.Instance.isTurnChanging = false;
                 break;
         }
+
+        TurnManager.Instance.isTurnChanging = false;
+        //SceneManager.LoadSceneAsync("UIScene", LoadSceneMode.Additive);
     }
 }
