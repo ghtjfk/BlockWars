@@ -21,7 +21,7 @@ public class PlayerData   // 1. 저장할 데이터가 존재
     public int coin = 100;
     public int item = -1;
     public float maxHP = 100f;
-    public float curruntHP;
+    public float curruntHP = 100f;
     public float attackDamage = 5f;
     public int stage = 1;
     public float hpBonus = 0f; // 최대 HP 증가 보너스
@@ -43,6 +43,7 @@ public class GameManager : Singleton<GameManager>
 
     public bool isPause = false;
     public bool isGameOver = false;
+    public bool isClear = false;
 
 
     private void Awake()
@@ -163,43 +164,40 @@ public class GameManager : Singleton<GameManager>
 
     public void ApplyShopEffect(string itemName)
     {
+        // 입력된 itemName을 대문자로 변환하고 띄어쓰기를 제거합니다.
+        string normalizedItemName = itemName.ToUpper().Replace(" ", "");
+
         // 아이템 효과 적용 후, 최대 HP와 공격력을 갱신합니다.
-    
-        if (itemName.Contains("HP UP")) // "HP UP" 아이템 구매 시
+        
+        // ⭐ HP UP 효과 확인
+        if (normalizedItemName.Contains("HPUP")) 
         {
-            float bonusAmount = 20f; // 한 번 구매 시 HP 20 증가 가정
+            float bonusAmount = 10f; 
             nowPlayer.hpBonus += bonusAmount;
-        
-            // ⭐ 현재 HP도 같이 증가시켜서 구매 즉시 체력 회복 효과를 줍니다.
-            // 현재 체력(curruntHP)에 보너스만큼 더하고, 최대 HP를 초과하지 않도록 제한합니다.
+            nowPlayer.maxHP += bonusAmount;
+            
             nowPlayer.curruntHP = Mathf.Min(nowPlayer.curruntHP + bonusAmount, 
-                                        nowPlayer.maxHP + nowPlayer.hpBonus);
-        
-            Debug.Log($"HP UP 효과 적용! HP 보너스: {nowPlayer.hpBonus}");
-        
-            // [TODO] Health UI (HP Bar)를 갱신하는 함수를 여기에 호출해야 합니다.
+                                            nowPlayer.maxHP);
+            
         }
-        else if (itemName.Contains("DMG UP")) // "DMG UP" 아이템 구매 시
+        // ⭐ DMG UP 효과 확인
+        else if (normalizedItemName.Contains("DMGUP")) 
         {
-            float bonusAmount = 2f; // 한 번 구매 시 공격력 2 증가 가정
-            nowPlayer.damageBonus += bonusAmount;
-        
-            Debug.Log($"DMG UP 효과 적용! 공격력 보너스: {nowPlayer.damageBonus}");
-        
-            // [TODO] 공격력 관련 UI를 갱신하는 함수를 여기에 호출해야 합니다.
+            float bonusAmount = 1f; 
+            nowPlayer.attackDamage += bonusAmount;
         }
-    
+
         SaveData(); // 변경된 플레이어 데이터를 저장
     }
     public float GetPlayerMaxHP()
     {
         // 기본 HP + 아이템 보너스
-        return nowPlayer.maxHP + nowPlayer.hpBonus;
+        return nowPlayer.maxHP;
     }
     public float GetPlayerAttackDamage()
     {
         // 기본 공격력 + 아이템 보너스
-        return nowPlayer.attackDamage + nowPlayer.damageBonus;
+        return nowPlayer.attackDamage;
     }
 
 }
