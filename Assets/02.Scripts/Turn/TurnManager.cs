@@ -29,7 +29,15 @@ public class TurnManager : Singleton<TurnManager>
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        turnUI = FindAnyObjectByType<TurnUI>();
+        if (scene.name == "GameScene")
+        {
+            turnUI = FindAnyObjectByType<TurnUI>();
+
+            if (turnUI != null)
+            {
+                turnUI.ShowPlayerTurnPanel();
+            }
+        }
     }
 
     public void NextTurn()
