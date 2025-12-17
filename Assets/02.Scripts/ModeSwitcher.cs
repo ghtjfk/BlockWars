@@ -10,18 +10,22 @@ public class ModeSwitcher : Singleton<ModeSwitcher>
     public Sprite battleOn;
     public Sprite healOn;
     private bool isHealMode = false;
-    int HealCooldown = 0;
 
 
     public GameObject attackBrickPrefab;
     public GameObject healBrickPrefab;
     public GameObject ball;
+    public Text cooldownText;
 
     public void OneButtonToggle()
     {
         BallMoveing ballScript = ball.GetComponent<BallMoveing>();
         if (ballScript.isMoving || TurnManager.Instance.turnState != TurnState.PlayerTurn) return;
-        if (HealCooldown > 0) return;
+        if (GameManager.Instance.healCooldown > 0)
+        {
+            StartCoroutine(onCooldownUI());
+            return;
+        }
         isHealMode = !isHealMode;
 
         GameObject[] attackBricks = GameObject.FindGameObjectsWithTag("AttackBrick");
@@ -99,20 +103,23 @@ public class ModeSwitcher : Singleton<ModeSwitcher>
 
     public void DecreaseCooldown()
     {
-        if (HealCooldown > 0)
-            HealCooldown--;
+        if (GameManager.Instance.healCooldown > 0)
+            GameManager.Instance.healCooldown--;
 
-        Debug.Log("Heal Cooldown: " + HealCooldown);
+        Debug.Log("Heal Cooldown: " + GameManager.Instance.healCooldown);
     }
 
-    public void InitMode()
-    {
-        isHealMode = false;
-        currentImage.sprite = battleOn;
-        HealCooldown = 0;
-    }
     public void SetHealCooldown()
     {
-        HealCooldown = 3;
+        GameManager.Instance.healCooldown = 3;
+    }
+
+    public IEnumerator onCooldownUI()
+    {
+        cooldownText.text = $"{GameManager.Instance.healCooldown}턴 뒤에 사용가능!";
+        cooldownText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        cooldownText.gameObject.SetActive(false);
+
     }
 }
