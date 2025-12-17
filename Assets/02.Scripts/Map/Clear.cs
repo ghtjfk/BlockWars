@@ -36,14 +36,14 @@ public class Clear : MonoBehaviour
         GameManager.Instance.nowPlayer.stage = nextStage;
         GameManager.Instance.SaveData();
         GameManager.Instance.isClear = false;
-        switch (nextStage)
+        if (nextStage < 11)
         {
-            case 11:
-                SceneManager.LoadScene("EndingScene");
-                break;
-            default:
-                SceneManager.LoadScene("MapScene");
-                break;
+            
+            SceneManager.LoadScene("MapScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("EndingScene");
         }
     }
 }

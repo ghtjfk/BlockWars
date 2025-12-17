@@ -22,7 +22,7 @@ public class PlayerData   // 1. 저장할 데이터가 존재
     public int item = -1;
     public float maxHP = 100f;
     public float curruntHP = 100f;
-    public float attackDamage = 5f;
+    public float attackDamage = 500000000f;
     public int stage = 1;
     public float hpBonus = 0f; // 최대 HP 증가 보너스
     public float damageBonus = 0f; // 공격력 증가 보너스
@@ -117,6 +117,16 @@ public class GameManager : Singleton<GameManager>
     {
         nowSlot = -1;
         nowPlayer = new PlayerData();
+    }
+
+    public void DeleteSaveFile(int slotIndex)
+    {
+        string filePath = path + slotIndex.ToString();
+        if (System.IO.File.Exists(filePath))
+        {
+            System.IO.File.Delete(filePath);
+            Debug.Log(slotIndex + "번 슬롯 파일 삭제 완료");
+        }
     }
 
     private void LoadBrickScene()
