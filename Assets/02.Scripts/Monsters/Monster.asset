@@ -16,240 +16,240 @@ MonoBehaviour:
   - id: 1. slime_black
     hp: 20
     attack: 3
-    coin: 10
+    coin: 4
     stage: 1
     monsterPrefab: {fileID: 4278299998093194868, guid: 9ad2c7dc36d5b424d8f9810d2279c63d, type: 3}
   - id: 1. slime_blue
     hp: 20
     attack: 3
-    coin: 10
+    coin: 6
     stage: 1
     monsterPrefab: {fileID: 4278299998093194868, guid: c9d4c98e0a2f446d293d8845694b23e1, type: 3}
   - id: 1. slime_green
     hp: 20
     attack: 3
-    coin: 10
+    coin: 5
     stage: 1
     monsterPrefab: {fileID: 4278299998093194868, guid: 66c1ef0e826bd9b47982888febf44ff3, type: 3}
   - id: 1. slime_red
     hp: 20
     attack: 3
-    coin: 10
+    coin: 6
     stage: 1
     monsterPrefab: {fileID: 4278299998093194868, guid: d006d98d35fd74b4288c4b1671fb3a5c, type: 3}
   - id: 2. ooze_black
-    hp: 20
-    attack: 3
-    coin: 10
-    stage: 1
+    hp: 30
+    attack: 4
+    coin: 6
+    stage: 2
     monsterPrefab: {fileID: 635827357152315796, guid: b2c6550dbf9df4e76b74feaad288579e, type: 3}
   - id: 2. ooze_blue
-    hp: 20
-    attack: 3
-    coin: 10
-    stage: 1
+    hp: 30
+    attack: 4
+    coin: 8
+    stage: 2
     monsterPrefab: {fileID: 635827357152315796, guid: 875a5bce8a80341639e0ec6dfc545384, type: 3}
   - id: 2. ooze_green
-    hp: 20
-    attack: 3
-    coin: 10
-    stage: 1
+    hp: 30
+    attack: 4
+    coin: 7
+    stage: 2
     monsterPrefab: {fileID: 635827357152315796, guid: 3e996276257a33e4788691f2630f45f7, type: 3}
   - id: 2. ooze_red
-    hp: 20
-    attack: 3
-    coin: 10
-    stage: 1
+    hp: 30
+    attack: 4
+    coin: 8
+    stage: 2
     monsterPrefab: {fileID: 635827357152315796, guid: 3861758fb79ef450eb4bafbad36bdfb5, type: 3}
   - id: 3. worm_black
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 45
+    attack: 4
+    coin: 9
+    stage: 3
     monsterPrefab: {fileID: 635827357152315796, guid: 14e9e924d59c5434eaf28cd2529c50e0, type: 3}
   - id: 3. worm_brown
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 45
+    attack: 4
+    coin: 11
+    stage: 3
     monsterPrefab: {fileID: 635827357152315796, guid: b30aaf04f0fbd4c04a55391cd3c380cb, type: 3}
   - id: 3. worm_green
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 45
+    attack: 4
+    coin: 10
+    stage: 3
     monsterPrefab: {fileID: 635827357152315796, guid: f5f35476306024fc2b6b5910e7049e04, type: 3}
   - id: 3. worm_white
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 45
+    attack: 4
+    coin: 12
+    stage: 3
     monsterPrefab: {fileID: 635827357152315796, guid: a322d04f50eab441bbc01b6f0d2c0df6, type: 3}
   - id: 4. boneworm_black
-    hp: 30
+    hp: 60
     attack: 5
-    coin: 20
-    stage: 2
+    coin: 13
+    stage: 4
     monsterPrefab: {fileID: 635827357152315796, guid: fd6998bcb6890429c8bc207b87ff6afa, type: 3}
   - id: 4. boneworm_brown
-    hp: 30
+    hp: 60
     attack: 5
-    coin: 20
-    stage: 2
+    coin: 14
+    stage: 4
     monsterPrefab: {fileID: 635827357152315796, guid: b30aaf04f0fbd4c04a55391cd3c380cb, type: 3}
   - id: 4. boneworm_green
-    hp: 30
+    hp: 60
     attack: 5
-    coin: 20
-    stage: 2
+    coin: 14
+    stage: 4
     monsterPrefab: {fileID: 635827357152315796, guid: 9572053f78a6346caa41f47055f803ec, type: 3}
   - id: 4. boneworm_white
-    hp: 30
+    hp: 60
     attack: 5
-    coin: 20
-    stage: 2
+    coin: 16
+    stage: 4
     monsterPrefab: {fileID: 635827357152315796, guid: a322d04f50eab441bbc01b6f0d2c0df6, type: 3}
   - id: 5. rat_black
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 90
+    attack: 7
+    coin: 19
+    stage: 5
     monsterPrefab: {fileID: 635827357152315796, guid: 08842300f62494f2cbf22954646b4b40, type: 3}
   - id: 5. rat_brown
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 90
+    attack: 7
+    coin: 21
+    stage: 5
     monsterPrefab: {fileID: 635827357152315796, guid: 4e318871586764a62b548235dec3e48b, type: 3}
   - id: 5. rat_green
-    hp: 30
-    attack: 5
+    hp: 90
+    attack: 7
     coin: 20
-    stage: 2
+    stage: 5
     monsterPrefab: {fileID: 635827357152315796, guid: 60fb1b990b1b144d8bfe040dfada4d1b, type: 3}
   - id: 5. rat_white
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 90
+    attack: 7
+    coin: 23
+    stage: 5
     monsterPrefab: {fileID: 635827357152315796, guid: b09c939b1856c40849bf10d1ff21a4f2, type: 3}
   - id: 6. scorpion_black
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 130
+    attack: 9
+    coin: 26
+    stage: 6
     monsterPrefab: {fileID: 635827357152315796, guid: 69b00cedd11db4116a451d4897d2fd25, type: 3}
   - id: 6. scorpion_blue
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 130
+    attack: 9
+    coin: 28
+    stage: 6
     monsterPrefab: {fileID: 635827357152315796, guid: 99341e8a8515e48c69227e706ceecac9, type: 3}
   - id: 6. scorpion_green
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 130
+    attack: 9
+    coin: 27
+    stage: 6
     monsterPrefab: {fileID: 635827357152315796, guid: cf2276ffdd7b9467683677dc9a4046f5, type: 3}
   - id: 6. scorpion_white
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 130
+    attack: 9
+    coin: 30
+    stage: 6
     monsterPrefab: {fileID: 635827357152315796, guid: 7c93a43782b50413d85c5dbc0a2ed60a, type: 3}
+  - id: 7. spider_black
+    hp: 180
+    attack: 15
+    coin: 33
+    stage: 7
+    monsterPrefab: {fileID: 4278299998093194868, guid: c78b7c228648b4a6e9655bad020af962, type: 3}
   - id: 7. spider_green
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 180
+    attack: 15
+    coin: 35
+    stage: 7
     monsterPrefab: {fileID: 4278299998093194868, guid: ccc820c50aebb478bac9e5ca09183901, type: 3}
   - id: 7. spider_blue
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 180
+    attack: 15
+    coin: 40
+    stage: 7
     monsterPrefab: {fileID: 4278299998093194868, guid: 365acf819c6661e49aa280994a39f245, type: 3}
-  - id: 7. spider_black
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
-    monsterPrefab: {fileID: 4278299998093194868, guid: c78b7c228648b4a6e9655bad020af962, type: 3}
   - id: 7. spider_white
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 180
+    attack: 15
+    coin: 45
+    stage: 7
     monsterPrefab: {fileID: 4278299998093194868, guid: df139917f3ede401fa8519ae0f0abf96, type: 3}
   - id: 8. skull_blue
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 270
+    attack: 25
+    coin: 70
+    stage: 8
     monsterPrefab: {fileID: 635827357152315796, guid: 7477727e8c2bd4ee8910bd46dab4efc6, type: 3}
   - id: 8. skull_green
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 270
+    attack: 25
+    coin: 60
+    stage: 8
     monsterPrefab: {fileID: 635827357152315796, guid: d5234050d657342dab67ad6f4a3f7dd1, type: 3}
   - id: 8. skull_red
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 270
+    attack: 25
+    coin: 70
+    stage: 8
     monsterPrefab: {fileID: 635827357152315796, guid: bc979f8568f4d4000a39b887b5b00b90, type: 3}
   - id: 8. skull_violet
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 270
+    attack: 25
+    coin: 85
+    stage: 8
     monsterPrefab: {fileID: 635827357152315796, guid: b1182a7e21a3c4968b36801440fbdced, type: 3}
   - id: 9. wolf_black
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 380
+    attack: 35
+    coin: 105
+    stage: 9
     monsterPrefab: {fileID: 635827357152315796, guid: 4cd4fb2fc388c4716b1df041eb3ccd1f, type: 3}
   - id: 9. wolf_blue
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 380
+    attack: 35
+    coin: 125
+    stage: 9
     monsterPrefab: {fileID: 635827357152315796, guid: f6559a2d9eeed402f846b5ceb3b0efed, type: 3}
   - id: 9. wolf_green
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 380
+    attack: 35
+    coin: 115
+    stage: 9
     monsterPrefab: {fileID: 635827357152315796, guid: 4bfc41afebf7d4241bd84621224d3f65, type: 3}
   - id: 9. wolf_white
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 380
+    attack: 35
+    coin: 140
+    stage: 9
     monsterPrefab: {fileID: 635827357152315796, guid: 371e94dfe3e644a35a7c0dba9724215c, type: 3}
   - id: 10. cerberus_black
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 500
+    attack: 50
+    coin: 1
+    stage: 10
     monsterPrefab: {fileID: 635827357152315796, guid: fbc4b6dfb37e747fa83d0784eb9c3a62, type: 3}
   - id: 10. cerberus_green
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 550
+    attack: 55
+    coin: 1
+    stage: 10
     monsterPrefab: {fileID: 635827357152315796, guid: ae398d5c379b54310a66c89a0da0d2b6, type: 3}
   - id: 10. cerberus_red
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 500
+    attack: 60
+    coin: 1
+    stage: 10
     monsterPrefab: {fileID: 635827357152315796, guid: 20b4ff9a8ccfd4cd6904abbc036dd034, type: 3}
   - id: 10. cerberus_white
-    hp: 30
-    attack: 5
-    coin: 20
-    stage: 2
+    hp: 600
+    attack: 50
+    coin: 1
+    stage: 10
     monsterPrefab: {fileID: 635827357152315796, guid: 1d9d4c183c9b1440e8e62d3635bf6edb, type: 3}
