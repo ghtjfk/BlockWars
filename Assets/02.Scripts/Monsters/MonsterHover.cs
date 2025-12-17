@@ -26,7 +26,8 @@ public class MonsterHover : MonoBehaviour
         if(selectMark == null) return;
 
         if (TurnManager.Instance.turnState == TurnState.MonsterSelect &&
-             !MonsterManager.Instance.isMonsterClicked)
+             !MonsterManager.Instance.isMonsterClicked && !GameManager.Instance.isPause
+             && !TurnManager.Instance.isTurnChanging)
             selectMark.SetActive(true);
 
         monsterHPText.text = GetHPText();
@@ -50,7 +51,8 @@ public class MonsterHover : MonoBehaviour
         if (TurnManager.Instance.turnState != TurnState.MonsterSelect)
             return;
 
-        OnMonsterClicked();
+        if (!GameManager.Instance.isPause && !TurnManager.Instance.isTurnChanging)
+            OnMonsterClicked();
 
 
     }
