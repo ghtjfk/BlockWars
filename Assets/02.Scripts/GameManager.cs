@@ -18,11 +18,11 @@ public class PlayerData   // 1. 저장할 데이터가 존재
     // 이름, 레벨, 코인, 착용중인 무기
     public string name;
     public int level = 1;
-    public int coin = 100;
+    public int coin = 0;
     public int item = -1;
     public float maxHP = 100f;
     public float curruntHP = 100f;
-    public float attackDamage = 500000000f;
+    public float attackDamage = 5f;
     public int stage = 1;
     public float hpBonus = 0f; // 최대 HP 증가 보너스
     public float damageBonus = 0f; // 공격력 증가 보너스
