@@ -28,7 +28,7 @@ public class HPUIManager : Singleton<HPUIManager>, IPointerEnterHandler, IPointe
     }
     string GetHPText()
     {
-        
+        GameManager.Instance.LoadData();
         float curruntHP = GameManager.Instance.nowPlayer.curruntHP;
         float maxHP = GameManager.Instance.nowPlayer.maxHP;
         return $"{curruntHP} / {maxHP}";
