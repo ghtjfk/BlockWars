@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class BrickGenerator : MonoBehaviour
 {
-    Vector3 initPosition = new Vector3(-0.2f, 1.8f, 0);
+    Vector3 initPosition = new Vector3(-0.125f, 1.8f, 0);
     Vector3 pos;
     public BrickPool brickPool;
     float xGap = 0.25f;
