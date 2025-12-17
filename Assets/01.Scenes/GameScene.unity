@@ -3001,6 +3001,7 @@ GameObject:
   m_Component:
   - component: {fileID: 284663732}
   - component: {fileID: 284663733}
+  - component: {fileID: 284663734}
   m_Layer: 0
   m_Name: MonsterManager
   m_TagString: Untagged
@@ -3046,6 +3047,21 @@ MonoBehaviour:
   - {x: 0.8, y: 3.2, z: 0}
   - {x: 1.6, y: 3.2, z: 0}
   clear: {fileID: 2112180153}
+--- !u!114 &284663734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284663731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d063a366dd08ad44ba32f52b391e253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnState: 0
+  turnUI: {fileID: 2112180154}
+  isTurnChanging: 0
 --- !u!1 &339061108
 GameObject:
   m_ObjectHideFlags: 0
@@ -4579,7 +4595,6 @@ GameObject:
   - component: {fileID: 1029908863}
   - component: {fileID: 1029908862}
   - component: {fileID: 1029908864}
-  - component: {fileID: 1029908865}
   - component: {fileID: 1029908866}
   m_Layer: 0
   m_Name: GameManager
@@ -4633,20 +4648,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4ac08fc873607740bb44599ed7f262e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1029908865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029908861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d063a366dd08ad44ba32f52b391e253, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turnState: 0
-  turnUI: {fileID: 2112180154}
 --- !u!114 &1029908866
 MonoBehaviour:
   m_ObjectHideFlags: 0

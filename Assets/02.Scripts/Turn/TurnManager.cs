@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum TurnState
 {
@@ -15,6 +16,24 @@ public class TurnManager : Singleton<TurnManager>
 
     public TurnState turnState = TurnState.PlayerTurn;
     public TurnUI turnUI;
+<<<<<<< Updated upstream
+=======
+    public bool isTurnChanging = false;
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        turnUI = FindAnyObjectByType<TurnUI>();
+    }
+>>>>>>> Stashed changes
 
     public void NextTurn()
     {

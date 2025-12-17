@@ -17,6 +17,7 @@ public class Clear : MonoBehaviour
 
     public void SetGameClear()
     {
+        GameManager.Instance.isClear = true;
         gameClearPanel.SetActive(true);
         SceneManager.UnloadSceneAsync("UIScene");
         Time.timeScale = 0f;
@@ -31,6 +32,7 @@ public class Clear : MonoBehaviour
         MapButtonManager.UnlockUpTo(nextStage);
         GameManager.Instance.nowPlayer.stage = nextStage;
         GameManager.Instance.SaveData();
+        GameManager.Instance.isClear = false;
 
         SceneManager.LoadScene("MapScene");
     }
