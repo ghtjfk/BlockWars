@@ -1378,6 +1378,7 @@ MonoBehaviour:
   redMoon: 0
   isPause: 0
   isGameOver: 0
+  isClear: 0
 --- !u!1 &188052069
 GameObject:
   m_ObjectHideFlags: 0
@@ -2215,6 +2216,7 @@ MonoBehaviour:
   redMoon: 0
   isPause: 0
   isGameOver: 0
+  isClear: 0
 --- !u!1 &404520671
 GameObject:
   m_ObjectHideFlags: 0
@@ -2479,7 +2481,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &432678083
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7709,6 +7711,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnState: 0
+  turnUI: {fileID: 0}
+  isTurnChanging: 0
 --- !u!1 &2125698245
 GameObject:
   m_ObjectHideFlags: 0
