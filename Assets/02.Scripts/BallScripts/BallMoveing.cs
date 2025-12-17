@@ -12,7 +12,6 @@ public class BallMoveing : MonoBehaviour
     public Rigidbody2D rb;
     public bool isMoving = false;
     int moveSpeed = 250;
-    public float sensitivity = 2.0f;
     void Start()
     {
         firstball = this.transform.position;
@@ -49,7 +48,8 @@ public class BallMoveing : MonoBehaviour
         secondPos.z = 0;
         Vector3 dir = (secondPos - firstPos);
         if (dir.magnitude < 0.1f) return;
-        gap = dir * sensitivity;
+         gap = dir * SettingsData.sensitivity;
+
         gap = gap.normalized;
         gap = new Vector3(gap.y >= 0 ? gap.x : gap.x >= 0 ? 1 : -1, Mathf.Clamp(gap.y, 0.2f, 1), 0);
         ballPreview.transform.position = Physics2D.CircleCast(
