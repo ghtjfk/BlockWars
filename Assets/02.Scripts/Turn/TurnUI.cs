@@ -10,6 +10,23 @@ public class TurnUI : MonoBehaviour
     public GameObject monsterSeletTurnPanel;
     public GameObject monsterTurnPanel;
 
+
+
+    public void ShowPlayerTurnPanel(float duration = 1f)
+    {
+        StopAllCoroutines(); // 중복 호출 방지
+        StartCoroutine(PlayerTurnRoutine(duration));
+    }
+
+    private IEnumerator PlayerTurnRoutine(float duration)
+    {
+        Time.timeScale = 0f;
+        playerTurnPanel.SetActive(true);
+        yield return new WaitForSecondsRealtime(duration);
+        playerTurnPanel.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
     public IEnumerator showTurnUI()
     {
         if(GameManager.Instance.isClear)

@@ -38,7 +38,19 @@ public class BGMManager : MonoBehaviour
     void Update()
     {
         audioSource.volume = bgmVolume;
+
+        if (GameManager.Instance.isPause)
+        {
+            if (audioSource.isPlaying)
+                audioSource.Pause();
+        }
+        else
+        {
+            if (!audioSource.isPlaying)
+                audioSource.UnPause();
+        }
     }
+
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

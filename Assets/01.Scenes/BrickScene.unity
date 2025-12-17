@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 1527743962}
   - component: {fileID: 1527743961}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: BrickPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CommonBrickPrefab: {fileID: 7132572528431996287, guid: 61bd1790b4106a645ad48e79763ffafc, type: 3}
-  HealBrickPrefab: {fileID: 7132572528431996287, guid: c7f6898ccc820714886ccc9bd6365281, type: 3}
+  HealBrickPrefab: {fileID: 7132572528431996287, guid: 75b03069378b87449b5b95412b2850d6, type: 3}
   poolSize: 100
 --- !u!4 &1527743962
 Transform:

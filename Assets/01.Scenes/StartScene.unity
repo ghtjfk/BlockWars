@@ -2707,6 +2707,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2285528475190143082, guid: 4a091bd4feac83d41a7fbffd1f950e63, type: 3}
+      propertyPath: m_Name
+      value: BGMSlider
+      objectReference: {fileID: 0}
     - target: {fileID: 2447208418400671148, guid: 4a091bd4feac83d41a7fbffd1f950e63, type: 3}
       propertyPath: m_SizeDelta.x
       value: 600

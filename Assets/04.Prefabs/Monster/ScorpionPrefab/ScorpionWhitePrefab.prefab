@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6893768098662168601}
   - component: {fileID: 4615186094913148525}
   m_Layer: 0
-  m_Name: OozePrefab
+  m_Name: ScorpionWhitePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b037cb7042010e344b8abea313bdcd48, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b867a64c905eaef4eb614235e1f134e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4144694054807781590}
   m_Layer: 6
   m_Name: HealBrickPrefab
-  m_TagString: AttackBrick
+  m_TagString: HealBrick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
