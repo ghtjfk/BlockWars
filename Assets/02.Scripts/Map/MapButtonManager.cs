@@ -20,16 +20,14 @@ public class MapButtonManager : MonoBehaviour
 
     private void Awake()        // 초기 해금 상태 구성: 기본은 1만 해금
     {
-
         if(GameManager.Instance.isGameOver == true)
         {
             ResetProgress();
             GameManager.Instance.isGameOver = false;
         }
-        int unlockedMax = PlayerPrefs.GetInt("UnlockedStageMax", 1);
-        unlockedMax = Mathf.Clamp(unlockedMax, minStage, maxStage);
+        GameManager.Instance.LoadData();
 
-        int unlocked = PlayerPrefs.GetInt("UnlockedStageMax", 1);
+        int unlocked = GameManager.Instance.nowPlayer.stage;
         unlocked = Mathf.Clamp(unlocked, minStage, maxStage);
 
 
@@ -74,8 +72,8 @@ public class MapButtonManager : MonoBehaviour
     // 진행도 초기화: 스테이지 1만 해금
     private void ResetProgress()
     {
-        PlayerPrefs.SetInt("UnlockedStageMax", 1);
-        PlayerPrefs.Save();
+        GameManager.Instance.nowPlayer.stage = 1;
+        GameManager.Instance.SaveData();
 
         // 💡 자물쇠 그림 초기화 (인덱스 0 제외하고 모두 활성화)
         // stageLocks.Length는 배열의 실제 크기입니다 (예: 10).
@@ -100,7 +98,7 @@ public class MapButtonManager : MonoBehaviour
     // 현재 PlayerPrefs의 해금 상태를 버튼들에 반영
     private void ApplyUnlockStateToButtons()
     {
-        int unlocked = PlayerPrefs.GetInt("UnlockedStageMax", 1);
+        int unlocked = GameManager.Instance.nowPlayer.stage;
         unlocked = Mathf.Clamp(unlocked, minStage, maxStage);
 
         for (int i = 0; i < stageButtons.Length; i++)
@@ -118,7 +116,7 @@ public class MapButtonManager : MonoBehaviour
 
     public static bool IsUnlocked(int stage)
     {
-        int unlocked = PlayerPrefs.GetInt("UnlockedStageMax", 1);
+        int unlocked = GameManager.Instance.nowPlayer.stage;
         return stage == unlocked;
     }
 
@@ -126,7 +124,7 @@ public class MapButtonManager : MonoBehaviour
     public static void UnlockUpTo(int stage)
     {
         stage = Mathf.Max(stage, 1);
-        PlayerPrefs.SetInt("UnlockedStageMax", stage);
-        PlayerPrefs.Save();
+        GameManager.Instance.nowPlayer.stage = stage;
+        GameManager.Instance.SaveData();
     }
 }
