@@ -13,6 +13,7 @@ public class PlayerManager : Singleton<PlayerManager>
     private IEnumerator Start()
     {
         animator = GetComponent<Animator>();
+        GameManager.Instance.LoadData();
         GameManager.Instance.nowPlayer.curruntHP = GameManager.Instance.nowPlayer.maxHP;
         // HPUIManager.Instance�� ������ ������ ���
         while (HPUIManager.Instance == null)
