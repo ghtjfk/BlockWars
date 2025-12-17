@@ -14,7 +14,6 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         animator = GetComponent<Animator>();
         GameManager.Instance.LoadData();
-        GameManager.Instance.nowPlayer.curruntHP = GameManager.Instance.nowPlayer.maxHP;
         // HPUIManager.Instance�� ������ ������ ���
         while (HPUIManager.Instance == null)
             yield return null;
