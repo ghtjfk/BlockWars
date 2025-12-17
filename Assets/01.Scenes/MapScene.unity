@@ -1328,57 +1328,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 156272686}
   m_CullTransparentMesh: 1
---- !u!1 &173160168
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 173160169}
-  - component: {fileID: 173160170}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &173160169
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173160168}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -363.15973, y: -1513.7107, z: -2.8254411}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 393120595}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &173160170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173160168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5bafdde64425a4fafabd079bd25a29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: 
-  nowSlot: 0
-  newStart: 0
-  redMoon: 0
-  isPause: 0
-  isGameOver: 0
-  isClear: 0
 --- !u!1 &188052069
 GameObject:
   m_ObjectHideFlags: 0
@@ -2169,7 +2118,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 393120595}
-  - component: {fileID: 393120596}
   m_Layer: 0
   m_Name: System
   m_TagString: Untagged
@@ -2190,33 +2138,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 173160169}
   - {fileID: 1926873099}
   - {fileID: 152226454}
-  - {fileID: 931570955}
   - {fileID: 1996413286}
   - {fileID: 592382615}
+  - {fileID: 931570955}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &393120596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 393120594}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d5bafdde64425a4fafabd079bd25a29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: 
-  nowSlot: 0
-  newStart: 0
-  redMoon: 0
-  isPause: 0
-  isGameOver: 0
-  isClear: 0
 --- !u!1 &404520671
 GameObject:
   m_ObjectHideFlags: 0
@@ -3928,7 +3856,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931570954}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3953,10 +3881,10 @@ MonoBehaviour:
   - {fileID: 1564584944}
   currentStock: []
   fixedShopItems:
-  - itemName: HP UP
+  - itemName: HP 10 UP
     itemCost: 20
-    itemIcon: {fileID: 21300000, guid: b2eb373a280b31d48a69c76954d083f1, type: 3}
-  - itemName: DMG UP
+    itemIcon: {fileID: 21300000, guid: 2ce1e9e4978619c4a8ebc396043e4938, type: 3}
+  - itemName: DMG 1 UP
     itemCost: 30
     itemIcon: {fileID: 21300000, guid: d25c4ee01fa090d4c9f5ef10b3dfbefa, type: 3}
   - itemName: HEALING UP

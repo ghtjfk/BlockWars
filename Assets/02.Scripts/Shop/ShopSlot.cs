@@ -36,7 +36,7 @@ public class ShopSlot : MonoBehaviour , IPointerClickHandler
     // 아이템 가격 할당 확인
     if (itemCostText != null)
     {
-        itemCostText.text = data.itemCost.ToString();
+        itemCostText.text = data.itemCost.ToString()+" $";
     }
     
     // 아이템 이미지 할당 확인 (Image 컴포넌트가 연결되어 있다고 가정)

@@ -31,6 +31,7 @@ public class PlayerData   // 1. 저장할 데이터가 존재
 
 public class GameManager : Singleton<GameManager>
 {    
+    public static GameManager Instance;
     public PlayerData nowPlayer = new PlayerData();
     public string path;
     public int nowSlot;
@@ -48,7 +49,14 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
         // 강의에서 추천한 경로
         // 유니티에서 알아서 생성해주는 폴더
@@ -170,7 +178,7 @@ public class GameManager : Singleton<GameManager>
         // 아이템 효과 적용 후, 최대 HP와 공격력을 갱신합니다.
         
         // ⭐ HP UP 효과 확인
-        if (normalizedItemName.Contains("HPUP")) 
+        if (normalizedItemName.Contains("HP10UP")) 
         {
             float bonusAmount = 10f; 
             nowPlayer.hpBonus += bonusAmount;
@@ -181,7 +189,7 @@ public class GameManager : Singleton<GameManager>
             
         }
         // ⭐ DMG UP 효과 확인
-        else if (normalizedItemName.Contains("DMGUP")) 
+        else if (normalizedItemName.Contains("DMG1UP")) 
         {
             float bonusAmount = 1f; 
             nowPlayer.attackDamage += bonusAmount;
