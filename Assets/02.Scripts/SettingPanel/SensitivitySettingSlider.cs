@@ -4,19 +4,20 @@ using UnityEngine.UI;
 public class SensitivitySlider : MonoBehaviour
 {
     public Slider slider;
-    private BallMoveing ball;
+
+    void OnEnable()
+    {
+        slider.SetValueWithoutNotify(SettingsData.sensitivity);
+    }
 
     void Start()
     {
-        ball = FindObjectOfType<BallMoveing>();
-
-        slider.value = ball.sensitivity;
-
-        slider.onValueChanged.AddListener(OnSliderChanged);
+        slider.onValueChanged.RemoveAllListeners();
+        slider.onValueChanged.AddListener(OnValueChanged);
     }
 
-    void OnSliderChanged(float value)
+    void OnValueChanged(float value)
     {
-        ball.sensitivity = value;
+        SettingsData.sensitivity = value;
     }
 }

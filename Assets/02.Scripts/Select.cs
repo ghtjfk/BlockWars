@@ -17,24 +17,24 @@ public class Select : MonoBehaviour
 
     void Start()
     {
-        // ½½·Ôº°·Î ÀúÀåµÈ µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏ´ÂÁö ÆÇ´Ü.
-        // ÀÖ´Ù¸é ¹®±¸¸¦ "½½·Ô1" -> "ÇÃ·¹ÀÌ¾î ÀÌ¸§"À¸·Î ¹Ù²Ù·Á°í.
+        // ìŠ¬ë¡¯ë³„ë¡œ ì €ì¥ëœ ë°ì´í„°ê°€ ì¡´ì¬í•˜ëŠ”ì§€ íŒë‹¨.
+        // ìˆë‹¤ë©´ ë¬¸êµ¬ë¥¼ "ìŠ¬ë¡¯1" -> "í”Œë ˆì´ì–´ ì´ë¦„"ìœ¼ë¡œ ë°”ê¾¸ë ¤ê³ .
         for(int i = 0; i < 3; i++)
         {
             if(File.Exists(GameManager.Instance.path + $"{i}"))
             {
                 savefile[i] = true;
-                GameManager.Instance.nowSlot = i; // ½½·Ô i¹øÂ°·Î ÀåÀü
-                GameManager.Instance.LoadData(); // ºÒ·¯¿À±â
-                slotText[i].text = GameManager.Instance.nowPlayer.name; // ½½·Ô¿¡ ÀÌ¸§ Ç¥±â
+                GameManager.Instance.nowSlot = i; // ìŠ¬ë¡¯ ië²ˆì§¸ë¡œ ì¥ì „
+                GameManager.Instance.LoadData(); // ë¶ˆëŸ¬ì˜¤ê¸°
+                slotText[i].text = GameManager.Instance.nowPlayer.name; // ìŠ¬ë¡¯ì— ì´ë¦„ í‘œê¸°
             }
             else
             {
-                slotText[i].text = "ºñ¾îÀÖÀ½";
+                slotText[i].text = "ë¹„ì–´ìˆìŒ";
             }
         }
-        // ¹®±¸¸¦ Àß ¹Ù²å´Ù¸é nowSlot°ú nowPlayer´Â ¿ø»óº¹±Í.
-        // À§ÀÇ for¹®Àº ±×Àú ¹®±¸¸¦ ¹Ù²Ù±â À§ÇÔÀÌ¾ú±â ¶§¹®.
+        // ë¬¸êµ¬ë¥¼ ì˜ ë°”ê¿¨ë‹¤ë©´ nowSlotê³¼ nowPlayerëŠ” ì›ìƒë³µê·€.
+        // ìœ„ì˜ forë¬¸ì€ ê·¸ì € ë¬¸êµ¬ë¥¼ ë°”ê¾¸ê¸° ìœ„í•¨ì´ì—ˆê¸° ë•Œë¬¸.
         GameManager.Instance.DataClear();
     }
 
@@ -45,22 +45,22 @@ public class Select : MonoBehaviour
 
     public void Slot(int number)
     {
-        // ¸î¹øÂ° ½½·Ô¿¡ ´ëÇÑ °ÇÁö ¼³Á¤
+        // ëª‡ë²ˆì§¸ ìŠ¬ë¡¯ì— ëŒ€í•œ ê±´ì§€ ì„¤ì •
         GameManager.Instance.nowSlot = number;
 
-        if (GameManager.Instance.newStart)  // »õ·Î¿î ½ÃÀÛÀÏ °æ¿ì ÇØ´ç °æ·ÎÀÇ ÆÄÀÏ »èÁ¦
+        if (GameManager.Instance.newStart)  // ìƒˆë¡œìš´ ì‹œì‘ì¼ ê²½ìš° í•´ë‹¹ ê²½ë¡œì˜ íŒŒì¼ ì‚­ì œ
         {
             string filePath = GameManager.Instance.path + $"{number}";
             File.Delete(filePath);
             savefile[number] = false;
         }
 
-        if (savefile[number]) // 2. ÀúÀåµÈ µ¥ÀÌÅÍ°¡ ÀÖÀ»¶§ => ºÒ·¯¿À±âÇØ¼­ °ÔÀÓ¾ÀÀ¸·Î ³Ñ¾î°¨.
+        if (savefile[number]) // 2. ì €ì¥ëœ ë°ì´í„°ê°€ ìˆì„ë•Œ => ë¶ˆëŸ¬ì˜¤ê¸°í•´ì„œ ê²Œì„ì”¬ìœ¼ë¡œ ë„˜ì–´ê°.
         {
             GameManager.Instance.LoadData();
             GoGame();
         }
-        else // 1. ÀúÀåµÈ µ¥ÀÌÅÍ°¡ ¾øÀ»¶§
+        else // 1. ì €ì¥ëœ ë°ì´í„°ê°€ ì—†ì„ë•Œ
         {
             Creat();
         }
@@ -73,7 +73,7 @@ public class Select : MonoBehaviour
 
     public void GoGame()
     {
-        // ÀúÀåµÈ µ¥ÀÌÅÍ°¡ ¾ø´Ù¸é, ¹æ±İ ÀÔ·ÂÇß´ø ÇÃ·¹ÀÌ¾î ÀÌ¸§À» µ¤¾î¾º¿ö¶ó.
+        // ì €ì¥ëœ ë°ì´í„°ê°€ ì—†ë‹¤ë©´, ë°©ê¸ˆ ì…ë ¥í–ˆë˜ í”Œë ˆì´ì–´ ì´ë¦„ì„ ë®ì–´ì”Œì›Œë¼.
         if (!savefile[GameManager.Instance.nowSlot])
         {
             GameManager.Instance.nowPlayer.name = newPlayerName.text;
