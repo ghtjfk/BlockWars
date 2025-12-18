@@ -66,7 +66,8 @@ public class BrickPool : Singleton<BrickPool>
 
         brick.SetActive(false);
         GameManager.Instance.increaseBreakBlockCount();
-  
+        MonsterManager.Instance.UpdateBreakBrickUI();
+
         if ( isHeal )
         {
             healPool.Enqueue(brick);

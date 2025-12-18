@@ -52,10 +52,12 @@ public class MonsterHover : MonoBehaviour
             return;
 
         if (!GameManager.Instance.isPause && !TurnManager.Instance.isTurnChanging)
+        {
             OnMonsterClicked();
+            MonsterManager.Instance.UpdateBreakBrickUI();
+        }
 
-
-    }
+        }
 
     private void OnMonsterClicked()
     {
@@ -78,7 +80,7 @@ public class MonsterHover : MonoBehaviour
         PlayerManager.Instance.initBreakBrickCount();
         TurnManager.Instance.startWaitAndNextTurn(2f);
         MonsterManager.Instance.isMonsterClicked = false;
-
+        
 
     }
 
