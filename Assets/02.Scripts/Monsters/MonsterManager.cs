@@ -7,7 +7,6 @@ public class MonsterManager : Singleton<MonsterManager>
 {
     [SerializeField]
     private MonsterDataBase monsterDataBase = null;
-    public int maxCount = 4;
     public bool isMonsterClicked = false;
     public TurnUI turnUI;
     List<MonsterBehaviour> monsters = new List<MonsterBehaviour>();
@@ -188,7 +187,7 @@ public class MonsterManager : Singleton<MonsterManager>
         }
 
         // 추가 스폰
-        if (monsters.Count < 4 && waitMonsterCount > 0)
+        if (monsters.Count < 3 && waitMonsterCount > 0)
         {
             aditionSpawn();
             waitMonsterCount--;
