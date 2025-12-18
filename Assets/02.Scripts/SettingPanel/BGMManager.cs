@@ -12,6 +12,7 @@ public class BGMManager : MonoBehaviour
     public AudioClip startBGM;
     public AudioClip mapBGM;
     public AudioClip battleBGM;
+    public AudioClip endingSound;
 
     void Awake()
     {
@@ -67,6 +68,8 @@ public class BGMManager : MonoBehaviour
             clip = mapBGM;
         else if (sceneName.Contains("GameScene"))
             clip = battleBGM;
+        else if (sceneName.Contains("EndingScene"))
+            clip = endingSound;
 
         if (clip == null) return;
 

@@ -611,7 +611,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &63051562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7670,12 +7670,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   popupRoot: {fileID: 1388233781}
   popupCanvas: {fileID: 0}
-  dimmer: {fileID: 0}
   messageText: {fileID: 1894385085}
   buttonYes: {fileID: 1352368668}
   buttonNo: {fileID: 288767213}
   fadeDuration: 0.25
-  dimmerTargetAlpha: 0.55
 --- !u!114 &1926873098
 MonoBehaviour:
   m_ObjectHideFlags: 0
