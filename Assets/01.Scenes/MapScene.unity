@@ -999,15 +999,15 @@ MonoBehaviour:
   - {fileID: 1948426461}
   stageLocks:
   - {fileID: 1551232969}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 766539648}
+  - {fileID: 1599214463}
+  - {fileID: 367603032}
+  - {fileID: 490400683}
+  - {fileID: 342675352}
+  - {fileID: 307959133}
+  - {fileID: 1101606472}
+  - {fileID: 542454109}
+  - {fileID: 1446642049}
   popupManager: {fileID: 1926873097}
   mapManager: {fileID: 592382614}
   resetButton: {fileID: 63051562}
@@ -2111,7 +2111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &432678083
 RectTransform:
   m_ObjectHideFlags: 0
