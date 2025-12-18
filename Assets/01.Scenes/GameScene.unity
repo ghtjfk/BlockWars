@@ -3705,7 +3705,7 @@ MonoBehaviour:
   ballPreview: {fileID: 242245969}
   rb: {fileID: 1203453045}
   isMoving: 0
-  moveSpeed: 8
+  moveSpeed: 4
   timerText: {fileID: 171993700}
   epsilon: 0.01
 --- !u!50 &1203453045
