@@ -10,7 +10,6 @@ public class PopupManager : MonoBehaviour
     [Header("Refs")]
     [SerializeField] private GameObject popupRoot;      // PopupRoot (활/비활)
     [SerializeField] private CanvasGroup popupCanvas;   // PopupRoot에 달린 CanvasGroup
-    [SerializeField] private Image dimmer;              // Dimmer (전체화면 검정 Image)
     [SerializeField] private TMP_Text messageText;      // "Do you want to enter the Stage n?"
     
     [Header("Buttons")]
@@ -19,7 +18,6 @@ public class PopupManager : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] private float fadeDuration = 0.25f;
-    [SerializeField] private float dimmerTargetAlpha = 0.55f;
 
     private int pendingStage = -1;
     private bool isAnimating = false;
@@ -33,11 +31,7 @@ public class PopupManager : MonoBehaviour
             popupCanvas.interactable = false;
             popupCanvas.blocksRaycasts = false;
         }
-        if (dimmer != null)
-        {
-            var c = dimmer.color;
-            dimmer.color = new Color(c.r, c.g, c.b, 0f);
-        }
+        
 
         if (buttonYes != null) buttonYes.onClick.AddListener(OnClickYes);
         if (buttonNo != null)  buttonNo.onClick.AddListener(OnClickNo);
@@ -75,9 +69,6 @@ public class PopupManager : MonoBehaviour
         float fromAlpha = popupCanvas != null ? popupCanvas.alpha : 0f;
         float toAlpha = fadeIn ? 1f : 0f;
 
-        float fromDim = dimmer != null ? dimmer.color.a : 0f;
-        float toDim = fadeIn ? dimmerTargetAlpha : 0f;
-
         if (popupCanvas != null && fadeIn)
         {
             popupCanvas.interactable = false;  // 애니메이션 중엔 막기
@@ -91,13 +82,6 @@ public class PopupManager : MonoBehaviour
 
             if (popupCanvas != null)
                 popupCanvas.alpha = Mathf.Lerp(fromAlpha, toAlpha, k);
-
-            if (dimmer != null)
-            {
-                var c = dimmer.color;
-                dimmer.color = new Color(c.r, c.g, c.b, Mathf.Lerp(fromDim, toDim, k));
-            }
-
             yield return null;
         }
 
@@ -108,16 +92,11 @@ public class PopupManager : MonoBehaviour
             popupCanvas.interactable = fadeIn;
             popupCanvas.blocksRaycasts = fadeIn;
         }
-        if (dimmer != null)
-        {
-            var c = dimmer.color;
-            dimmer.color = new Color(c.r, c.g, c.b, toDim);
-        }
 
         if (!fadeIn && popupRoot != null)
             popupRoot.SetActive(false);
 
-        isAnimating = false;
+            isAnimating = false;
     }
 
     private void OnClickNo()        // "아니오" : 팝업 해제(원래 화면으로)
