@@ -16,6 +16,7 @@ public class BallMoveing : MonoBehaviour
     public float moveSpeed = 3f;
     private Coroutine forceResetCoroutine;
     public Text timerText;
+    public float epsilon = 0.01f;
     void Start()
     {
         firstball = this.transform.position;
@@ -137,6 +138,11 @@ public class BallMoveing : MonoBehaviour
         {
             // 좌 / 우 벽
             moveDir.x = -moveDir.x;
+
+            if (Mathf.Abs(moveDir.y) < epsilon)
+            {
+                moveDir.y = epsilon;
+            }
         }
         else
         {
