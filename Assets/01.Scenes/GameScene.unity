@@ -1541,8 +1541,8 @@ Transform:
   m_GameObject: {fileID: 242245969}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.47, y: -5.63, z: 0}
-  m_LocalScale: {x: 0.085, y: 0.085, z: 1}
+  m_LocalPosition: {x: 1, y: -4.5, z: 0}
+  m_LocalScale: {x: 0.135, y: 0.135, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2145,7 +2145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterDataBase: {fileID: 11400000, guid: b40d8c25fa7c2bd45b4d2289a647c4b8, type: 2}
-  maxCount: 4
   isMonsterClicked: 0
   turnUI: {fileID: 2112180154}
   posArray:
@@ -3797,7 +3796,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: -4.5, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
