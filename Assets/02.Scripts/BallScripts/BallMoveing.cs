@@ -194,8 +194,10 @@ public class BallMoveing : MonoBehaviour
             PlayerManager.Instance.setBreakBrickCount(count);
         }
 
-        GameManager.Instance.initBreakBlockCount();
+
         TurnManager.Instance.NextTurn();
+        GameManager.Instance.initBreakBlockCount();
+       
 
         if (ModeSwitcher.Instance.GetCurrentMode())
         {

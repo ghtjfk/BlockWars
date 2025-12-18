@@ -23,11 +23,12 @@ public class MonsterManager : Singleton<MonsterManager>
     public Clear clear;
 
     public Text allMonsterText;
+    public Text breakBrickText;
 
-    void Start()
+void Start()
     {
         int monsterCount = Random.Range(1,4);
-        waitMonsterCount = Random.Range(1 + GameManager.Instance.nowPlayer.stage,4 + GameManager.Instance.nowPlayer.stage);
+        waitMonsterCount = Random.Range(GameManager.Instance.nowPlayer.stage,2 + GameManager.Instance.nowPlayer.stage);
         allMonsterCount = monsterCount + waitMonsterCount;
 
         UpdateAllMonsterUI();
@@ -284,6 +285,12 @@ public class MonsterManager : Singleton<MonsterManager>
         if (allMonsterText == null) return;
 
         allMonsterText.text = $"남은\n몬스터 : {allMonsterCount}";
+    }
+
+    public void UpdateBreakBrickUI()
+    {
+        if (breakBrickText == null) return;
+        breakBrickText.text = $"깨진벽돌 : {GameManager.Instance.getBreakBlockCount()}";
     }
 }
 
