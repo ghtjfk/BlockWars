@@ -16,25 +16,25 @@ MonoBehaviour:
   - id: 1. slime_black
     hp: 23
     attack: 4
-    coin: 4
+    coin: 2
     stage: 1
     monsterPrefab: {fileID: 4278299998093194868, guid: 9ad2c7dc36d5b424d8f9810d2279c63d, type: 3}
   - id: 1. slime_blue
     hp: 28
     attack: 6
-    coin: 6
+    coin: 4
     stage: 1
     monsterPrefab: {fileID: 4278299998093194868, guid: c9d4c98e0a2f446d293d8845694b23e1, type: 3}
   - id: 1. slime_green
     hp: 25
     attack: 5
-    coin: 5
+    coin: 3
     stage: 1
     monsterPrefab: {fileID: 4278299998093194868, guid: 66c1ef0e826bd9b47982888febf44ff3, type: 3}
   - id: 1. slime_red
     hp: 25
     attack: 7
-    coin: 6
+    coin: 4
     stage: 1
     monsterPrefab: {fileID: 4278299998093194868, guid: d006d98d35fd74b4288c4b1671fb3a5c, type: 3}
   - id: 2. ooze_black
