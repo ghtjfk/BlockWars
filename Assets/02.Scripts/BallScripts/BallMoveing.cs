@@ -13,7 +13,7 @@ public class BallMoveing : MonoBehaviour
     public Rigidbody2D rb;
     Vector2 moveDir;
     public bool isMoving = false;
-    public float moveSpeed = 3f;
+    public float moveSpeed=4;
     private Coroutine forceResetCoroutine;
     public Text timerText;
     public float epsilon = 0.01f;
