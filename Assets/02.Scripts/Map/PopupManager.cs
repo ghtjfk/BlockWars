@@ -50,7 +50,7 @@ public class PopupManager : MonoBehaviour
         pendingStage = stageNumber;
 
         if (messageText != null)
-            messageText.text = $"스테이지 {stageNumber}에 입장하시겠습니까?";
+            messageText.text = $"스테이지 {stageNumber}에\n\n입장하시겠습니까?";
 
         if (popupRoot != null && !popupRoot.activeSelf)
             popupRoot.SetActive(true);
