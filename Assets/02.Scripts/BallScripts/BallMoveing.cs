@@ -58,7 +58,7 @@ public class BallMoveing : MonoBehaviour
         gap = new Vector3(gap.y >= 0 ? gap.x : gap.x >= 0 ? 1 : -1, Mathf.Clamp(gap.y, 0.2f, 1), 0);
         ballPreview.transform.position = Physics2D.CircleCast(
         new Vector2(Mathf.Clamp(transform.position.x, -0.425f, 2.425f), -4.5f),
-            0.0425f,
+            0.0675f,
             gap,
             10000,
             1 << LayerMask.NameToLayer("Wall") | 1 << LayerMask.NameToLayer("Block")
