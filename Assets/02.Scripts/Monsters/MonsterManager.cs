@@ -7,7 +7,6 @@ public class MonsterManager : Singleton<MonsterManager>
 {
     [SerializeField]
     private MonsterDataBase monsterDataBase = null;
-    public int maxCount = 4;
     public bool isMonsterClicked = false;
     public TurnUI turnUI;
     List<MonsterBehaviour> monsters = new List<MonsterBehaviour>();
@@ -20,16 +19,19 @@ public class MonsterManager : Singleton<MonsterManager>
             new Vector3(1.6f, 3.2f, 0),};
     List<int> posInfo = new List<int>();
     int waitMonsterCount;
+    public int allMonsterCount;
     public Clear clear;
 
-    public Text waitMonsterText;
+    public Text allMonsterText;
+    public Text breakBrickText;
 
-    void Start()
+void Start()
     {
         int monsterCount = Random.Range(1,4);
-        waitMonsterCount = Random.Range(1 + GameManager.Instance.nowPlayer.stage,4 + GameManager.Instance.nowPlayer.stage);
+        waitMonsterCount = Random.Range(GameManager.Instance.nowPlayer.stage,2 + GameManager.Instance.nowPlayer.stage);
+        allMonsterCount = monsterCount + waitMonsterCount;
 
-        UpdateWaitMonsterUI();
+        UpdateAllMonsterUI();
 
         posInfo = GetRandomNumber(monsterCount);
         for (int idx = 0; idx < monsterCount; idx++)
@@ -186,11 +188,10 @@ public class MonsterManager : Singleton<MonsterManager>
         }
 
         // 추가 스폰
-        if (monsters.Count < 4 && waitMonsterCount > 0)
+        if (monsters.Count < 3 && waitMonsterCount > 0)
         {
             aditionSpawn();
             waitMonsterCount--;
-            UpdateWaitMonsterUI();
         }
 
         TurnManager.Instance.NextTurn();
@@ -205,10 +206,15 @@ public class MonsterManager : Singleton<MonsterManager>
 
         monsters.Remove(monster);
 
+
         Debug.Log($"Removed {monster.name} from monster list. Remaining: {monsters.Count}");
 
         // 실제로 씬에서 제거
         Destroy(monster.gameObject);
+
+        allMonsterCount--;
+        UpdateAllMonsterUI();
+
         // 모든 몬스터가 죽었을 때 스테이지 클리어 처리도 가능
         if (monsters.Count == 0 && waitMonsterCount<=0)
         {
@@ -274,11 +280,17 @@ public class MonsterManager : Singleton<MonsterManager>
         return numbers.GetRange(0, idx);
     }
 
-    void UpdateWaitMonsterUI()
+    public void UpdateAllMonsterUI()
     {
-        if (waitMonsterText == null) return;
+        if (allMonsterText == null) return;
 
-        waitMonsterText.text = $"대기\n몬스터 : {waitMonsterCount}";
+        allMonsterText.text = $"남은\n몬스터 : {allMonsterCount}";
+    }
+
+    public void UpdateBreakBrickUI()
+    {
+        if (breakBrickText == null) return;
+        breakBrickText.text = $"깨진벽돌 : {GameManager.Instance.getBreakBlockCount()}";
     }
 }
 

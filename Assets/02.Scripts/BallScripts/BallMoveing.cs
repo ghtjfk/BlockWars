@@ -13,9 +13,10 @@ public class BallMoveing : MonoBehaviour
     public Rigidbody2D rb;
     Vector2 moveDir;
     public bool isMoving = false;
-    public float moveSpeed = 2f;
+    public float moveSpeed=4;
     private Coroutine forceResetCoroutine;
     public Text timerText;
+    public float epsilon = 0.01f;
     void Start()
     {
         firstball = this.transform.position;
@@ -25,12 +26,6 @@ public class BallMoveing : MonoBehaviour
     {
         if (isMoving){}
         else {Update_GM();}
-    }
-
-    void FixedUpdate()
-    {
-        if (!isMoving) return;
-        rb.velocity = moveDir * moveSpeed;
     }
     void Update_GM()
 {
@@ -64,7 +59,7 @@ public class BallMoveing : MonoBehaviour
         gap = new Vector3(gap.y >= 0 ? gap.x : gap.x >= 0 ? 1 : -1, Mathf.Clamp(gap.y, 0.2f, 1), 0);
         ballPreview.transform.position = Physics2D.CircleCast(
         new Vector2(Mathf.Clamp(transform.position.x, -0.425f, 2.425f), -4.5f),
-            0.1f,
+            0.0625f,
             gap,
             10000,
             1 << LayerMask.NameToLayer("Wall") | 1 << LayerMask.NameToLayer("Block")
@@ -143,6 +138,11 @@ public class BallMoveing : MonoBehaviour
         {
             // 좌 / 우 벽
             moveDir.x = -moveDir.x;
+
+            if (Mathf.Abs(moveDir.y) < epsilon)
+            {
+                moveDir.y = epsilon;
+            }
         }
         else
         {
@@ -194,8 +194,10 @@ public class BallMoveing : MonoBehaviour
             PlayerManager.Instance.setBreakBrickCount(count);
         }
 
-        GameManager.Instance.initBreakBlockCount();
+
         TurnManager.Instance.NextTurn();
+        GameManager.Instance.initBreakBlockCount();
+       
 
         if (ModeSwitcher.Instance.GetCurrentMode())
         {

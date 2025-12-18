@@ -5341,7 +5341,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 2eda9c20c6a44a34aa560e6d1920b778, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 50e19fca62d559841879dd533de15187, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -5634,7 +5634,7 @@ MonoBehaviour:
   audioSource: {fileID: 1905004244}
   startBGM: {fileID: 8300000, guid: fbd50b6f750f01a42a40ead806f44a8e, type: 3}
   mapBGM: {fileID: 8300000, guid: 824378caee2565241b172f9dc31a474b, type: 3}
-  battleBGM: {fileID: 8300000, guid: 2eda9c20c6a44a34aa560e6d1920b778, type: 3}
+  battleBGM: {fileID: 8300000, guid: 50e19fca62d559841879dd533de15187, type: 3}
 --- !u!4 &1905004246
 Transform:
   m_ObjectHideFlags: 0

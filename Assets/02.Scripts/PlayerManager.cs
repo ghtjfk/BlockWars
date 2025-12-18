@@ -33,6 +33,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public IEnumerator Heal(float healAmount)
     {
+        yield return new WaitForSeconds(2f);
         animator.SetTrigger("doHeal");
         GameManager.Instance.nowPlayer.curruntHP = Mathf.Min(GameManager.Instance.nowPlayer.curruntHP + healAmount, GameManager.Instance.nowPlayer.maxHP);
         HPUIManager.Instance.UpdateHPbar(GameManager.Instance.nowPlayer.curruntHP, GameManager.Instance.nowPlayer.maxHP);
