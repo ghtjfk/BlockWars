@@ -74,7 +74,7 @@ public class BGMManager : MonoBehaviour
         if (clip == null) return;
 
         if (audioSource.clip == clip) return;
-
+        audioSource.loop = !sceneName.Contains("EndingScene");
         audioSource.clip = clip;
         audioSource.Play();
     }
