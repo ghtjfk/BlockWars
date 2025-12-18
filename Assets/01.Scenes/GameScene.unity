@@ -2154,8 +2154,9 @@ MonoBehaviour:
   - {x: 0, y: 3.2, z: 0}
   - {x: 0.8, y: 3.2, z: 0}
   - {x: 1.6, y: 3.2, z: 0}
+  allMonsterCount: 0
   clear: {fileID: 2112180153}
-  waitMonsterText: {fileID: 690720569}
+  allMonsterText: {fileID: 690720569}
 --- !u!114 &284663734
 MonoBehaviour:
   m_ObjectHideFlags: 0

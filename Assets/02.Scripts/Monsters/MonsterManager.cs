@@ -20,16 +20,18 @@ public class MonsterManager : Singleton<MonsterManager>
             new Vector3(1.6f, 3.2f, 0),};
     List<int> posInfo = new List<int>();
     int waitMonsterCount;
+    public int allMonsterCount;
     public Clear clear;
 
-    public Text waitMonsterText;
+    public Text allMonsterText;
 
     void Start()
     {
         int monsterCount = Random.Range(1,4);
         waitMonsterCount = Random.Range(1 + GameManager.Instance.nowPlayer.stage,4 + GameManager.Instance.nowPlayer.stage);
+        allMonsterCount = monsterCount + waitMonsterCount;
 
-        UpdateWaitMonsterUI();
+        UpdateAllMonsterUI();
 
         posInfo = GetRandomNumber(monsterCount);
         for (int idx = 0; idx < monsterCount; idx++)
@@ -190,7 +192,6 @@ public class MonsterManager : Singleton<MonsterManager>
         {
             aditionSpawn();
             waitMonsterCount--;
-            UpdateWaitMonsterUI();
         }
 
         TurnManager.Instance.NextTurn();
@@ -205,10 +206,15 @@ public class MonsterManager : Singleton<MonsterManager>
 
         monsters.Remove(monster);
 
+
         Debug.Log($"Removed {monster.name} from monster list. Remaining: {monsters.Count}");
 
         // 실제로 씬에서 제거
         Destroy(monster.gameObject);
+
+        allMonsterCount--;
+        UpdateAllMonsterUI();
+
         // 모든 몬스터가 죽었을 때 스테이지 클리어 처리도 가능
         if (monsters.Count == 0 && waitMonsterCount<=0)
         {
@@ -274,11 +280,11 @@ public class MonsterManager : Singleton<MonsterManager>
         return numbers.GetRange(0, idx);
     }
 
-    void UpdateWaitMonsterUI()
+    public void UpdateAllMonsterUI()
     {
-        if (waitMonsterText == null) return;
+        if (allMonsterText == null) return;
 
-        waitMonsterText.text = $"대기\n몬스터 : {waitMonsterCount}";
+        allMonsterText.text = $"남은\n몬스터 : {allMonsterCount}";
     }
 }
 
