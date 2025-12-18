@@ -11,8 +11,9 @@ public class BallMoveing : MonoBehaviour
     Vector3 firstPos, secondPos, gap,firstball;
     public GameObject ballPreview;
     public Rigidbody2D rb;
+    Vector2 moveDir;
     public bool isMoving = false;
-    int moveSpeed = 250;
+    public float moveSpeed = 2f;
     private Coroutine forceResetCoroutine;
     public Text timerText;
     void Start()
@@ -24,6 +25,12 @@ public class BallMoveing : MonoBehaviour
     {
         if (isMoving){}
         else {Update_GM();}
+    }
+
+    void FixedUpdate()
+    {
+        if (!isMoving) return;
+        rb.velocity = moveDir * moveSpeed;
     }
     void Update_GM()
 {
@@ -76,8 +83,8 @@ public class BallMoveing : MonoBehaviour
     public void Launch(Vector3 pos)
     {
         isMoving = true;
-        rb.AddForce(pos.normalized * moveSpeed);
-
+        moveDir= pos.normalized;
+        rb.velocity = moveDir * moveSpeed;
         // 발사 시 타이머 코루틴 시작
         if (forceResetCoroutine != null) StopCoroutine(forceResetCoroutine);
         forceResetCoroutine = StartCoroutine(ForceResetTimer(15f));
@@ -120,6 +127,33 @@ public class BallMoveing : MonoBehaviour
         {
             ResetBall();
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        int layer = collision.collider.gameObject.layer;
+        if (layer != LayerMask.NameToLayer("Wall") &&
+            layer != LayerMask.NameToLayer("Block"))
+            return;
+
+        Vector2 normal = collision.contacts[0].normal;
+
+        // 법선을 축 정렬로 보정
+        if (Mathf.Abs(normal.x) > Mathf.Abs(normal.y))
+        {
+            // 좌 / 우 벽
+            moveDir.x = -moveDir.x;
+        }
+        else
+        {
+            // 위 / 아래 벽
+            moveDir.y = -moveDir.y;
+        }
+
+        moveDir = moveDir.normalized;
+
+        // 벽 안에 끼는 것 방지
+        rb.position += normal * 0.05f;
     }
 
     // 리셋 로직을 별도 함수로 분리 (중복 방지)
@@ -170,4 +204,5 @@ public class BallMoveing : MonoBehaviour
         }
         RespawnBrick.Instance.Respawn();
     }
+
 }

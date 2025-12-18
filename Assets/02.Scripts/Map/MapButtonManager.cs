@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MapButtonManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class MapButtonManager : MonoBehaviour
     [SerializeField] private PopupManager popupManager;
     [SerializeField] private MapManager mapManager;  // 필요시(동일 씬 내 이동용)
     [SerializeField] private Button resetButton;
+    [SerializeField] private Button menuButton;
 
     [Header("Unlock Settings")]
     [SerializeField] private int minStage = 1;
@@ -73,6 +75,8 @@ public class MapButtonManager : MonoBehaviour
     {
         if (resetButton != null)
             resetButton.onClick.AddListener(ResetProgress);
+        if (menuButton != null)
+            menuButton.onClick.AddListener(GoToMainMenu);
     }
 
     // 진행도 초기화: 스테이지 1만 해금
@@ -132,5 +136,11 @@ public class MapButtonManager : MonoBehaviour
         stage = Mathf.Max(stage, 1);
         GameManager.Instance.nowPlayer.stage = stage;
         GameManager.Instance.SaveData();
+    }
+
+    private void GoToMainMenu()
+    {
+        SceneManager.LoadScene("StartScene");
+        Debug.Log("메인 메뉴로 이동합니다.");
     }
 }
