@@ -153,7 +153,7 @@ public class BallMoveing : MonoBehaviour
         moveDir = moveDir.normalized;
 
         // 벽 안에 끼는 것 방지
-        rb.position += normal * 0.02f;
+        rb.position += normal * 0.05f;
     }
 
     // 리셋 로직을 별도 함수로 분리 (중복 방지)
