@@ -208,48 +208,48 @@ MonoBehaviour:
   - id: 9. wolf_black
     hp: 450
     attack: 80
-    coin: 65
+    coin: 60
     stage: 9
     monsterPrefab: {fileID: 635827357152315796, guid: 4cd4fb2fc388c4716b1df041eb3ccd1f, type: 3}
   - id: 9. wolf_blue
     hp: 500
     attack: 96
-    coin: 75
+    coin: 70
     stage: 9
     monsterPrefab: {fileID: 635827357152315796, guid: f6559a2d9eeed402f846b5ceb3b0efed, type: 3}
   - id: 9. wolf_green
     hp: 500
     attack: 90
-    coin: 70
+    coin: 65
     stage: 9
     monsterPrefab: {fileID: 635827357152315796, guid: 4bfc41afebf7d4241bd84621224d3f65, type: 3}
   - id: 9. wolf_white
     hp: 600
     attack: 90
-    coin: 80
+    coin: 75
     stage: 9
     monsterPrefab: {fileID: 635827357152315796, guid: 371e94dfe3e644a35a7c0dba9724215c, type: 3}
   - id: 10. cerberus_black
     hp: 900
-    attack: 110
+    attack: 125
     coin: 1
     stage: 10
     monsterPrefab: {fileID: 635827357152315796, guid: fbc4b6dfb37e747fa83d0784eb9c3a62, type: 3}
   - id: 10. cerberus_green
-    hp: 1000
-    attack: 120
+    hp: 949
+    attack: 130
     coin: 1
     stage: 10
     monsterPrefab: {fileID: 635827357152315796, guid: ae398d5c379b54310a66c89a0da0d2b6, type: 3}
   - id: 10. cerberus_red
-    hp: 1000
-    attack: 135
+    hp: 949
+    attack: 150
     coin: 1
     stage: 10
     monsterPrefab: {fileID: 635827357152315796, guid: 20b4ff9a8ccfd4cd6904abbc036dd034, type: 3}
   - id: 10. cerberus_white
-    hp: 1200
-    attack: 120
+    hp: 999
+    attack: 130
     coin: 1
     stage: 10
     monsterPrefab: {fileID: 635827357152315796, guid: 1d9d4c183c9b1440e8e62d3635bf6edb, type: 3}
