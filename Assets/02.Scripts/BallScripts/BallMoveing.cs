@@ -13,7 +13,7 @@ public class BallMoveing : MonoBehaviour
     public Rigidbody2D rb;
     Vector2 moveDir;
     public bool isMoving = false;
-    public float moveSpeed = 2f;
+    public float moveSpeed = 3f;
     private Coroutine forceResetCoroutine;
     public Text timerText;
     void Start()
@@ -25,12 +25,6 @@ public class BallMoveing : MonoBehaviour
     {
         if (isMoving){}
         else {Update_GM();}
-    }
-
-    void FixedUpdate()
-    {
-        if (!isMoving) return;
-        rb.velocity = moveDir * moveSpeed;
     }
     void Update_GM()
 {
