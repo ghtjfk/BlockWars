@@ -30,6 +30,6 @@ public class BGMSettingSlider : MonoBehaviour
 
     void OnValueChanged(float value)
     {
-        BGMManager.bgmVolume = value;
+        BGMManager.bgmVolume = value; 
     }
 }
