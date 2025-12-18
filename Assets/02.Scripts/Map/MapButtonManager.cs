@@ -12,7 +12,6 @@ public class MapButtonManager : MonoBehaviour
 
     [Header("Managers")]
     [SerializeField] private PopupManager popupManager;
-    [SerializeField] private MapManager mapManager;  // 필요시(동일 씬 내 이동용)
     [SerializeField] private Button resetButton;
     [SerializeField] private Button menuButton;
 
