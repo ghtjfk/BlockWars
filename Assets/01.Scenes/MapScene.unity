@@ -1001,15 +1001,15 @@ MonoBehaviour:
   - {fileID: 1948426461}
   stageLocks:
   - {fileID: 1551232969}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 766539648}
+  - {fileID: 1599214463}
+  - {fileID: 367603032}
+  - {fileID: 490400683}
+  - {fileID: 342675352}
+  - {fileID: 307959133}
+  - {fileID: 1101606472}
+  - {fileID: 542454109}
+  - {fileID: 1446642049}
   popupManager: {fileID: 1926873097}
   mapManager: {fileID: 592382614}
   resetButton: {fileID: 63051562}
@@ -4945,6 +4945,8 @@ GameObject:
   - component: {fileID: 1256538181}
   - component: {fileID: 1256538180}
   - component: {fileID: 1256538179}
+  - component: {fileID: 1256538183}
+  - component: {fileID: 1256538182}
   m_Layer: 5
   m_Name: menuButton
   m_TagString: Untagged
@@ -5054,6 +5056,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256538177}
   m_CullTransparentMesh: 1
+--- !u!114 &1256538182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256538177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f2010c3915a7a45b8707a866d7985b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1256538183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256538177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56d2b706050e4864997531c08ad321d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageButtons: []
+  stageLocks: []
+  popupManager: {fileID: 0}
+  mapManager: {fileID: 0}
+  resetButton: {fileID: 0}
+  menuButton: {fileID: 0}
+  minStage: 1
+  maxStage: 10
 --- !u!1 &1272811660
 GameObject:
   m_ObjectHideFlags: 0
