@@ -559,7 +559,7 @@ MonoBehaviour:
   m_text: "\uC801 2\uB9C8\uB9AC\uAC00 \uD50C\uB808\uC774\uC5B4 \uC55E\uAE4C\uC9C0
     \uC644\uC804\uD788 \uBC00\uCC29\uB41C \uACBD\uC6B0\uC785\uB2C8\uB2E4. \uC774
     \uC0C1\uD669\uC5D0\uC11C\uB294 2\uB9C8\uB9AC\uC758 \uC801\uC774 \uB3D9\uC2DC\uC5D0
-    \uB300\uBBF8\uC9C0\uB97C \uAC00\uD569\uB2C8\uB2E4.\r\n"
+    \uB370\uBBF8\uC9C0\uB97C \uAC00\uD569\uB2C8\uB2E4.\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cb53ef322453dd409fffd2983743e30, type: 2}
   m_sharedMaterial: {fileID: 862174638368914627, guid: 9cb53ef322453dd409fffd2983743e30, type: 2}
@@ -646,7 +646,6 @@ GameObject:
   m_Component:
   - component: {fileID: 226755359}
   - component: {fileID: 226755358}
-  - component: {fileID: 226755357}
   m_Layer: 0
   m_Name: BackgroundCamera
   m_TagString: Untagged
@@ -654,14 +653,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &226755357
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 226755356}
-  m_Enabled: 1
 --- !u!20 &226755358
 Camera:
   m_ObjectHideFlags: 0
@@ -2028,7 +2019,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC801\uC774 \uD50C\uB808\uC774\uC5B4 \uC55E\uAE4C\uC9C0 \uB2E4\uAC00\uC628
     \uC0C1\uD0DC\uC785\uB2C8\uB2E4. \uADFC\uC811\uD55C \uC801 \uD558\uB098\uB9CC
-    \uD50C\uB808\uC774\uC5B4\uC5D0\uAC8C \uB300\uBBF8\uC9C0\uB97C \uAC00\uD558\uBA70,
+    \uD50C\uB808\uC774\uC5B4\uC5D0\uAC8C \uB370\uBBF8\uC9C0\uB97C \uAC00\uD558\uBA70,
     \uB4A4\uC5D0 \uC788\uB294 \uC801\uC740 \uC544\uC9C1 \uACF5\uACA9\uD558\uC9C0
     \uC54A\uC2B5\uB2C8\uB2E4.\r\n"
   m_isRightToLeft: 0
@@ -2695,7 +2686,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e927ba78b8fce364bb3dd19d20f8904a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77de2f583d525034e93fd8760bae5b56, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3381,7 +3372,7 @@ MonoBehaviour:
   m_text: "\uD68C\uBCF5 \uC0C1\uD0DC\uB85C \uC804\uD658\uB41C \uD654\uBA74\uC785\uB2C8\uB2E4.
     \uBE14\uB85D\uC774 \uD790 \uBCBD\uB3CC\uB85C \uC804\uD658\uB418\uBA70, \uC774\uB54C\uB294
     \uBCBD\uB3CC\uC744 \uD30C\uAD34\uD560 \uB54C\uB9C8\uB2E4 \uD50C\uB808\uC774\uC5B4\uC758
-    HP\uAC00 \uD68C\uBCF5\uB429\uB2C8\uB2E4.\r\n"
+    HP\uAC00 \uD68C\uBCF5\uB429\uB2C8\uB2E4. \uCFE8\uD0C0\uC784 \uC138 \uD134 \uC874\uC7AC\uD569\uB2C8\uB2E4.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cb53ef322453dd409fffd2983743e30, type: 2}
   m_sharedMaterial: {fileID: 862174638368914627, guid: 9cb53ef322453dd409fffd2983743e30, type: 2}
@@ -3515,7 +3506,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e927ba78b8fce364bb3dd19d20f8904a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77de2f583d525034e93fd8760bae5b56, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4160,9 +4151,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\uACF5\uC774 \uBC16\uC73C\uB85C \uD295\uAE30\uAC70\uB098 15\uCD08\uAC00
-    \uC9C0\uB098\uBA74, \uBAAC\uC2A4\uD130\uB97C \uC120\uD0DD\uD574 \uACF5\uACA9\uD560
-    \uC218 \uC788\uC2B5\uB2C8\uB2E4. \uD30C\uAD34\uD55C \uBCBD\uB3CC \uAC1C\uC218\uC5D0
-    \uB530\uB77C \uC785\uD788\uB294 \uB300\uBBF8\uC9C0\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4.\r\n"
+    \uC9C0\uB098\uBA74 \uBAAC\uC2A4\uD130\uB97C \uC120\uD0DD\uD574 \uACF5\uACA9\uD569\uB2C8\uB2E4.
+    '\uD30C\uAD34\uD55C \uBCBD\uB3CC \uC218x\uB370\uBBF8\uC9C0'\uC5D0 \uD574\uB2F9\uD558\uB294
+    \uD53C\uD574\uB97C \uC785\uD799\uB2C8\uB2E4.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cb53ef322453dd409fffd2983743e30, type: 2}
   m_sharedMaterial: {fileID: 862174638368914627, guid: 9cb53ef322453dd409fffd2983743e30, type: 2}
@@ -6214,9 +6205,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.11480978
+    x: 0
     y: 0
-    width: 0.77038044
+    width: 1
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -6325,9 +6316,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\uAE30\uBCF8 \uC804\uD22C \uD654\uBA74\uC785\uB2C8\uB2E4. \uACF5\uC744
-    \uD295\uACA8 \uBCBD\uB3CC\uC744 \uD30C\uAD34\uD558\uBA70, \uC88C\uCE21 \uD558\uB2E8\uC758
-    \uB300\uAE30 \uBAAC\uC2A4\uD130 \uC22B\uC790\uB97C \uD1B5\uD574 \uB0A8\uC740
-    \uC801\uC758 \uC218\uB97C \uD655\uC778\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\r\n"
+    \uD295\uACA8 \uBCBD\uB3CC\uC744 \uD30C\uAD34\uD558\uBA70, \uD574\uB2F9 \uC2A4\uD14C\uC774\uC9C0\uC758
+    \uB0A8\uC740 \uBAAC\uC2A4\uD130 \uC218\uC640 \uC790\uC2E0\uC774 \uD55C \uD134\uC5D0
+    \uBD80\uC2E0 \uBCBD\uB3CC \uC218\uB97C \uD655\uC778\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9cb53ef322453dd409fffd2983743e30, type: 2}
   m_sharedMaterial: {fileID: 862174638368914627, guid: 9cb53ef322453dd409fffd2983743e30, type: 2}

@@ -1880,7 +1880,6 @@ GameObject:
   m_Component:
   - component: {fileID: 344199241}
   - component: {fileID: 344199240}
-  - component: {fileID: 344199239}
   m_Layer: 0
   m_Name: BackgroundCamera
   m_TagString: Untagged
@@ -1888,14 +1887,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &344199239
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 344199238}
-  m_Enabled: 1
 --- !u!20 &344199240
 Camera:
   m_ObjectHideFlags: 0
@@ -2599,10 +2590,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.2352528
-    y: 0
-    width: 0.5294944
-    height: 1
+    x: 0
+    y: 0.18980125
+    width: 1
+    height: 0.6203975
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -2808,7 +2799,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -14.6415, y: 21.439026}
+  m_AnchoredPosition: {x: -14.6414795, y: 21.439026}
   m_SizeDelta: {x: -398.8355, y: -928.6337}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &620638177
